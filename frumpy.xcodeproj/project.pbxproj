@@ -88,7 +88,9 @@
 				DD5C3F382162141D0088CE4A /* frumpyUITests */,
 				DD5C3F112162141A0088CE4A /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		DD5C3F112162141A0088CE4A /* Products */ = {
 			isa = PBXGroup;
