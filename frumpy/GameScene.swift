@@ -13,6 +13,7 @@ class GameScene: SKScene {
   let g: CGFloat = 9.82
   let frog = SKSpriteNode(imageNamed: "frog")
   let nrOfAimDots = 7
+  let leafController = LeafController()
   
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
@@ -23,7 +24,10 @@ class GameScene: SKScene {
     view.addGestureRecognizer(panner)
     addFrog()
     createAimDots(nrOfDots: nrOfAimDots)
+    addChild(leafController.addFirstLeaf())
+    addChild(leafController.addLeaf())
   }
+  
   
   @objc func createAimDots(nrOfDots: Int) {
     var size: CGFloat = 4;
