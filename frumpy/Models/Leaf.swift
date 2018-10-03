@@ -6,4 +6,8 @@
 //  Copyright © 2018 Jonas Gustafson. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
+class Leaf: SKShapeNode {
+}
+
+
