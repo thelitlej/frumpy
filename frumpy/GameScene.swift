@@ -9,8 +9,9 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
   let g: CGFloat = 9.82
+
   let frog = SKSpriteNode(imageNamed: "frog")
   let nrOfAimDots = 7
   
@@ -19,12 +20,61 @@ class GameScene: SKScene {
   var startY: CGFloat = 0;
 
   override func didMove(to view: SKView) {
+    self.physicsWorld.contactDelegate = self
     let panner = UIPanGestureRecognizer(target: self, action: #selector(GameScene.swipe(sender:)))
     view.addGestureRecognizer(panner)
     addFrog()
     createAimDots(nrOfDots: nrOfAimDots)
+    createWall(left: true)
+    createWall(left: false)
   }
   
+  func createWall(left: Bool) {
+    //self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+
+    let wall = SKSpriteNode(color: .white, size: CGSize(width: 3, height: frame.height))
+    wall.physicsBody = SKPhysicsBody(rectangleOf: wall.size)
+    wall.physicsBody?.isDynamic = false
+    wall.physicsBody?.restitution = 1
+    //wall.physicsBody?.categoryBitMask = 10;
+    wall.physicsBody?.collisionBitMask = 10;
+    //wall.physicsBody?.contactTestBitMask = 10;
+    let floor = SKSpriteNode(color: .white, size: CGSize(width: frame.width, height: 3))
+    floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
+    floor.physicsBody?.isDynamic = false
+    floor.position = CGPoint(x: frame.width / 2, y: 0)
+    //floor.physicsBody?.categoryBitMask = 10;
+    floor.physicsBody?.collisionBitMask = 10;
+    floor.physicsBody?.restitution = 0.2
+    floor.physicsBody?.friction = 0.9
+    //floor.physicsBody?.contactTestBitMask = 10;
+
+    switch left {
+    case true:
+      wall.position = CGPoint(x: 0, y: frame.height / 2)
+      wall.name = "leftWall"
+    default:
+      wall.position = CGPoint(x: frame.width, y: frame.height / 2)
+      wall.name = "rightWall"
+    }
+    addChild(wall)
+    addChild(floor)
+
+  }
+  
+  func didBegin(_ contact: SKPhysicsContact) {
+    let firstNode = contact.bodyA.node as! SKSpriteNode
+    let secondNode = contact.bodyB.node as! SKSpriteNode
+    
+    if firstNode.name == "frog" && secondNode.name == "leftWall" {
+      flipFrog(direction: 1)
+    }
+    else if firstNode.name == "frog" && secondNode.name == "rightWall" {
+      flipFrog(direction: -1)
+    }
+  }
+  
+
   @objc func createAimDots(nrOfDots: Int) {
     var size: CGFloat = 4;
     for _ in 0...nrOfDots {
@@ -51,11 +101,15 @@ class GameScene: SKScene {
     }
   }
   
+  func flipFrog(direction: CGFloat) {
+    frog.xScale = direction
+  }
+  
   @objc func checkFlip(angle: CGFloat) {
     if(angle > CGFloat.pi/2 || angle < -CGFloat.pi/2) {
-      frog.xScale = 1
+      flipFrog(direction: 1)
     } else {
-      frog.xScale = -1
+      flipFrog(direction: -1)
     }
   }
   
@@ -63,7 +117,8 @@ class GameScene: SKScene {
     let velocity = CGVector(dx: -cos(angle)*(distance), dy: sin(angle)*(distance))
     frog.physicsBody?.applyImpulse(velocity)
     frog.physicsBody?.affectedByGravity = true
-    self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+    let action = SKAction.rotate(byAngle: 1, duration: 1)
+    frog.run(action)
   }
   
   @objc func moveDots(sender: UIPanGestureRecognizer, distance: CGFloat) {
@@ -102,7 +157,7 @@ class GameScene: SKScene {
     let y = sender.location(in: view).y
     var distance = sqrt(pow((x - startX) , 2) + pow((y - startY), 2))
     if(distance > 200) {
-      distance = 200;
+      distance = 200
     }
     return distance
   }
@@ -117,11 +172,15 @@ class GameScene: SKScene {
   }
   
   @objc func addFrog() {
+    frog.name = "frog"
     frog.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (frog.size.width/4), height: (frog.size.height/4)))
     frog.physicsBody?.affectedByGravity = false //Remove when leaves are created
     frog.size = CGSize(width: (frog.size.width/4), height: (frog.size.height/4))
     frog.position = CGPoint(x: 200, y: 200)
-    frog.physicsBody?.mass = 0.15;
+    frog.physicsBody?.mass = 0.16
+    frog.physicsBody?.allowsRotation = true
+    frog.physicsBody?.collisionBitMask = 10;
+    frog.physicsBody?.contactTestBitMask = 10;
     addChild(frog)
   }
  
