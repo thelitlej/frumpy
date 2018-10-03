@@ -1,0 +1,6 @@
+framework module Pods_frumpyUITests {
+  umbrella header "Pods-frumpyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

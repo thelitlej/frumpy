@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AEFF38D9E585FC6EEC412AA /* Pods_frumpyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D89612F443ABAA4D71E93C6 /* Pods_frumpyUITests.framework */; };
 		773C16E32164B9C8003A6814 /* Frog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E22164B9C8003A6814 /* Frog.swift */; };
 		773C16E52164B9D6003A6814 /* FrogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E42164B9D6003A6814 /* FrogController.swift */; };
 		773C16E72164B9E7003A6814 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E62164B9E7003A6814 /* Leaf.swift */; };
@@ -16,6 +17,7 @@
 		773C16EF2164BA21003A6814 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EE2164BA21003A6814 /* Background.swift */; };
 		773C16F12164BA36003A6814 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F02164BA36003A6814 /* Settings.swift */; };
 		773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F22164BA42003A6814 /* Leaderboard.swift */; };
+		9784160F1E1B76A40FF72286 /* Pods_frumpyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */; };
 		C265CAAD2CD72C045E8C49A6 /* Pods_frumpy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03711F3D142C4246E64319 /* Pods_frumpy.framework */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
@@ -48,6 +50,7 @@
 		0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C03711F3D142C4246E64319 /* Pods_frumpy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700B5DE1305A55660A979560 /* Pods-frumpy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.debug.xcconfig"; sourceTree = "<group>"; };
 		773C16E22164B9C8003A6814 /* Frog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frog.swift; sourceTree = "<group>"; };
 		773C16E42164B9D6003A6814 /* FrogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogController.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		773C16EE2164BA21003A6814 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		773C16F02164BA36003A6814 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		773C16F22164BA42003A6814 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		9D89612F443ABAA4D71E93C6 /* Pods_frumpyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.release.xcconfig"; sourceTree = "<group>"; };
 		DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9784160F1E1B76A40FF72286 /* Pods_frumpyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEFF38D9E585FC6EEC412AA /* Pods_frumpyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				2C03711F3D142C4246E64319 /* Pods_frumpy.framework */,
+				2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */,
+				9D89612F443ABAA4D71E93C6 /* Pods_frumpyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -248,7 +256,6 @@
 				DD5C3F0C2162141A0088CE4A /* Sources */,
 				DD5C3F0D2162141A0088CE4A /* Frameworks */,
 				DD5C3F0E2162141A0088CE4A /* Resources */,
-				C2B975B35BED693DAD4AF104 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -420,24 +427,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C2B975B35BED693DAD4AF104 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
