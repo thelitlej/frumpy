@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-  let g: CGFloat = 9.82
+  let g: CGFloat = 9.82;
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   let frog = SKSpriteNode(imageNamed: "frog")
