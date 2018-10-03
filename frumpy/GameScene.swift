@@ -12,6 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
   let g: CGFloat = 9.82
   let frog = SKSpriteNode(imageNamed: "frog")
+  let nrOfAimDots = 7
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
@@ -20,10 +21,10 @@ class GameScene: SKScene {
     let panner = UIPanGestureRecognizer(target: self, action: #selector(GameScene.swipe(sender:)))
     view.addGestureRecognizer(panner)
     addFrog()
-    createDots(nrOfDots: 10)
+    createAimDots(nrOfDots: nrOfAimDots)
   }
   
-  @objc func createDots(nrOfDots: Int) {
+  @objc func createAimDots(nrOfDots: Int) {
     var size: CGFloat = 4;
     for _ in 0...nrOfDots {
       let dot = SKShapeNode(circleOfRadius: size)
@@ -50,7 +51,7 @@ class GameScene: SKScene {
   }
   
   @objc func checkFlip(angle: CGFloat) {
-    if(angle > CGFloat.pi/2 || angle < -CGFloat.pi) {
+    if(angle > CGFloat.pi/2 || angle < -CGFloat.pi/2) {
       frog.xScale = 1
     } else {
       frog.xScale = -1
