@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let nextLeaf = SKSpriteNode(imageNamed: "Leaf")
   let frog = SKSpriteNode(imageNamed: "frog")
   let nrOfAimDots = 7
+  let leafController = LeafController()
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
@@ -34,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     nextRandomLeaf()
     addCamera()
     createAimDots(nrOfDots: nrOfAimDots)
+    addChild(leafController.addFirstLeaf())
+    addChild(leafController.addLeaf())
     createWall(left: true)
     createWall(left: false)
   }
@@ -86,7 +89,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
   }
   
-
   @objc func createAimDots(nrOfDots: Int) {
     var size: CGFloat = 4;
     for _ in 0...nrOfDots {
