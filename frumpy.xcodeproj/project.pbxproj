@@ -76,6 +76,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		773C16DC2164B82A003A6814 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD5C3F1B2162141B0088CE4A /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		773C16DD2164B833003A6814 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		773C16DE2164B83A003A6814 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		773C16DF2164B841003A6814 /* Visual Nodes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Visual Nodes";
+			sourceTree = "<group>";
+		};
+		773C16E02164B884003A6814 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		773C16E12164B8AD003A6814 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DD5C3F072162141A0088CE4A = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +144,14 @@
 		DD5C3F122162141A0088CE4A /* frumpy */ = {
 			isa = PBXGroup;
 			children = (
+				773C16E12164B8AD003A6814 /* Extensions */,
+				773C16E02164B884003A6814 /* Helpers */,
+				773C16DF2164B841003A6814 /* Visual Nodes */,
+				773C16DE2164B83A003A6814 /* Models */,
+				773C16DD2164B833003A6814 /* Views */,
+				773C16DC2164B82A003A6814 /* Controllers */,
 				DD5C3F132162141A0088CE4A /* AppDelegate.swift */,
 				DD5C3F192162141B0088CE4A /* GameScene.swift */,
-				DD5C3F1B2162141B0088CE4A /* GameViewController.swift */,
 				DD5C3F1D2162141B0088CE4A /* Main.storyboard */,
 				DD5C3F202162141D0088CE4A /* Assets.xcassets */,
 				DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */,
@@ -437,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MY24QHR62Z;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MY24QHR62Z;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
