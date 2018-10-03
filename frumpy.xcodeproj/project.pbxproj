@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		773C16E32164B9C8003A6814 /* Frog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E22164B9C8003A6814 /* Frog.swift */; };
+		773C16E52164B9D6003A6814 /* FrogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E42164B9D6003A6814 /* FrogController.swift */; };
+		773C16E72164B9E7003A6814 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E62164B9E7003A6814 /* Leaf.swift */; };
+		773C16E92164B9F2003A6814 /* LeafController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E82164B9F2003A6814 /* LeafController.swift */; };
+		773C16EB2164BA06003A6814 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EA2164BA06003A6814 /* Tree.swift */; };
+		773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EC2164BA0F003A6814 /* TreeController.swift */; };
+		773C16EF2164BA21003A6814 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EE2164BA21003A6814 /* Background.swift */; };
+		773C16F12164BA36003A6814 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F02164BA36003A6814 /* Settings.swift */; };
+		773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F22164BA42003A6814 /* Leaderboard.swift */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
@@ -35,6 +44,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		773C16E22164B9C8003A6814 /* Frog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frog.swift; sourceTree = "<group>"; };
+		773C16E42164B9D6003A6814 /* FrogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogController.swift; sourceTree = "<group>"; };
+		773C16E62164B9E7003A6814 /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
+		773C16E82164B9F2003A6814 /* LeafController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeafController.swift; sourceTree = "<group>"; };
+		773C16EA2164BA06003A6814 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		773C16EC2164BA0F003A6814 /* TreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
+		773C16EE2164BA21003A6814 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		773C16F02164BA36003A6814 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		773C16F22164BA42003A6814 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -80,6 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				DD5C3F1B2162141B0088CE4A /* GameViewController.swift */,
+				773C16E42164B9D6003A6814 /* FrogController.swift */,
+				773C16E82164B9F2003A6814 /* LeafController.swift */,
+				773C16EC2164BA0F003A6814 /* TreeController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -87,6 +108,9 @@
 		773C16DD2164B833003A6814 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				773C16EE2164BA21003A6814 /* Background.swift */,
+				773C16F02164BA36003A6814 /* Settings.swift */,
+				773C16F22164BA42003A6814 /* Leaderboard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +118,9 @@
 		773C16DE2164B83A003A6814 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				773C16E22164B9C8003A6814 /* Frog.swift */,
+				773C16E62164B9E7003A6814 /* Leaf.swift */,
+				773C16EA2164BA06003A6814 /* Tree.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,8 +337,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */,
+				773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */,
+				773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */,
 				DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */,
+				773C16E52164B9D6003A6814 /* FrogController.swift in Sources */,
+				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
+				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
+				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
+				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,
+				773C16F12164BA36003A6814 /* Settings.swift in Sources */,
+				773C16EF2164BA21003A6814 /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
