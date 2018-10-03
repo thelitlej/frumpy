@@ -63,6 +63,7 @@ class GameScene: SKScene {
     let velocity = CGVector(dx: -cos(angle)*(distance), dy: sin(angle)*(distance))
     frog.physicsBody?.applyImpulse(velocity)
     frog.physicsBody?.affectedByGravity = true
+    self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
   }
   
   @objc func moveDots(sender: UIPanGestureRecognizer, distance: CGFloat) {

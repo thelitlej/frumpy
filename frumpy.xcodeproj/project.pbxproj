@@ -16,6 +16,7 @@
 		773C16EF2164BA21003A6814 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EE2164BA21003A6814 /* Background.swift */; };
 		773C16F12164BA36003A6814 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F02164BA36003A6814 /* Settings.swift */; };
 		773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F22164BA42003A6814 /* Leaderboard.swift */; };
+		C265CAAD2CD72C045E8C49A6 /* Pods_frumpy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03711F3D142C4246E64319 /* Pods_frumpy.framework */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
@@ -44,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.release.xcconfig"; sourceTree = "<group>"; };
+		2C03711F3D142C4246E64319 /* Pods_frumpy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		700B5DE1305A55660A979560 /* Pods-frumpy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.debug.xcconfig"; sourceTree = "<group>"; };
 		773C16E22164B9C8003A6814 /* Frog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frog.swift; sourceTree = "<group>"; };
 		773C16E42164B9D6003A6814 /* FrogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogController.swift; sourceTree = "<group>"; };
 		773C16E62164B9E7003A6814 /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
@@ -53,6 +58,9 @@
 		773C16EE2164BA21003A6814 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		773C16F02164BA36003A6814 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		773C16F22164BA42003A6814 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.release.xcconfig"; sourceTree = "<group>"; };
+		DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C265CAAD2CD72C045E8C49A6 /* Pods_frumpy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +155,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		AAD325A742277FB4F924E696 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				700B5DE1305A55660A979560 /* Pods-frumpy.debug.xcconfig */,
+				D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */,
+				A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */,
+				1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */,
+				DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */,
+				0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DD5C3F072162141A0088CE4A = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +175,8 @@
 				DD5C3F2D2162141D0088CE4A /* frumpyTests */,
 				DD5C3F382162141D0088CE4A /* frumpyUITests */,
 				DD5C3F112162141A0088CE4A /* Products */,
+				AAD325A742277FB4F924E696 /* Pods */,
+				DF0878836CE5BD16B2D6FB5F /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -205,6 +229,14 @@
 			path = frumpyUITests;
 			sourceTree = "<group>";
 		};
+		DF0878836CE5BD16B2D6FB5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C03711F3D142C4246E64319 /* Pods_frumpy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -212,9 +244,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD5C3F3E2162141D0088CE4A /* Build configuration list for PBXNativeTarget "frumpy" */;
 			buildPhases = (
+				4A88C11FDCCB8FC29D1CD974 /* [CP] Check Pods Manifest.lock */,
 				DD5C3F0C2162141A0088CE4A /* Sources */,
 				DD5C3F0D2162141A0088CE4A /* Frameworks */,
 				DD5C3F0E2162141A0088CE4A /* Resources */,
+				C2B975B35BED693DAD4AF104 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,6 +263,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD5C3F412162141D0088CE4A /* Build configuration list for PBXNativeTarget "frumpyTests" */;
 			buildPhases = (
+				1ED464FB0BA961B3A336C1D5 /* [CP] Check Pods Manifest.lock */,
 				DD5C3F262162141D0088CE4A /* Sources */,
 				DD5C3F272162141D0088CE4A /* Frameworks */,
 				DD5C3F282162141D0088CE4A /* Resources */,
@@ -247,6 +282,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD5C3F442162141D0088CE4A /* Build configuration list for PBXNativeTarget "frumpyUITests" */;
 			buildPhases = (
+				2C2926291D1BE39B2BC2FF5D /* [CP] Check Pods Manifest.lock */,
 				DD5C3F312162141D0088CE4A /* Sources */,
 				DD5C3F322162141D0088CE4A /* Frameworks */,
 				DD5C3F332162141D0088CE4A /* Resources */,
@@ -330,6 +366,81 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1ED464FB0BA961B3A336C1D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-frumpyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C2926291D1BE39B2BC2FF5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-frumpyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A88C11FDCCB8FC29D1CD974 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-frumpy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2B975B35BED693DAD4AF104 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD5C3F0C2162141A0088CE4A /* Sources */ = {
@@ -518,6 +629,7 @@
 		};
 		DD5C3F3F2162141D0088CE4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 700B5DE1305A55660A979560 /* Pods-frumpy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +648,7 @@
 		};
 		DD5C3F402162141D0088CE4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -554,6 +667,7 @@
 		};
 		DD5C3F422162141D0088CE4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -574,6 +688,7 @@
 		};
 		DD5C3F432162141D0088CE4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -594,6 +709,7 @@
 		};
 		DD5C3F452162141D0088CE4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -613,6 +729,7 @@
 		};
 		DD5C3F462162141D0088CE4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
