@@ -8,12 +8,15 @@
 
 import SpriteKit
 import GameplayKit
+import Lottie
 
 class GameScene: SKScene {
   let g: CGFloat = 9.82
-  let frog = SKSpriteNode(imageNamed: "frog")
-  let nrOfAimDots = 7
+  let sheet = AnimatedFrog()
+  var frog: SKSpriteNode = SKSpriteNode()
   
+  //let frog = SKSpriteNode(imageNamed: "frog")
+  let nrOfAimDots = 7
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
@@ -21,8 +24,13 @@ class GameScene: SKScene {
   override func didMove(to view: SKView) {
     let panner = UIPanGestureRecognizer(target: self, action: #selector(GameScene.swipe(sender:)))
     view.addGestureRecognizer(panner)
+    frog = SKSpriteNode(texture: sheet.breathe_frog_00000());
+    
     addFrog()
+    
     createAimDots(nrOfDots: nrOfAimDots)
+    backgroundColor = .lightGray
+    
   }
   
   @objc func createAimDots(nrOfDots: Int) {
@@ -91,6 +99,7 @@ class GameScene: SKScene {
     } else if (sender.state.rawValue == 3) {
       hideDots()
       frogJump(angle: angle, distance: distance)
+      
     } else {
       checkFlip(angle: angle)
       moveDots(sender: sender, distance: distance)
@@ -101,8 +110,8 @@ class GameScene: SKScene {
     let x = sender.location(in: view).x
     let y = sender.location(in: view).y
     var distance = sqrt(pow((x - startX) , 2) + pow((y - startY), 2))
-    if(distance > 200) {
-      distance = 200;
+    if(distance > 150) {
+      distance = 150;
     }
     return distance
   }
@@ -117,13 +126,21 @@ class GameScene: SKScene {
   }
   
   @objc func addFrog() {
+    let breathe = SKAction.animate(with: sheet.breathe_frog_(), timePerFrame: 0.033)
+    let breatheAnim = SKAction.repeat(breathe, count: 6)
+    
     frog.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (frog.size.width/4), height: (frog.size.height/4)))
     frog.physicsBody?.affectedByGravity = false //Remove when leaves are created
     frog.size = CGSize(width: (frog.size.width/4), height: (frog.size.height/4))
     frog.position = CGPoint(x: 200, y: 200)
     frog.physicsBody?.mass = 0.15;
     addChild(frog)
+    let sequence = SKAction.repeatForever(
+      SKAction.sequence([breatheAnim])
+    );
+    frog.run(sequence)
+
   }
- 
+  
   
 }

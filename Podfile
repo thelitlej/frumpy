@@ -6,6 +6,7 @@ target 'frumpy' do
   use_frameworks!
 
   # Pods for frumpy
+  pod 'lottie-ios'
 
   target 'frumpyTests' do
     inherit! :search_paths

@@ -27,6 +27,8 @@
 		DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */; };
 		DD5C3F2F2162141D0088CE4A /* frumpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F2E2162141D0088CE4A /* frumpyTests.swift */; };
 		DD5C3F3A2162141D0088CE4A /* frumpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F392162141D0088CE4A /* frumpyUITests.swift */; };
+		DDDD6812216658B30082B1ED /* AnimatedFrog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDD6810216658B30082B1ED /* AnimatedFrog.swift */; };
+		DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		DD5C3F352162141D0088CE4A /* frumpyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frumpyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F392162141D0088CE4A /* frumpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frumpyUITests.swift; sourceTree = "<group>"; };
 		DD5C3F3B2162141D0088CE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDDD6810216658B30082B1ED /* AnimatedFrog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog.swift; sourceTree = "<group>"; };
+		DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog.atlasc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,8 @@
 		DD5C3F122162141A0088CE4A /* frumpy */ = {
 			isa = PBXGroup;
 			children = (
+				DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */,
+				DDDD6810216658B30082B1ED /* AnimatedFrog.swift */,
 				773C16E12164B8AD003A6814 /* Extensions */,
 				773C16E02164B884003A6814 /* Helpers */,
 				773C16DF2164B841003A6814 /* Visual Nodes */,
@@ -256,6 +262,7 @@
 				DD5C3F0C2162141A0088CE4A /* Sources */,
 				DD5C3F0D2162141A0088CE4A /* Frameworks */,
 				DD5C3F0E2162141A0088CE4A /* Resources */,
+				C120DB4B7C8A590B809A1105 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,6 +361,7 @@
 			files = (
 				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
 				DD5C3F212162141D0088CE4A /* Assets.xcassets in Resources */,
+				DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */,
 				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +437,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C120DB4B7C8A590B809A1105 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-frumpy/Pods-frumpy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -445,6 +471,7 @@
 				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
 				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
+				DDDD6812216658B30082B1ED /* AnimatedFrog.swift in Sources */,
 				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,
 				773C16F12164BA36003A6814 /* Settings.swift in Sources */,
 				773C16EF2164BA21003A6814 /* Background.swift in Sources */,
