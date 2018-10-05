@@ -8,5 +8,6 @@
 
 import Foundation
 import SpriteKit
-class Frog: SKShapeNode {
+class Frog {
+ 
 }
