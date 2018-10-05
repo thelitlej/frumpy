@@ -28,6 +28,8 @@
 		DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */; };
 		DD5C3F2F2162141D0088CE4A /* frumpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F2E2162141D0088CE4A /* frumpyTests.swift */; };
 		DD5C3F3A2162141D0088CE4A /* frumpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F392162141D0088CE4A /* frumpyUITests.swift */; };
+		DDD74FA52167967900D77C0C /* AnimatedFrog2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */; };
+		DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */; };
 		DDDD6812216658B30082B1ED /* AnimatedFrog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDD6810216658B30082B1ED /* AnimatedFrog.swift */; };
 		DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,8 @@
 		DD5C3F352162141D0088CE4A /* frumpyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frumpyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F392162141D0088CE4A /* frumpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frumpyUITests.swift; sourceTree = "<group>"; };
 		DD5C3F3B2162141D0088CE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog2.swift; sourceTree = "<group>"; };
+		DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog2.atlasc; sourceTree = "<group>"; };
 		DDDD6810216658B30082B1ED /* AnimatedFrog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog.swift; sourceTree = "<group>"; };
 		DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog.atlasc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +198,8 @@
 		DD5C3F122162141A0088CE4A /* frumpy */ = {
 			isa = PBXGroup;
 			children = (
+				DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */,
+				DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
 				DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */,
 				DDDD6810216658B30082B1ED /* AnimatedFrog.swift */,
@@ -350,6 +356,7 @@
 				DD5C3F212162141D0088CE4A /* Assets.xcassets in Resources */,
 				DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */,
 				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
+				DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +459,7 @@
 				DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */,
 				773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */,
 				773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */,
+				DDD74FA52167967900D77C0C /* AnimatedFrog2.swift in Sources */,
 				DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */,
 				773C16E52164B9D6003A6814 /* FrogController.swift in Sources */,
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,

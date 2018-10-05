@@ -12,7 +12,7 @@ import GameplayKit
 
 class FrogController: UIViewController {
   
-  let sheet = AnimatedFrog()
+  let sheet = AnimatedFrog2()
   var frog: SKSpriteNode = SKSpriteNode()
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
@@ -20,9 +20,9 @@ class FrogController: UIViewController {
   let g: CGFloat = 9.82
   
   func addFrog() -> SKSpriteNode {
-    let breathe = SKAction.animate(with: sheet.breathe_frog_(), timePerFrame: 0.033)
+    let breathe = SKAction.animate(with: sheet.still_frog_(), timePerFrame: 0.033)
     let breatheAnim = SKAction.repeat(breathe, count: 6)
-    frog = SKSpriteNode(texture: sheet.breathe_frog_00000()); 
+    frog = SKSpriteNode(texture: sheet.still_frog_00000());
     //frog.name = "frog"
     initFrogPhysics()
     
@@ -35,7 +35,7 @@ class FrogController: UIViewController {
   }
   
   func initFrogPhysics() {
-    frog.physicsBody = SKPhysicsBody(texture: sheet.breathe_frog_00000(), size: CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5)))
+    frog.physicsBody = SKPhysicsBody(texture: sheet.still_frog_00000(), size: CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5)))
     frog.size = CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5))
     frog.position = CGPoint(x: 200, y: 200)
     frog.physicsBody?.mass = 0.155
