@@ -7,3 +7,6 @@
 //
 
 import Foundation
+import SpriteKit
+class Tree: SKShapeNode {
+}
