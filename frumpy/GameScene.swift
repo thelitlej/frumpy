@@ -25,13 +25,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   let cam = SKCameraNode()
+  var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
     let panner = UIPanGestureRecognizer(target: self, action: #selector(GameScene.swipe(sender:)))
     view.addGestureRecognizer(panner)
     frog = SKSpriteNode(texture: sheet.breathe_frog_00000());
-    
+    self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     addFrog()
     backgroundColor = .lightGray
     setupStartLeaf()
@@ -236,12 +237,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   }
   
-  @objc func addCamera() {
+  func addCamera() {
     cam.position.x = size.width / 2
     cam.position.y = size.height
     addChild(cam)
   }
   override func update(_ currentTime: CFTimeInterval) {
     cam.position.y = frog.position.y / 1.5
+    moveWater()
+  }
+  func createWater(){
+    let water = SKSpriteNode(imageNamed: "water")
+    water.name = "water"
+    water.size = CGSize(width: (self.scene?.size.width)!, height: 300)
+    water.anchorPoint = CGPoint(x: 300, y: 300)
+    water.position = CGPoint(x: water.size.width, y: -(self.frame.size.height / 2))
+    self.addChild(water)
+    
+  }
+  func moveWater() {
+    //self.enumerateChildNodes("water", using: <#T##(SKNode, UnsafeMutablePointer<ObjCBool>) -> Void#>)
   }
 }
