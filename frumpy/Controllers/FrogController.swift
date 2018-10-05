@@ -85,11 +85,11 @@ class FrogController: UIViewController {
     let c = -cos(acos((currentX - startX)/distance))
     let s = sin(asin((currentY - startY)/distance))
     
-//    let temp = (currentX - startX)/distance
-//    if((calc < 0 && c < 0))
-//    print("calc", temp)
-//    print("SIN: ", s)
-//    print("COS: ", c)
+    let temp = (currentX - startX)/distance
+    print("distance", distance)
+    print("calc", temp)
+    print("SIN: ", s)
+    print("COS: ", c)
     var i: CGFloat = 1
     for dot in dots {
       let x = distance/2 * i * c
