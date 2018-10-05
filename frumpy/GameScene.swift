@@ -8,15 +8,17 @@
 
 import SpriteKit
 import GameplayKit
+import Lottie
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
   let kLeafCategory: UInt32 = 0x1 << 0
   let g: CGFloat = 9.82
+  let sheet = AnimatedFrog()
+  var frog: SKSpriteNode = SKSpriteNode()
   let startLeaf = SKSpriteNode(imageNamed: "Leaf")
   let nextLeaf = SKSpriteNode(imageNamed: "Leaf")
-  let frog = SKSpriteNode(imageNamed: "frog")
   let nrOfAimDots = 7
   let leafController = LeafController()
   var dots: [SKShapeNode] = []
@@ -30,7 +32,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.physicsWorld.contactDelegate = self
     let panner = UIPanGestureRecognizer(target: self, action: #selector(GameScene.swipe(sender:)))
     view.addGestureRecognizer(panner)
+    frog = SKSpriteNode(texture: sheet.breathe_frog_00000());
+    
     addFrog()
+    backgroundColor = .lightGray
     setupStartLeaf()
     nextRandomLeaf()
     addCamera()
@@ -187,6 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     } else if (sender.state.rawValue == 3) {
       hideDots()
       frogJump(angle: angle, distance: distance)
+      
     } else {
       checkFlip(angle: angle)
       moveDots(sender: sender, distance: distance)
@@ -198,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let y = sender.location(in: view).y
     var distance = sqrt(pow((x - startX) , 2) + pow((y - startY), 2))
     if(distance > 200) {
-      distance = 200
+      distance = 200;
     }
     return distance
   }
@@ -213,18 +219,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   @objc func addFrog() {
+    let breathe = SKAction.animate(with: sheet.breathe_frog_(), timePerFrame: 0.033)
+    let breatheAnim = SKAction.repeat(breathe, count: 6)
     frog.name = "frog"
-    frog.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (frog.size.width/4), height: (frog.size.height/4)))
-    //frog.physicsBody?.affectedByGravity = false //Remove when leaves are created
-    frog.size = CGSize(width: (frog.size.width/4), height: (frog.size.height/4))
-
+    frog.physicsBody = SKPhysicsBody(texture: sheet.breathe_frog_00000(), size: CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5)))
+    frog.size = CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5))
     frog.position = CGPoint(x: 200, y: 200)
-    frog.physicsBody?.mass = 0.16
+    frog.physicsBody?.mass = 0.155
     frog.physicsBody?.allowsRotation = true
     frog.physicsBody?.collisionBitMask = 10;
     frog.physicsBody?.contactTestBitMask = 10;
 
     addChild(frog)
+    let sequence = SKAction.repeatForever(
+      SKAction.sequence([breatheAnim])
+    );
+    frog.run(sequence)
+
   }
   
   @objc func addCamera() {
@@ -235,5 +246,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: CFTimeInterval) {
     cam.position = frog.position
   }
-  
 }
