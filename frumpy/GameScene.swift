@@ -22,8 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   let cam = SKCameraNode()
-  
-  
 
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
@@ -216,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //frog.physicsBody?.affectedByGravity = false //Remove when leaves are created
     frog.size = CGSize(width: (frog.size.width/4), height: (frog.size.height/4))
 
-    frog.position = CGPoint(x: 200, y: 200)
+    frog.position = CGPoint(x: 110, y: 210)
     frog.physicsBody?.mass = 0.16
     frog.physicsBody?.allowsRotation = true
     frog.physicsBody?.collisionBitMask = 10;
@@ -226,12 +224,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   @objc func addCamera() {
-    cam.position.x = size.width / 4
-    cam.position.y = size.width / 4
+    cam.position.x = size.width / 2
+    cam.position.y = size.height
     addChild(cam)
   }
   override func update(_ currentTime: CFTimeInterval) {
-    cam.position = frog.position
+    cam.position.y = frog.position.y / 1.5
   }
   
 }
