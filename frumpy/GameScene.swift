@@ -17,16 +17,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let g: CGFloat = 9.82
   let sheet = AnimatedFrog()
   var frog: SKSpriteNode = SKSpriteNode()
-  let startLeaf = SKSpriteNode(imageNamed: "Leaf")
-  let nextLeaf = SKSpriteNode(imageNamed: "Leaf")
+  let startLeaf = SKSpriteNode(imageNamed: "leaf")
+  let nextLeaf = SKSpriteNode(imageNamed: "leaf")
   let nrOfAimDots = 7
   let leafController = LeafController()
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   let cam = SKCameraNode()
-  
-  
 
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
@@ -239,11 +237,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   @objc func addCamera() {
-    cam.position.x = size.width / 4
-    cam.position.y = size.width / 4
+    cam.position.x = size.width / 2
+    cam.position.y = size.height
     addChild(cam)
   }
   override func update(_ currentTime: CFTimeInterval) {
-    cam.position = frog.position
+    cam.position.y = frog.position.y / 1.5
   }
 }
