@@ -13,7 +13,7 @@ class LeafController: UIViewController {
   
   func addFirstLeaf () -> SKSpriteNode {
     // create a new leaf sprite
-    let leafFirstSprite = SKSpriteNode(imageNamed: "Leaf")
+    let leafFirstSprite = SKSpriteNode(imageNamed: "leaf")
     leafFirstSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: leafFirstSprite.size.width/1.5,
                                                               height: leafFirstSprite.size.height/12))
     leafFirstSprite.size = CGSize(width: 100, height: 40)
@@ -31,7 +31,7 @@ class LeafController: UIViewController {
   
   func addLeaf () -> SKSpriteNode {
     // create a new leaf sprite
-    let leafSprite = SKSpriteNode(imageNamed: "Leaf")
+    let leafSprite = SKSpriteNode(imageNamed: "leaf")
     leafSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: leafSprite.size.width/1.5,
                                                               height: leafSprite.size.height/12))
     leafSprite.physicsBody?.isDynamic = false

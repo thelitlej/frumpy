@@ -17,8 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let g: CGFloat = 9.82
   let sheet = AnimatedFrog()
   var frog: SKSpriteNode = SKSpriteNode()
-  let startLeaf = SKSpriteNode(imageNamed: "Leaf")
-  let nextLeaf = SKSpriteNode(imageNamed: "Leaf")
+  let startLeaf = SKSpriteNode(imageNamed: "leaf")
+  let nextLeaf = SKSpriteNode(imageNamed: "leaf")
   let nrOfAimDots = 7
   let leafController = LeafController()
   var dots: [SKShapeNode] = []
