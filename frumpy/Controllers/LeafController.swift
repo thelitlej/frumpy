@@ -22,9 +22,9 @@ class LeafController: UIViewController {
     leafFirstSprite.physicsBody!.contactTestBitMask = 10
     leafFirstSprite.physicsBody!.collisionBitMask = 10
     
-//    // position new sprite at a specific position on the screen
-//    let sizeRect = UIScreen.main.bounds;
-//    leafFirstSprite.position = CGPoint(x: (sizeRect.size.width)-100, y: (sizeRect.size.height)-350)
+    // position new sprite at a specific position on the screen
+    let sizeRect = UIScreen.main.bounds;
+    leafFirstSprite.position = CGPoint(x: (sizeRect.size.width)-100, y: (sizeRect.size.height)-350)
     
     return leafFirstSprite
   }
