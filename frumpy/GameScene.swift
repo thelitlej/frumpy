@@ -22,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
+  var landingSucsess = false;
 
   var water = SKSpriteNode(imageNamed: "water")
 
@@ -32,18 +33,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
     backgroundColor = .lightGray
-    leafController.nextRandomLeaf()
+    /*leafController.nextRandomLeaf()*/
     addCamera()
     //frogController.createAimDots(nrOfDots: nrOfAimDots)
     insertChild(leafController.addFirstLeaf(), at: 0)
-    insertChild(leafController.addLeaf(), at: 0)
+    insertChild(leafController.addSecondLeaf(), at: 0)
+    for _ in 1...10 {
+      insertChild(leafController.nextRandomLeaf(), at: 0)
+    }
+
+    
     addChild(frog)
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
       addChild(dot)
     }
     createWall(left: true)
-    createWall(left: false)
+   // createWall(left: false)
     view.addGestureRecognizer(frogController.initPanner())
   }
   
@@ -102,7 +108,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: CFTimeInterval) {
     /*Called before each frame is rendered*/
     cam.position.y = frog.position.y / 1.5
-    leafController.nextRandomLeaf()
+    
+    //leafController.nextRandomLeaf()
     //moveWater()
   }
   func createWater(){

@@ -92,6 +92,7 @@ class FrogController: UIViewController {
       let y = y1 - 0.5 * g * pow(i, 2)
       i += 1
       dot.position = CGPoint(x: x + frog.position.x, y: y + frog.position.y)
+      
     }
   }
   
