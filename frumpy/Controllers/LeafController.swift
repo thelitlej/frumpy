@@ -14,7 +14,22 @@ class LeafController: UIViewController {
   let startLeaf = SKSpriteNode(imageNamed: "leaf_brown")
   let secondLeaf = SKSpriteNode(imageNamed: "leaf_brown")
   let nextLeaf = SKSpriteNode(imageNamed: "leaf_brown")
+  let brownLeaf = SKSpriteNode(imageNamed: "leaf_brown")
  
+  
+  func createLeaf(position: CGPoint) -> SKSpriteNode {
+    brownLeaf.size = CGSize(width: (brownLeaf.size.width/4), height: (brownLeaf.size.height/4))
+    brownLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: brownLeaf.size.width/1.5,
+                                                              height: brownLeaf.size.height/12))
+    brownLeaf.physicsBody?.isDynamic = false
+    brownLeaf.physicsBody!.categoryBitMask = 10
+    brownLeaf.physicsBody!.contactTestBitMask = 10
+    brownLeaf.physicsBody!.collisionBitMask = 10
+    brownLeaf.physicsBody!.friction = 5
+    brownLeaf.position = CGPoint(x: position.x, y: position.y)
+    
+    return brownLeaf
+  }
   
   func addFirstLeaf () -> SKSpriteNode {
     // create first leaf sprite

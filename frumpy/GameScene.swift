@@ -23,6 +23,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   var landingSucsess = false;
+  var frogPosition = CGPoint()
+  var maxX : CGFloat = 0
+  var maxY : CGFloat = 0
+  var sprites = [SKSpriteNode]()
+  var spritesAdded = [SKSpriteNode]()
+
+  
 
   var water = SKSpriteNode(imageNamed: "water")
 
@@ -30,18 +37,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.physicsWorld.contactDelegate = self
     frog = frogController.addFrog()
     frog.name = "frog"
-    self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    maxX = frame.width
+    maxY = frame.height
+    //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
     backgroundColor = .lightGray
 
     //leafController.nextRandomLeaf()
 
     addCamera()
+    addRandomLeaf()
+
+
     //frogController.createAimDots(nrOfDots: nrOfAimDots)
+    
+
+    //Start Leaf
+    //let startLeaf = leafController.createLeaf(position: CGPoint(x: 100, y: 200))
     insertChild(leafController.addFirstLeaf(), at: 0)
+    //insertChild(startLeaf, at: 0)
+    //Second Leaf
+    //let secondLeaf = leafController.createLeaf(position: CGPoint(x: 300, y: 300))
+    //insertChild(secondLeaf, at: 0)
     insertChild(leafController.addSecondLeaf(), at: 0)
 
-    
     addChild(frog)
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
@@ -50,6 +69,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     createWall(left: true)
     createWall(left: false)
     view.addGestureRecognizer(frogController.initPanner())
+    self.view!.showsFPS = true
+    self.camera = cam
+    self.view!.showsNodeCount = true
   }
   
   func createWall(left: Bool) {
@@ -82,9 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     addChild(wall)
     addChild(floor)
-    self.view!.showsFPS = true
-    self.camera = cam
-    self.view!.showsNodeCount = true
+
   }
   func didBegin(_ contact: SKPhysicsContact) {
     let firstNode = contact.bodyA.node as! SKSpriteNode
@@ -107,9 +127,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: CFTimeInterval) {
     /*Called before each frame is rendered*/
     cam.position.y = frog.position.y / 1.5
+    frogPosition = frogController.frog.position
+    
     //leafController.nextRandomLeaf()
     //moveWater()
   }
+  func addRandomLeaf(){
+    let currentLeaf = SKSpriteNode(imageNamed: "leaf_brown")
+     currentLeaf.size = CGSize(width: (currentLeaf.size.width/4), height: (currentLeaf.size.height/4))
+    
+      let xPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxX
+      let yPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxY
+      
+       currentLeaf.position = CGPoint(x: xPos, y: yPos )
+      
+      for sprite in spritesAdded{
+        if (currentLeaf.intersects(sprite)){
+          return
+        }
+      }
+      
+      addChild(currentLeaf)
+      spritesAdded.append(currentLeaf)
+    }
+  
+
+    
+  
+ 
   func createWater(){
     let water = SKSpriteNode(imageNamed: "water")
     water.name = "water"
@@ -119,8 +164,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.addChild(water)
     
   }
+  
+  
   func moveWater() {
     //self.enumerateChildNodes("water", using: <#T##(SKNode, UnsafeMutablePointer<ObjCBool>) -> Void#>)
   }
+
 
 }
