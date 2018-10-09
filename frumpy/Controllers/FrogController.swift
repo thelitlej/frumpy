@@ -10,8 +10,16 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+extension CGVector {
+  func speed() -> CGFloat {
+    return sqrt(dx*dx+dy*dy)
+  }
+  func angle() -> CGFloat {
+    return atan2(dy, dx)
+  }
+}
+
 class FrogController: UIViewController {
-  
   let sheet = AnimatedFrog2()
   var frog: SKSpriteNode = SKSpriteNode()
   var dots: [SKShapeNode] = []
@@ -30,7 +38,6 @@ class FrogController: UIViewController {
     initFrogPhysics()
     frog.run(sequence)
     return frog
-    
   }
   
   func initFrogPhysics() {
@@ -43,13 +50,30 @@ class FrogController: UIViewController {
     frog.physicsBody?.contactTestBitMask = 10;
     frog.zPosition = 1
   }
-  
+
   func frogJump(angle: CGFloat, distance: CGFloat) {
     let velocity = CGVector(dx: -cos(angle)*(distance), dy: sin(angle)*(distance))
     frog.physicsBody?.applyImpulse(velocity)
     frog.physicsBody?.affectedByGravity = true
     //let action = SKAction.rotate(byAngle: 1, duration: 1)
     //frog.run(action)
+  }
+  
+  func updateFrogAngle() {
+    let velocity = frog.physicsBody?.velocity
+    let speed = velocity?.speed()
+    let angle = velocity?.angle()
+    print(angle as Any)
+    if(angle ?? 0 > CGFloat.pi/2) {
+      frog.xScale = -1;
+      } else {
+      frog.xScale = 1;
+    }
+//    if(speed ?? 0 > minSpeed ?? 200) {
+//      frog.zRotation = (angle ?? 0)/2
+//    } else {
+//      frog.zRotation = 0;
+//    }
   }
   
   func createAimDots(nrOfDots: Int) -> [SKShapeNode]{
@@ -60,7 +84,6 @@ class FrogController: UIViewController {
       dot.fillColor = UIColor.white
       dot.isHidden = true
       dot.alpha = 0.5
-      //self.addChild(dot)
       dots.append(dot)
       size -= 0.15
     }
@@ -82,15 +105,8 @@ class FrogController: UIViewController {
   func moveDots(sender: UIPanGestureRecognizer, distance: CGFloat) {
     let currentX = sender.location(in: view).x
     let currentY = sender.location(in: view).y
-    
     let c = -cos(acos((currentX - startX)/distance))
     let s = sin(asin((currentY - startY)/distance))
-    
-    let temp = (currentX - startX)/distance
-    print("distance", distance)
-    print("calc", temp)
-    print("SIN: ", s)
-    print("COS: ", c)
     var i: CGFloat = 1
     for dot in dots {
       let x = distance/2 * i * c
@@ -98,23 +114,10 @@ class FrogController: UIViewController {
       let y = y1 - 0.5 * g * pow(i, 2)
       i += 1
       dot.position = CGPoint(x: x + frog.position.x, y: y + frog.position.y)
-      
     }
   }
   
-  func flipFrog(direction: CGFloat) {
-    frog.xScale = direction
-  }
-  
-  func checkFlip(angle: CGFloat) {
-    if(angle > CGFloat.pi/2 || angle < -CGFloat.pi/2) {
-      flipFrog(direction: 1)
-    } else {
-      flipFrog(direction: -1)
-    }
-  }
-  
-  func calculateDistance(sender: UIPanGestureRecognizer) -> CGFloat {
+  func calculateSwipeLength(sender: UIPanGestureRecognizer) -> CGFloat {
     let x = sender.location(in: view).x
     let y = sender.location(in: view).y
     var distance = sqrt(pow((x - startX) , 2) + pow((y - startY), 2))
@@ -124,24 +127,21 @@ class FrogController: UIViewController {
     return distance
   }
   
-  func calculateAngle(sender: UIPanGestureRecognizer) -> CGFloat {
-    return atan2((sender.location(in: view).y - startY), (sender.location(in: view).x - startX))
+  func calculateSwipeAngle(sender: UIPanGestureRecognizer) -> CGFloat {
+    let dy = sender.location(in: view).y - startY
+    let dx = sender.location(in: view).x - startX
+    return atan2(dy, dx)
   }
   
-  func calculateFrogHeading(swipeAngle: CGFloat) -> CGFloat {
-    if(swipeAngle < 0) {
-      return swipeAngle + CGFloat.pi
-    }
-    return swipeAngle - CGFloat.pi
-  }
+  
   func initPanner() -> UIPanGestureRecognizer {
     let panner = UIPanGestureRecognizer(target: self, action: #selector(FrogController.swipe(sender: )))
     return panner
   }
   
   @objc func swipe(sender: UIPanGestureRecognizer) {
-    let angle = calculateAngle(sender: sender)
-    let distance = calculateDistance(sender: sender)
+    let angle = calculateSwipeAngle(sender: sender)
+    let distance = calculateSwipeLength(sender: sender)
     if(distance > 70) {
       showDots()
       if(sender.state.rawValue == 1) {
@@ -152,7 +152,6 @@ class FrogController: UIViewController {
         frogJump(angle: angle, distance: distance)
         
       } else {
-        checkFlip(angle: angle)
         moveDots(sender: sender, distance: distance)
       }
     }
@@ -160,16 +159,4 @@ class FrogController: UIViewController {
       hideDots()
     }
   }
-//  func didBegin(_ contact: SKPhysicsContact) {
-//    let firstNode = contact.bodyA.node as! SKSpriteNode
-//    let secondNode = contact.bodyB.node as! SKSpriteNode
-//    
-//    if firstNode.name == "frog" && secondNode.name == "leftWall" {
-//      flipFrog(direction: 1)
-//    }
-//    else if firstNode.name == "frog" && secondNode.name == "rightWall" {
-//      flipFrog(direction: -1)
-//    }
-//  }
-  
 }
