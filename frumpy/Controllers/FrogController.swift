@@ -36,7 +36,7 @@ class FrogController: UIViewController {
   func initFrogPhysics() {
     frog.physicsBody = SKPhysicsBody(texture: sheet.still_frog_00000(), size: CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5)))
     frog.size = CGSize(width: (frog.size.width/3.5), height: (frog.size.height/3.5))
-    frog.position = CGPoint(x: 100, y: 230)
+    frog.position = CGPoint(x: 100, y: 260)
     frog.physicsBody?.mass = 0.155
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.collisionBitMask = 10;
@@ -98,6 +98,7 @@ class FrogController: UIViewController {
       let y = y1 - 0.5 * g * pow(i, 2)
       i += 1
       dot.position = CGPoint(x: x + frog.position.x, y: y + frog.position.y)
+      
     }
   }
   

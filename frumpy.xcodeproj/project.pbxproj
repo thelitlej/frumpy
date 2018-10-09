@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AEFF38D9E585FC6EEC412AA /* Pods_frumpyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D89612F443ABAA4D71E93C6 /* Pods_frumpyUITests.framework */; };
+		14AB9AFB2167A26800EEB861 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB9AFA2167A26800EEB861 /* RandomFunction.swift */; };
 		773C16E32164B9C8003A6814 /* Frog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E22164B9C8003A6814 /* Frog.swift */; };
 		773C16E52164B9D6003A6814 /* FrogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E42164B9D6003A6814 /* FrogController.swift */; };
 		773C16E72164B9E7003A6814 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E62164B9E7003A6814 /* Leaf.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		14AB9AFA2167A26800EEB861 /* RandomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
 		1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C03711F3D142C4246E64319 /* Pods_frumpy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				773C16E42164B9D6003A6814 /* FrogController.swift */,
 				773C16E82164B9F2003A6814 /* LeafController.swift */,
 				773C16EC2164BA0F003A6814 /* TreeController.swift */,
+				14AB9AFA2167A26800EEB861 /* RandomFunction.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
 				77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */,
 				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
+				14AB9AFB2167A26800EEB861 /* RandomFunction.swift in Sources */,
 				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
 				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,

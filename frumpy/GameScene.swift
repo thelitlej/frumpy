@@ -22,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
+  var landingSucsess = false;
 
   var water = SKSpriteNode(imageNamed: "water")
 
@@ -32,11 +33,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
     backgroundColor = .lightGray
+
     //leafController.nextRandomLeaf()
+
     addCamera()
     //frogController.createAimDots(nrOfDots: nrOfAimDots)
     insertChild(leafController.addFirstLeaf(), at: 0)
-    insertChild(leafController.addLeaf(), at: 0)
+    insertChild(leafController.addSecondLeaf(), at: 0)
+
+    
     addChild(frog)
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
