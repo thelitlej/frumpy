@@ -30,8 +30,6 @@
 		DD5C3F3A2162141D0088CE4A /* frumpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F392162141D0088CE4A /* frumpyUITests.swift */; };
 		DDD74FA52167967900D77C0C /* AnimatedFrog2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */; };
 		DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */; };
-		DDDD6812216658B30082B1ED /* AnimatedFrog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDD6810216658B30082B1ED /* AnimatedFrog.swift */; };
-		DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +85,6 @@
 		DD5C3F3B2162141D0088CE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog2.swift; sourceTree = "<group>"; };
 		DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog2.atlasc; sourceTree = "<group>"; };
-		DDDD6810216658B30082B1ED /* AnimatedFrog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog.swift; sourceTree = "<group>"; };
-		DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog.atlasc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,8 +197,6 @@
 				DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */,
 				DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
-				DDDD6811216658B30082B1ED /* AnimatedFrog.atlasc */,
-				DDDD6810216658B30082B1ED /* AnimatedFrog.swift */,
 				773C16DE2164B83A003A6814 /* Models */,
 				773C16DD2164B833003A6814 /* Views */,
 				773C16DC2164B82A003A6814 /* Controllers */,
@@ -354,7 +348,6 @@
 			files = (
 				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
 				DD5C3F212162141D0088CE4A /* Assets.xcassets in Resources */,
-				DDDD6813216658B30082B1ED /* AnimatedFrog.atlasc in Resources */,
 				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
 				DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */,
 			);
@@ -467,7 +460,6 @@
 				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
 				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
-				DDDD6812216658B30082B1ED /* AnimatedFrog.swift in Sources */,
 				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,
 				773C16F12164BA36003A6814 /* Settings.swift in Sources */,
 				773C16EF2164BA21003A6814 /* Background.swift in Sources */,

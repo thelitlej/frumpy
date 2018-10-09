@@ -32,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
     backgroundColor = .lightGray
-    leafController.nextRandomLeaf()
+    //leafController.nextRandomLeaf()
     addCamera()
     //frogController.createAimDots(nrOfDots: nrOfAimDots)
     insertChild(leafController.addFirstLeaf(), at: 0)
@@ -102,7 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   override func update(_ currentTime: CFTimeInterval) {
     /*Called before each frame is rendered*/
     cam.position.y = frog.position.y / 1.5
-    leafController.nextRandomLeaf()
+    //leafController.nextRandomLeaf()
     //moveWater()
   }
   func createWater(){
