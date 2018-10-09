@@ -58,6 +58,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.position.y = frog.position.y / 1.5
   }
   
+  func didBegin(_ contact: SKPhysicsContact) {
+    
+    if(contact.collisionImpulse > 16) {
+      print("COLLISION: ", contact.collisionImpulse)
+      if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+        frogController.setFrogAnimation(animation: 1)
+      }
+    }
+  }
+  
   func createWalls() {
     let leftWall = SKSpriteNode(color: .white, size: CGSize(width: 3, height: frame.height))
     let rightWall = SKSpriteNode(color: .white, size: CGSize(width: 3, height: frame.height))
