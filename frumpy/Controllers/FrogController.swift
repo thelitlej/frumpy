@@ -63,7 +63,6 @@ class FrogController: UIViewController {
     let velocity = frog.physicsBody?.velocity
     let speed = velocity?.speed()
     let angle = velocity?.angle()
-    print(angle as Any)
     if(angle ?? 0 > CGFloat.pi/2) {
       frog.xScale = -1;
       } else {

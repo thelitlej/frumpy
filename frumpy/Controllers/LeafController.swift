@@ -22,12 +22,17 @@ class LeafController: UIViewController {
     startLeaf.size = CGSize(width: (startLeaf.size.width/4), height: (startLeaf.size.height/4))
     startLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: startLeaf.size.width/1.5,
                                                               height: startLeaf.size.height/12))
-    startLeaf.physicsBody?.isDynamic = false
+    
+    startLeaf.physicsBody?.isDynamic = true
+    startLeaf.physicsBody?.affectedByGravity = false
+    startLeaf.physicsBody?.pinned = true
+    startLeaf.physicsBody?.allowsRotation = false
     startLeaf.physicsBody!.categoryBitMask = 10
     startLeaf.physicsBody!.contactTestBitMask = 10
     startLeaf.physicsBody!.collisionBitMask = 10
     startLeaf.physicsBody!.friction = 5
-    startLeaf.position = CGPoint(x: 100, y: 200)
+    startLeaf.position = CGPoint(x: 100, y: 100)
+    startLeaf.name = "leaf"
   
     
     return startLeaf
@@ -39,7 +44,10 @@ class LeafController: UIViewController {
     secondLeaf.size = CGSize(width: (secondLeaf.size.width/4), height: (secondLeaf.size.height/4))
     secondLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: secondLeaf.size.width/1.5,
                                                               height: secondLeaf.size.height/12))
-    secondLeaf.physicsBody?.isDynamic = false
+    secondLeaf.physicsBody?.isDynamic = true
+    secondLeaf.physicsBody?.affectedByGravity = false
+    secondLeaf.physicsBody?.pinned = true
+    secondLeaf.physicsBody?.allowsRotation = false
     secondLeaf.physicsBody!.friction = 5
     secondLeaf.physicsBody!.categoryBitMask = 10
     secondLeaf.physicsBody!.contactTestBitMask = 10
@@ -59,8 +67,8 @@ class LeafController: UIViewController {
     nextLeaf.physicsBody!.collisionBitMask = 10
     nextLeaf.physicsBody!.affectedByGravity = false
     
-    var randomPositionX = CGFloat.random(min: 0, max: 400)
-    var randomPositionY = CGFloat.random(min: 300, max: 1000)
+    let randomPositionX = CGFloat.random(min: 0, max: 400)
+    let randomPositionY = CGFloat.random(min: 300, max: 1000)
     nextLeaf.position.x = nextLeaf.position.x + randomPositionX
     nextLeaf.position.y = nextLeaf.position.y + randomPositionY
     nextLeaf.position = CGPoint(x: CGFloat(nextLeaf.position.x), y: CGFloat(nextLeaf.position.y))
@@ -73,7 +81,6 @@ class LeafController: UIViewController {
     return nextLeaf
     //insertChild(nextLeaf, at: 0)
   }
-  
 }
 
 
