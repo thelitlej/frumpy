@@ -21,6 +21,8 @@
 		77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1BFCB21676AD2002DDECD /* Collision.swift */; };
 		9784160F1E1B76A40FF72286 /* Pods_frumpyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */; };
 		C265CAAD2CD72C045E8C49A6 /* Pods_frumpy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03711F3D142C4246E64319 /* Pods_frumpy.framework */; };
+		DD43360E216CCA6C00B1DD3F /* FrogAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */; };
+		DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
@@ -29,8 +31,6 @@
 		DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */; };
 		DD5C3F2F2162141D0088CE4A /* frumpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F2E2162141D0088CE4A /* frumpyTests.swift */; };
 		DD5C3F3A2162141D0088CE4A /* frumpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F392162141D0088CE4A /* frumpyUITests.swift */; };
-		DDD74FA52167967900D77C0C /* AnimatedFrog2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */; };
-		DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +71,8 @@
 		A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.release.xcconfig"; sourceTree = "<group>"; };
 		DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrogAnimations.swift; sourceTree = "<group>"; };
+		DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FrogAnimations.atlasc; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -85,8 +87,6 @@
 		DD5C3F352162141D0088CE4A /* frumpyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frumpyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F392162141D0088CE4A /* frumpyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frumpyUITests.swift; sourceTree = "<group>"; };
 		DD5C3F3B2162141D0088CE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrog2.swift; sourceTree = "<group>"; };
-		DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AnimatedFrog2.atlasc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +197,8 @@
 		DD5C3F122162141A0088CE4A /* frumpy */ = {
 			isa = PBXGroup;
 			children = (
-				DDD74FA42167967900D77C0C /* AnimatedFrog2.atlasc */,
-				DDD74FA32167967900D77C0C /* AnimatedFrog2.swift */,
+				DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */,
+				DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
 				773C16DE2164B83A003A6814 /* Models */,
 				773C16DD2164B833003A6814 /* Views */,
@@ -351,8 +351,8 @@
 			files = (
 				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
 				DD5C3F212162141D0088CE4A /* Assets.xcassets in Resources */,
+				DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */,
 				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
-				DDD74FA62167967900D77C0C /* AnimatedFrog2.atlasc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,10 +452,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD43360E216CCA6C00B1DD3F /* FrogAnimations.swift in Sources */,
 				DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */,
 				773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */,
 				773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */,
-				DDD74FA52167967900D77C0C /* AnimatedFrog2.swift in Sources */,
 				DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */,
 				773C16E52164B9D6003A6814 /* FrogController.swift in Sources */,
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
@@ -641,7 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9D46NGB65V;
+				DEVELOPMENT_TEAM = QN7Q5658DV;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,7 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9D46NGB65V;
+				DEVELOPMENT_TEAM = QN7Q5658DV;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
