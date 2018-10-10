@@ -8,5 +8,12 @@
 
 import Foundation
 import SpriteKit
-class Tree: SKShapeNode {
+class Tree {
+  let imageNr: Int
+  init(imageNr: Int) {
+    self.imageNr = imageNr
+  }
+  func addTreeSprite() {
+    
+  }
 }
