@@ -24,10 +24,11 @@ class LeafController: UIViewController {
                                                               height: startLeaf.size.height/12))
     startLeaf.name = "leaf"
     startLeaf.physicsBody?.isDynamic = false
-    startLeaf.physicsBody!.categoryBitMask = 10
-    startLeaf.physicsBody!.contactTestBitMask = 10
-    startLeaf.physicsBody!.collisionBitMask = 10
-    startLeaf.physicsBody!.friction = 5
+    startLeaf.physicsBody?.categoryBitMask = 10
+    startLeaf.physicsBody?.contactTestBitMask = 10
+    startLeaf.physicsBody?.restitution = 0
+    startLeaf.physicsBody?.collisionBitMask = 10
+    startLeaf.physicsBody?.friction = 5
     startLeaf.position = CGPoint(x: 100, y: 200)
   
     return startLeaf
@@ -39,12 +40,12 @@ class LeafController: UIViewController {
     secondLeaf.size = CGSize(width: (secondLeaf.size.width/4), height: (secondLeaf.size.height/4))
     secondLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: secondLeaf.size.width/1.5,
                                                             height: secondLeaf.size.height/12))
-    secondLeaf.name = "leaf"  
+    secondLeaf.name = "leaf"
     secondLeaf.physicsBody?.isDynamic = false
-    secondLeaf.physicsBody!.friction = 5
-    secondLeaf.physicsBody!.categoryBitMask = 10
-    secondLeaf.physicsBody!.contactTestBitMask = 10
-    secondLeaf.physicsBody!.collisionBitMask = 10
+    secondLeaf.physicsBody?.friction = 5
+    secondLeaf.physicsBody?.categoryBitMask = 10
+    secondLeaf.physicsBody?.contactTestBitMask = 10
+    secondLeaf.physicsBody?.collisionBitMask = 10
     secondLeaf.position = CGPoint(x: 300, y: 300)
     
     return secondLeaf

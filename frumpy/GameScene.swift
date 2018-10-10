@@ -8,8 +8,6 @@
 
 import SpriteKit
 import GameplayKit
-import Lottie
-
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
@@ -18,13 +16,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let kLeafCategory: UInt32 = 0x1 << 0
   let nrOfAimDots = 7
+  let cam = SKCameraNode()
   
   var frog: SKSpriteNode = SKSpriteNode()
-  let cam = SKCameraNode()
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
-  var landingSucsess = false;
 
   var water = SKSpriteNode(imageNamed: "water")
 
@@ -35,7 +32,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.view!.showsNodeCount = true
     
     addCamera()
-    
     createWalls()
     
     frog = frogController.addFrog()
@@ -49,7 +45,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for dot in dots {
       addChild(dot)
     }
-  
     view.addGestureRecognizer(frogController.initPanner())
   }
   
@@ -59,11 +54,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func didBegin(_ contact: SKPhysicsContact) {
-    
-    if(contact.collisionImpulse > 16) {
-      print("COLLISION: ", contact.collisionImpulse)
+    if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
       if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
         frogController.setFrogAnimation(animation: 1)
+        print(contact.contactNormal.dy)
       }
     }
   }
