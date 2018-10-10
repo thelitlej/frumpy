@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
+    self.backgroundColor = .white
     
     addCamera()
     createWalls()
