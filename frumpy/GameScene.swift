@@ -46,9 +46,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     maxX = frame.width
     maxY = frame.height
     backgroundColor = .black
-    scoreLabel = SKLabelNode(text: "\(score)")
-    scoreLabel?.position = CGPoint(x: self.frame.width,y: cam.position.y)
-    addChild(scoreLabel!)
+    scoreLabel = SKLabelNode( text: "\(score)")
+    scoreLabel!.fontSize = 100
+    scoreLabel?.position = CGPoint(x: 0,y: 250)
+    //scoreLabel!.position = CGPoint(x: self.size.width-20, y: self.size.height-40)
+    cam.addChild(scoreLabel!)
     addCamera()
     addChild(frog)
     insertChild(leafController.addFirstLeaf(), at: 0)
