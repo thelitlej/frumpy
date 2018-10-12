@@ -27,28 +27,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startY: CGFloat = 0;
   var landingSucsess = false;
   var frogPosition = CGPoint()
-  var maxX : CGFloat = 0
-  var maxY : CGFloat = 0
-  var sprites = [SKSpriteNode]()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
-  var score:Int = 0 /*{ didSet { scoreLabel!.text = "\(score)" } }*/
-  
+  var score:Int = 0
 
   var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
-    insertTree()
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
-    self.view!.showsFPS = true
-    self.camera = cam
-    self.view!.showsNodeCount = true
     self.backgroundColor = .white
-    
+    insertTree()
     createSafeFloor()
     frogController = FrogController(size: frame.size)
     frog = frogController.addFrog()
@@ -60,16 +52,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(leftWall)
     cam.addChild(rightWall)
     insertStartBush()
-
-
-    maxX = frame.width
-    maxY = frame.height
     
     backgroundColor = .black
 
     cam.addChild(scoreText)
-    addCamera()
 
+    pauseButton.name = "pausebtn"
+    cam.addChild(pauseButton)
+    
+    addCamera()
+    
     addChild(frog)
     addLeaf(position: CGPoint(x: 100, y: 100), isVisited: true)
     addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
@@ -79,17 +71,73 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       insertChild(dot, at: 3)
     }
     view.addGestureRecognizer(frogController.initPanner())
-    
   }
   lazy var scoreText: SKLabelNode  = {
     var scoreLabel = SKLabelNode()
     scoreLabel.zPosition = 6
     scoreLabel.fontSize = 45
-    scoreLabel.fontName = "AlNile"
+    //scoreLabel.fontName = "AlNile"
     scoreLabel.position = CGPoint(x: (frame.size.width / 2) - (self.size.width / 2), y: (self.frame.height / 2) - 70)
     scoreLabel.text = "0"
     return scoreLabel
   }()
+  
+  lazy var pauseButton: SKSpriteNode = {
+    var pause = SKSpriteNode(imageNamed: "Pause")
+    //pause.target(forAction: #selector(GameScene.pause), withSender: UITapGestureRecognizer())
+    pause.alpha = 0.8
+    pause.name = "pausebtn"
+    pause.size = CGSize(width: pause.size.width, height: pause.size.height)
+    pause.isUserInteractionEnabled = true
+    pause.position = CGPoint(x: (frame.size.width / 2) - (pause.size.width + 10), y: (frame.size.height / 2) - (pause.size.height + 10) )
+    pause.zPosition = 6
+    return pause
+  }()
+  
+  @objc func pause() {
+    print("TIPPETY TAP")
+    //Open pause popup in this func
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let touch = touches.first {
+      let location = touch.location(in: self)
+      let nodesarray = nodes(at: location)
+      
+      for node in nodesarray {
+        if node.name == "pausebtn" {
+          print("OH YES")
+        }
+      }
+    }
+  }
+//  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//    if let touch = touches.first {
+//    let location = touch.location(in: self)
+//      let _node:SKNode = self.atPoint(location)
+//
+//    if(_node.name == "pausebtn"){
+//
+//     pause()
+//    }
+//    }
+//
+//  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // Loop over all the touches in this event
+    for touch: AnyObject in touches {
+      // Get the location of the touch in this scene
+      let location = touch.location(in: self)
+      // Check if the location of the touch is within the button's bounds
+      if pauseButton.contains(location) {
+        print("HAYYYY")
+        pause()
+      }
+    }
+  }
+
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
@@ -199,8 +247,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-    let xPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxX
-    let yPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxY + frog.position.y
+    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
+    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)
   }
 

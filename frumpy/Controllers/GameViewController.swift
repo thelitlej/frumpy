@@ -9,4 +9,7 @@ class GameViewController: UIViewController {
     skView.showsNodeCount = true
     skView.presentScene(scene)
   }
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
 }
