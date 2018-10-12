@@ -39,7 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
-    insertTree()
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
@@ -49,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.camera = cam
     self.view!.showsNodeCount = true
     self.backgroundColor = .white
-    
+    insertTree()
     createSafeFloor()
     frogController = FrogController(size: frame.size)
     frog = frogController.addFrog()
