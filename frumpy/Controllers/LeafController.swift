@@ -14,58 +14,30 @@ class LeafController: UIViewController {
   let startLeaf = SKSpriteNode(imageNamed: "leaf_brown")
   let secondLeaf = SKSpriteNode(imageNamed: "leaf_brown")
   let nextLeaf = SKSpriteNode(imageNamed: "leaf_brown")
+  let brownLeaf = SKSpriteNode(imageNamed: "leaf_brown")
  
   
-  func addFirstLeaf () -> SKSpriteNode {
-    // create first leaf sprite
-
-    startLeaf.size = CGSize(width: (startLeaf.size.width/4), height: (startLeaf.size.height/4))
-    startLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: startLeaf.size.width/1.5,
-                                                              height: startLeaf.size.height/12))
+  func createLeaf(position: CGPoint) -> SKSpriteNode {
+    brownLeaf.size = CGSize(width: (brownLeaf.size.width/4), height: (brownLeaf.size.height/4))
+    brownLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: brownLeaf.size.width/1.5,
+                                                              height: brownLeaf.size.height/12))
+    brownLeaf.physicsBody?.isDynamic = false
+    brownLeaf.physicsBody!.categoryBitMask = 10
+    brownLeaf.physicsBody!.contactTestBitMask = 10
+    brownLeaf.physicsBody!.collisionBitMask = 10
+    brownLeaf.physicsBody!.friction = 5
+    brownLeaf.position = CGPoint(x: position.x, y: position.y)
     
-    startLeaf.physicsBody?.isDynamic = true
-    startLeaf.physicsBody?.affectedByGravity = false
-    startLeaf.physicsBody?.pinned = true
-    startLeaf.physicsBody?.allowsRotation = false
-    startLeaf.physicsBody!.categoryBitMask = 10
-    startLeaf.physicsBody!.contactTestBitMask = 10
-    startLeaf.physicsBody!.collisionBitMask = 10
-    startLeaf.physicsBody!.friction = 5
-    startLeaf.position = CGPoint(x: 100, y: 100)
-    startLeaf.name = "leaf"
-  
-    
-    return startLeaf
+    return brownLeaf
   }
   
-  func addSecondLeaf () -> SKSpriteNode {
-    // create second leaf sprite
-
-    secondLeaf.size = CGSize(width: (secondLeaf.size.width/4), height: (secondLeaf.size.height/4))
-    secondLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: secondLeaf.size.width/1.5,
-                                                              height: secondLeaf.size.height/12))
-    secondLeaf.physicsBody?.isDynamic = true
-    secondLeaf.physicsBody?.affectedByGravity = false
-    secondLeaf.physicsBody?.pinned = true
-    secondLeaf.physicsBody?.allowsRotation = false
-    secondLeaf.physicsBody!.friction = 5
-    secondLeaf.physicsBody!.categoryBitMask = 10
-    secondLeaf.physicsBody!.contactTestBitMask = 10
-    secondLeaf.physicsBody!.collisionBitMask = 10
-    secondLeaf.position = CGPoint(x: 300, y: 300)
-    
-    return secondLeaf
-  }
   func nextRandomLeaf() -> SKSpriteNode {
     // create next random leaf sprite
     nextLeaf.size = CGSize(width: (nextLeaf.size.width/4), height: (nextLeaf.size.height/4))
-    nextLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: nextLeaf.size.width/1.5,
-                                                             height: nextLeaf.size.height/12))
-    nextLeaf.physicsBody!.isDynamic = false
-    nextLeaf.physicsBody!.categoryBitMask = 10
-    nextLeaf.physicsBody!.contactTestBitMask = 10
-    nextLeaf.physicsBody!.collisionBitMask = 10
-    nextLeaf.physicsBody!.affectedByGravity = false
+    nextLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: nextLeaf.size.width/1.5, height: nextLeaf.size.height/12))
+    nextLeaf.physicsBody?.isDynamic = false
+    nextLeaf.physicsBody?.affectedByGravity = false
+    nextLeaf.physicsBody?.contactTestBitMask = 1
     
     let randomPositionX = CGFloat.random(min: 0, max: 400)
     let randomPositionY = CGFloat.random(min: 300, max: 1000)

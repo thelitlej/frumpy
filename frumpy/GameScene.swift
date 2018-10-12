@@ -8,25 +8,31 @@
 
 import SpriteKit
 import GameplayKit
-import Lottie
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let leafController = LeafController()
   let frogController = FrogController()
-  
   let kLeafCategory: UInt32 = 0x1 << 0
   let nrOfAimDots = 7
-  
   var frog: SKSpriteNode = SKSpriteNode()
   var floor: SKSpriteNode = SKSpriteNode()
   var leftWall: SKSpriteNode = SKSpriteNode()
   var rightWall: SKSpriteNode = SKSpriteNode()
+
   let cam = SKCameraNode()
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   var landingSucsess = false;
+  var frogPosition = CGPoint()
+  var maxX : CGFloat = 0
+  var maxY : CGFloat = 0
+  var sprites = [SKSpriteNode]()
+  var spritesAdded = [SKSpriteNode]()
+  var scoreLabel: SKLabelNode?
+  var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
+  
 
   var water = SKSpriteNode(imageNamed: "water")
 
@@ -35,13 +41,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
+    self.backgroundColor = .white
     
     createSafeFloor()
     
     frog = frogController.addFrog()
     frog.name = "frog"
     backgroundColor = .lightGray
-    //leafController.nextRandomLeaf()
     addCamera()
     floor = addFloor()
     leftWall = addLeftWall()
@@ -49,39 +55,67 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(floor)
     cam.addChild(leftWall)
     cam.addChild(rightWall)
-    //frogController.createAimDots(nrOfDots: nrOfAimDots)
+
+
+    frog.name = "frog"
+    maxX = frame.width
+    maxY = frame.height
+    backgroundColor = .black
+    scoreLabel = SKLabelNode(text: "\(score)")
+    scoreLabel?.position = CGPoint(x: self.frame.width,y: cam.position.y)
+    addChild(scoreLabel!)
+    
+
     addChild(frog)
-    
-    insertChild(leafController.addFirstLeaf(), at: 0)
-    insertChild(leafController.addSecondLeaf(), at: 0)
-    
+    addLeaf(position: CGPoint(x: 100, y: 100))
+    addLeaf(position: CGPoint(x: 300, y: 300))
+    //insertChild(leafController.addFirstLeaf(), at: 0)
+    //insertChild(leafController.addSecondLeaf(), at: 0)
+
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
       addChild(dot)
     }
-  
     view.addGestureRecognizer(frogController.initPanner())
+    self.view!.showsFPS = true
+    self.camera = cam
+    self.view!.showsNodeCount = true
   }
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
-    cam.position.y = frog.position.y / 1.5
+    cam.position.y = frog.position.y
+  }
+  
+  func didBegin(_ contact: SKPhysicsContact) {
+    if(contact.bodyA.node?.name == "floor") {
+      print(spritesAdded)
+      contact.bodyB.node?.removeFromParent()
+      print("YES")
+    }
+    if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
+      if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+        frogController.setFrogAnimation(animation: 1)
+        addLeaf(position: generateRandomPosition())
+        score += 1
+        print(score)
+
+      }
+    }
+  
   }
    
   func addFloor () -> SKSpriteNode {
-     let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.1) , size: CGSize(width: frame.width, height: 30))
-    
+    let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.1) , size: CGSize(width: frame.width, height: 30))
     
     floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
-    floor.physicsBody?.isDynamic = false
+    floor.physicsBody?.collisionBitMask = 0
+    floor.physicsBody?.isDynamic = true
     floor.physicsBody?.affectedByGravity = false
     floor.physicsBody?.allowsRotation = false
     floor.position = CGPoint(x: frame.width-frame.width, y: -frame.height/4)
-    //floor.physicsBody?.categoryBitMask = 10;
-    floor.physicsBody?.collisionBitMask = 10;
     floor.physicsBody?.restitution = 0.2
     floor.physicsBody?.friction = 0.9
-    //floor.physicsBody?.contactTestBitMask = 10;
     floor.name = "floor"
     
     return floor
@@ -135,24 +169,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
   }
   
-  func didBegin(_ contact: SKPhysicsContact) {
-    if(contact.bodyA.node?.name == "floor" || contact.bodyB.node?.name == "floor") {
-      print("collide")
-    }
+  func generateRandomPosition() -> CGPoint {
+    let xPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxX
+    let yPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxY + frog.position.y
+    return CGPoint(x: xPos, y: yPos)
   }
 
-  
+  func addLeaf(position: CGPoint){
+    let currentLeaf = SKSpriteNode(imageNamed: "leaf_brown")
+    
+    currentLeaf.size = CGSize(width: (currentLeaf.size.width/4), height: (currentLeaf.size.height/4))
+    currentLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: currentLeaf.size.width/1.5,
+                                                                height: currentLeaf.size.height/12))
+    currentLeaf.physicsBody?.isDynamic = false
+    currentLeaf.physicsBody!.categoryBitMask = 10
+    currentLeaf.physicsBody!.contactTestBitMask = 10
+    currentLeaf.physicsBody!.collisionBitMask = 10
+    currentLeaf.physicsBody!.friction = 5
+    currentLeaf.name = "leaf"
+    currentLeaf.position = position
+    
+    
+    addChild(currentLeaf)
+  }
+
   func createWater(){
+    /*Function to create water: NOT WORKING*/
     let water = SKSpriteNode(imageNamed: "water")
     water.name = "water"
     water.size = CGSize(width: (self.scene?.size.width)!, height: 300)
     water.anchorPoint = CGPoint(x: 300, y: 300)
     water.position = CGPoint(x: water.size.width, y: -(self.frame.size.height / 2))
     self.addChild(water)
-    
   }
+  
   func moveWater() {
+    /*Function to move water in y: NOT WORKING*/
     //self.enumerateChildNodes("water", using: <#T##(SKNode, UnsafeMutablePointer<ObjCBool>) -> Void#>)
   }
-
 }
+
