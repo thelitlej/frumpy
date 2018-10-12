@@ -68,6 +68,7 @@ class FrogController: UIViewController {
     frog.size = frogSize
     frog.position = CGPoint(x: 100, y: 260)
     frog.physicsBody?.mass = 0.155
+    frog.physicsBody?.linearDamping = 0
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.collisionBitMask = 10;
     frog.physicsBody?.contactTestBitMask = 10;
@@ -91,10 +92,14 @@ class FrogController: UIViewController {
     frog.physicsBody?.affectedByGravity = true
   }
   
+  /*
+   */
   func enableFrogJump() {
     panner.isEnabled = true
   }
   
+  /*
+   */
   func disableFrogJump() {
     panner.isEnabled = false
   }
@@ -234,6 +239,8 @@ class FrogController: UIViewController {
     }
   }
   
+  /*
+   */
   func showAimDots() {
     for dot in dots {
       dot.isHidden = false
