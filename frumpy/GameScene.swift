@@ -12,10 +12,10 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let leafController = LeafController()
-  let frogController = FrogController()
+  var frogController = FrogController()
   
   let kLeafCategory: UInt32 = 0x1 << 0
-  let nrOfAimDots = 7
+  let nrOfAimDots = 6
   let cam = SKCameraNode()
   
   var frog: SKSpriteNode = SKSpriteNode()
@@ -27,9 +27,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
+    self.physicsBody?.density = 0
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
+    frogController = FrogController(size: frame.size)
     
     addCamera()
     createWalls()
@@ -57,7 +59,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
       if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
         frogController.setFrogAnimation(animation: 1)
-        print(contact.contactNormal.dy)
       }
     }
   }
@@ -69,15 +70,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     leftWall.physicsBody = SKPhysicsBody(rectangleOf: leftWall.size)
     leftWall.physicsBody?.isDynamic = false
-    leftWall.physicsBody?.restitution = 1
+    leftWall.physicsBody?.restitution = 0.8
+    leftWall.physicsBody?.friction = 0
     leftWall.physicsBody?.collisionBitMask = 10;
     leftWall.position = CGPoint(x: 0, y: frame.height / 2)
     leftWall.name = "leftWall"
     
     rightWall.physicsBody = SKPhysicsBody(rectangleOf: rightWall.size)
     rightWall.physicsBody?.isDynamic = false
-    rightWall.physicsBody?.restitution = 1
     rightWall.physicsBody?.collisionBitMask = 10;
+    rightWall.physicsBody?.friction = 0
+    rightWall.physicsBody?.restitution = 0.8
     rightWall.position = CGPoint(x: frame.width, y: frame.height / 2)
     rightWall.name = "rightWall"
     
@@ -85,7 +88,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     floor.physicsBody?.isDynamic = false
     floor.position = CGPoint(x: frame.width / 2, y: 0)
     floor.physicsBody?.collisionBitMask = 10;
-    floor.physicsBody?.restitution = 0.2
     floor.physicsBody?.friction = 0.9
 
     addChild(leftWall)
