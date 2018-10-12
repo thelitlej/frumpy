@@ -28,9 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startY: CGFloat = 0;
   var landingSucsess = false;
   var frogPosition = CGPoint()
-  var maxX : CGFloat = 0
-  var maxY : CGFloat = 0
-  var sprites = [SKSpriteNode]()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
   var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
@@ -42,9 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addBackground()
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
-    self.view!.showsFPS = true
-    self.camera = cam
-    self.view!.showsNodeCount = true
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
@@ -60,10 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(floor)
     cam.addChild(leftWall)
     cam.addChild(rightWall)
-
-
-    maxX = frame.width
-    maxY = frame.height
     
     backgroundColor = .black
     scoreLabel = SKLabelNode( text: "\(score)")
@@ -93,9 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
-      print(spritesAdded)
       contact.bodyB.node?.removeFromParent()
-      print("YES")
     }
     if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
       if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
@@ -185,8 +173,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-    let xPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxX
-    let yPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxY + frog.position.y
+    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
+    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)
   }
 
