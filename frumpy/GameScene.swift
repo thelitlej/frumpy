@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
-    addBackground()
+    insertTree()
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
@@ -60,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(floor)
     cam.addChild(leftWall)
     cam.addChild(rightWall)
+    insertStartBush()
 
 
     maxX = frame.width
@@ -67,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     backgroundColor = .black
     scoreLabel = SKLabelNode( text: "\(score)")
-    scoreLabel?.zPosition = 3
+    scoreLabel?.zPosition = 6
     scoreLabel!.fontSize = 100
     scoreLabel?.position = CGPoint(x: 0,y: 250)
 
@@ -111,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
    
   func addFloor () -> SKSpriteNode {
-    let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.1) , size: CGSize(width: frame.width, height: 30))
+    let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.3) , size: CGSize(width: frame.width, height: 30))
     
     floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
     floor.physicsBody?.collisionBitMask = 0
@@ -127,7 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func addLeftWall () -> SKSpriteNode {
-    let leftWall = SKSpriteNode(color: .white, size: CGSize(width: 3, height: frame.height))
+    let leftWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
     
     
     leftWall.physicsBody = SKPhysicsBody(rectangleOf: leftWall.size)
@@ -142,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func addRightWall () -> SKSpriteNode {
-    let rightWall = SKSpriteNode(color: .white, size: CGSize(width: 3, height: frame.height))
+    let rightWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
     
     rightWall.physicsBody = SKPhysicsBody(rectangleOf: rightWall.size)
     rightWall.physicsBody?.isDynamic = false
@@ -157,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func createSafeFloor()  {
     //self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-    let floor = SKSpriteNode(color: .white, size: CGSize(width: frame.width, height: 3))
+    let floor = SKSpriteNode(color: .clear, size: CGSize(width: frame.width, height: 3))
     
     floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
     floor.physicsBody?.isDynamic = false
@@ -175,14 +176,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
   }
   
-  func addBackground() {
+  func insertTree() {
     
     for i in 0..<4
     {
-      let background = Tree(imageNr: 1, size: frame.size)
-      self.addChild(background.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
+      let tree = Tree(imageNr: 1, size: frame.size)
+      self.addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
       
     }
+  }
+  
+  func insertStartBush() {
+    let bush = SKSpriteNode(imageNamed: "grass")
+    bush.size = CGSize(width: self.frame.width, height: bush.size.height)
+    bush.position = CGPoint(x: self.frame.width / 2, y: 100)
+    bush.zPosition = 2
+    addChild(bush)
   }
   
   func generateRandomPosition() -> CGPoint {
@@ -192,7 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
 
   func addLeaf(position: CGPoint){
-    let currentLeaf = Leaf(position: position, imageNamed: "leaf_brown")
+    let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)")
     addChild(currentLeaf)
   }
   
