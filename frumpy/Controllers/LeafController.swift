@@ -38,6 +38,7 @@ class LeafController: UIViewController {
     startLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: startLeaf.size.width/1.5,
                                                               height: startLeaf.size.height/12))
     startLeaf.name = "leaf"
+    startLeaf.zPosition = 1
     startLeaf.physicsBody?.isDynamic = false
     startLeaf.physicsBody?.categoryBitMask = 10
     startLeaf.physicsBody?.contactTestBitMask = 10
@@ -56,6 +57,7 @@ class LeafController: UIViewController {
     secondLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: secondLeaf.size.width/1.5,
                                                             height: secondLeaf.size.height/12))
     secondLeaf.name = "leaf"
+    secondLeaf.zPosition = 1
     secondLeaf.physicsBody?.isDynamic = false
     secondLeaf.physicsBody?.friction = 5
     secondLeaf.physicsBody?.categoryBitMask = 10

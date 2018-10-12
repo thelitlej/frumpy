@@ -33,13 +33,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
+    addBackground()
     self.physicsWorld.contactDelegate = self
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
     self.backgroundColor = .white
-    
-    
     createWalls()
     frog = frogController.addFrog()
     frog.name = "frog"
@@ -47,18 +46,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     maxY = frame.height
     backgroundColor = .black
     scoreLabel = SKLabelNode( text: "\(score)")
+    scoreLabel?.zPosition = 3
     scoreLabel!.fontSize = 100
     scoreLabel?.position = CGPoint(x: 0,y: 250)
     //scoreLabel!.position = CGPoint(x: self.size.width-20, y: self.size.height-40)
     cam.addChild(scoreLabel!)
     addCamera()
     addChild(frog)
-    insertChild(leafController.addFirstLeaf(), at: 0)
-    insertChild(leafController.addSecondLeaf(), at: 0)
+    addChild(leafController.addFirstLeaf())
+    addChild(leafController.addSecondLeaf())
 
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
-      addChild(dot)
+      insertChild(dot, at: 3)
     }
     view.addGestureRecognizer(frogController.initPanner())
     self.view!.showsFPS = true
@@ -121,9 +121,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(cam)
   }
   
+  func addBackground() {
+    
+    for i in 0..<4
+    {
+      let background = Tree(imageNr: 1, size: frame.size)
+      self.addChild(background.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
+      
+    }
+  }
+  
   func addRandomLeaf(){
     /*This function add random leaf*/
     let currentLeaf = SKSpriteNode(imageNamed: "leaf_brown")
+    currentLeaf.zPosition = 1
      currentLeaf.size = CGSize(width: (currentLeaf.size.width/4), height: (currentLeaf.size.height/4))
     currentLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: currentLeaf.size.width/1.5,
                                                               height: currentLeaf.size.height/12))

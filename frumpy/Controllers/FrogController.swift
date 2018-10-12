@@ -47,6 +47,7 @@ class FrogController: UIViewController {
     frogIdle = SKAction.animate(with: frogAnimations.origin_origin_(), timePerFrame: 0.04)
     frogBeginJump = SKAction.animate(with: frogAnimations.beginjump_beginjump_(), timePerFrame: beginJumpTimePerFrame)
     frogJump = SKAction.animate(with: frogAnimations.jump_jump_(), timePerFrame: 0.005)
+    frog.zPosition = 2
     initFrogPhysics()
     setFrogAnimation(animation: 1)
     
@@ -65,7 +66,6 @@ class FrogController: UIViewController {
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.collisionBitMask = 10;
     frog.physicsBody?.contactTestBitMask = 10;
-    frog.zPosition = 1
     frogLastPositionY = frog.position.y
     frogLastPositionX = frog.position.x
   }
@@ -197,6 +197,7 @@ class FrogController: UIViewController {
       let dot = SKShapeNode(circleOfRadius: size)
       dot.fillColor = UIColor.white
       dot.isHidden = true
+      dot.zPosition = 2
       dot.alpha = 0.5
       dots.append(dot)
       size -= 0.15
