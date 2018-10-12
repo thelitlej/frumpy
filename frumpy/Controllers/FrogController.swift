@@ -70,6 +70,7 @@ class FrogController: UIViewController{
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.collisionBitMask = 10;
     frog.physicsBody?.contactTestBitMask = 10;
+    frog.physicsBody?.usesPreciseCollisionDetection = true
     frog.zPosition = 1
     frogLastPositionY = frog.position.y
     frogLastPositionX = frog.position.x
