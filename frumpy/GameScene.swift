@@ -48,7 +48,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     frog = frogController.addFrog()
     frog.name = "frog"
     backgroundColor = .lightGray
-    addCamera()
     floor = addFloor()
     leftWall = addLeftWall()
     rightWall = addRightWall()
@@ -60,11 +59,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     frog.name = "frog"
     maxX = frame.width
     maxY = frame.height
-    backgroundColor = .black
-    scoreLabel = SKLabelNode(text: "\(score)")
-    scoreLabel?.position = CGPoint(x: self.frame.width,y: cam.position.y)
-    addChild(scoreLabel!)
     
+    backgroundColor = .black
+    scoreLabel = SKLabelNode( text: "\(score)")
+    scoreLabel!.fontSize = 100
+    scoreLabel?.position = CGPoint(x: 0,y: 250)
+    //scoreLabel!.position = CGPoint(x: self.size.width-20, y: self.size.height-40)
+    cam.addChild(scoreLabel!)
+    addCamera()
 
     addChild(frog)
     addLeaf(position: CGPoint(x: 100, y: 100))
