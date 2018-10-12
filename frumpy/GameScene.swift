@@ -28,9 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var startY: CGFloat = 0;
   var landingSucsess = false;
   var frogPosition = CGPoint()
-  var maxX : CGFloat = 0
-  var maxY : CGFloat = 0
-  var sprites = [SKSpriteNode]()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
   var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
@@ -39,17 +36,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var water = SKSpriteNode(imageNamed: "water")
 
   override func didMove(to view: SKView) {
-    insertTree()
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
-    self.view!.showsFPS = true
-    self.camera = cam
-    self.view!.showsNodeCount = true
     self.backgroundColor = .white
-    
+    insertTree()
     createSafeFloor()
     frogController = FrogController(size: frame.size)
     frog = frogController.addFrog()
@@ -60,12 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(floor)
     cam.addChild(leftWall)
     cam.addChild(rightWall)
-    
     insertStartBush()
-
-
-    maxX = frame.width
-    maxY = frame.height
     
     backgroundColor = .black
     scoreLabel = SKLabelNode( text: "\(score)")
@@ -261,8 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-    let xPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxX
-    let yPos = CGFloat( Float(arc4random()) / Float(UINT32_MAX)) * maxY + frog.position.y
+    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
+    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)
   }
 
