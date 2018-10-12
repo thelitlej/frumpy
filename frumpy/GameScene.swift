@@ -60,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(floor)
     cam.addChild(leftWall)
     cam.addChild(rightWall)
+    
     insertStartBush()
 
 
@@ -71,10 +72,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     scoreLabel?.zPosition = 6
     scoreLabel!.fontSize = 100
     scoreLabel?.position = CGPoint(x: 0,y: 250)
+    
+//    let pauseBtn = SKSpriteNode(imageNamed: "Pause")
+//    pauseBtn.target(forAction: #selector(GameScene.pause), withSender: UITapGestureRecognizer.self)
+//    pauseBtn.size = CGSize(width: pauseBtn.size.width, height: pauseBtn.size.height)
+//    pauseBtn.position = CGPoint(x: 100, y: 100 )
+//    pauseBtn.zPosition = 6
 
     cam.addChild(scoreLabel!)
+    pauseButton.name = "pausebtn"
+    cam.addChild(pauseButton)
+    
     addCamera()
-
+    
     addChild(frog)
     addLeaf(position: CGPoint(x: 100, y: 100))
     addLeaf(position: CGPoint(x: 300, y: 300))
@@ -84,8 +94,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       insertChild(dot, at: 3)
     }
     view.addGestureRecognizer(frogController.initPanner())
-    
   }
+  
+  lazy var pauseButton: SKSpriteNode = {
+    var pause = SKSpriteNode(imageNamed: "Pause")
+    //pause.target(forAction: #selector(GameScene.pause), withSender: UITapGestureRecognizer())
+    pause.alpha = 0.8
+    pause.name = "pausebtn"
+    pause.size = CGSize(width: pause.size.width, height: pause.size.height)
+    pause.isUserInteractionEnabled = true
+    pause.position = CGPoint(x: (frame.size.width / 2) - (pause.size.width + 10), y: (frame.size.height / 2) - (pause.size.height + 10) )
+    pause.zPosition = 6
+    return pause
+  }()
+  
+  @objc func pause() {
+    print("TIPPETY TAP")
+    //Open pause popup in this func
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let touch = touches.first {
+      let location = touch.location(in: self)
+      let nodesarray = nodes(at: location)
+      
+      for node in nodesarray {
+        if node.name == "pausebtn" {
+          print("OH YES")
+        }
+      }
+    }
+  }
+//  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//    if let touch = touches.first {
+//    let location = touch.location(in: self)
+//      let _node:SKNode = self.atPoint(location)
+//
+//    if(_node.name == "pausebtn"){
+//
+//     pause()
+//    }
+//    }
+//
+//  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // Loop over all the touches in this event
+    for touch: AnyObject in touches {
+      // Get the location of the touch in this scene
+      let location = touch.location(in: self)
+      // Check if the location of the touch is within the button's bounds
+      if pauseButton.contains(location) {
+        print("HAYYYY")
+        pause()
+      }
+    }
+  }
+
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
