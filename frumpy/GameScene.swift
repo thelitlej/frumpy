@@ -93,20 +93,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
-      print(spritesAdded)
       contact.bodyB.node?.removeFromParent()
-      print("YES")
     }
     if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
       if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
-        frogController.setFrogAnimation(animation: 1)
-        addLeaf(position: generateRandomPosition())
-        score += 1
-        print(score)
-
+      frogController.setFrogAnimation(animation: 1)
+      let leafBody: SKPhysicsBody = contact.bodyB
+      let leaf = (leafBody.node as? Leaf)!
+        print(leaf.isVisited())
+        if(!leaf.isVisited()) {
+          addLeaf(position: generateRandomPosition())
+          score += 1
+          leaf.setVisited()
+        }
       }
     }
-  
   }
    
   func addFloor () -> SKSpriteNode {
@@ -191,23 +192,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
 
   func addLeaf(position: CGPoint){
-    let currentLeaf = SKSpriteNode(imageNamed: "leaf_brown")
-    
-    currentLeaf.size = CGSize(width: (currentLeaf.size.width/4), height: (currentLeaf.size.height/4))
-    currentLeaf.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: currentLeaf.size.width/1.5,
-                                                                height: currentLeaf.size.height/12))
-    currentLeaf.physicsBody?.isDynamic = false
-    currentLeaf.physicsBody!.categoryBitMask = 10
-    currentLeaf.physicsBody!.contactTestBitMask = 10
-    currentLeaf.physicsBody!.collisionBitMask = 10
-    currentLeaf.physicsBody!.friction = 5
-    currentLeaf.zPosition = 1
-    currentLeaf.name = "leaf"
-    currentLeaf.position = position
-    
-    
+    let currentLeaf = Leaf(position: position, imageNamed: "leaf_brown")
     addChild(currentLeaf)
   }
+  
 
   func createWater(){
     /*Function to create water: NOT WORKING*/

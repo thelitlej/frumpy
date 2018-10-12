@@ -19,7 +19,7 @@ extension CGVector {
   }
 }
 
-class FrogController: UIViewController{
+class FrogController: UIViewController {
   let maxSwipeLength:     CGFloat                 = 170
   let minSwipeLength:     CGFloat                 = 60
   let g:                  CGFloat                 = 9.82

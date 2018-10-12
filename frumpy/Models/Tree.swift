@@ -16,7 +16,7 @@ class Tree {
     self.imageNr = imageNr
     self.width = size.width
     self.height = size.height
-    print("SIze: ", size)
+    print("Size: ", size)
   }
   func addTreeSprite(imageNr: Int, position: CGPoint) -> SKSpriteNode {
     self.imageNr = imageNr
