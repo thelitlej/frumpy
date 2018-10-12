@@ -22,7 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var floor: SKSpriteNode = SKSpriteNode()
   var leftWall: SKSpriteNode = SKSpriteNode()
   var rightWall: SKSpriteNode = SKSpriteNode()
-
   var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
@@ -33,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var sprites = [SKSpriteNode]()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
-  var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
+  var score:Int = 0 /*{ didSet { scoreLabel!.text = "\(score)" } }*/
   
 
   var water = SKSpriteNode(imageNamed: "water")
@@ -67,17 +66,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     maxY = frame.height
     
     backgroundColor = .black
-    scoreLabel = SKLabelNode( text: "\(score)")
-    scoreLabel?.zPosition = 6
-    scoreLabel!.fontSize = 100
-    scoreLabel?.position = CGPoint(x: 0,y: 250)
 
-    cam.addChild(scoreLabel!)
+    cam.addChild(scoreText)
     addCamera()
 
     addChild(frog)
-    addLeaf(position: CGPoint(x: 100, y: 100))
-    addLeaf(position: CGPoint(x: 300, y: 300))
+    addLeaf(position: CGPoint(x: 100, y: 100), isVisited: true)
+    addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
 
     dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
     for dot in dots {
@@ -86,6 +81,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     view.addGestureRecognizer(frogController.initPanner())
     
   }
+  lazy var scoreText: SKLabelNode  = {
+    var scoreLabel = SKLabelNode()
+    scoreLabel.zPosition = 6
+    scoreLabel.fontSize = 45
+    scoreLabel.fontName = "AlNile"
+    scoreLabel.position = CGPoint(x: (frame.size.width / 2) - (self.size.width / 2), y: (self.frame.height / 2) - 70)
+    scoreLabel.text = "0"
+    return scoreLabel
+  }()
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
@@ -101,10 +105,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       frogController.setFrogAnimation(animation: 1)
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
-        print(leaf.isVisited())
         if(!leaf.isVisited()) {
-          addLeaf(position: generateRandomPosition())
+          addLeaf(position: generateRandomPosition(), isVisited: false)
           score += 1
+          scoreText.text = "\(score)"
           leaf.setVisited()
         }
       }
@@ -200,8 +204,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     return CGPoint(x: xPos, y: yPos)
   }
 
-  func addLeaf(position: CGPoint){
-    let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)")
+  func addLeaf(position: CGPoint, isVisited: Bool){
+    let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)", visited: isVisited)
     addChild(currentLeaf)
   }
   
