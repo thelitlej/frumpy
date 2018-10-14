@@ -12,12 +12,13 @@ class Tree {
   var imageNr: Int
   let width: CGFloat
   let height: CGFloat
+  
   init(imageNr: Int, size: CGSize) {
     self.imageNr = imageNr
     self.width = size.width
     self.height = size.height
-    print("Size: ", size)
   }
+  
   func addTreeSprite(imageNr: Int, position: CGPoint) -> SKSpriteNode {
     self.imageNr = imageNr
     let tree: SKSpriteNode

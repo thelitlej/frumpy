@@ -12,18 +12,14 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
   let leafController = LeafController()
-
+  var waterController = WaterController()
   var frogController = FrogController()
   
   let kLeafCategory: UInt32 = 0x1 << 0
-  let nrOfAimDots = 6
+  let nrOfAimDots = 10
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
-  var floor: SKSpriteNode = SKSpriteNode()
-  var leftWall: SKSpriteNode = SKSpriteNode()
-  var rightWall: SKSpriteNode = SKSpriteNode()
 
-  var dots: [SKShapeNode] = []
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
   var landingSucsess = false;
@@ -32,9 +28,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var scoreLabel: SKLabelNode?
   var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
   
+  private var waves = SKSpriteNode()
+  private var waveFrames: [SKTexture] = []
+  
+  private var waterLayers: [WaterLayer] = [WaterLayer]()
+  private var spareWater: SKShapeNode = SKShapeNode()
 
-  var water = SKSpriteNode(imageNamed: "water")
-
+  
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
@@ -42,39 +42,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.camera = cam
     self.view!.showsNodeCount = true
     self.backgroundColor = .white
-    insertTree()
-    createSafeFloor()
+    
     frogController = FrogController(size: frame.size)
-    frog = frogController.addFrog()
-    frog.name = "frog"
-    floor = addFloor()
-    leftWall = addLeftWall()
-    rightWall = addRightWall()
-    cam.addChild(floor)
-    cam.addChild(leftWall)
-    cam.addChild(rightWall)
-
-    insertStartBush()
+    addFrog()
     
-    backgroundColor = .black
-    scoreLabel = SKLabelNode( text: "\(score)")
-    scoreLabel?.zPosition = 6
-    scoreLabel!.fontSize = 100
-    scoreLabel?.position = CGPoint(x: 0,y: 250)
-
-    cam.addChild(scoreLabel!)
+    waterController = WaterController(frogZPosition: frog.zPosition)
+    
     addCamera()
-
-    addChild(frog)
-    addLeaf(position: CGPoint(x: 100, y: 100))
-    addLeaf(position: CGPoint(x: 300, y: 300))
-
-    dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
-    for dot in dots {
-      insertChild(dot, at: 3)
-    }
-    view.addGestureRecognizer(frogController.initPanner())
+    addWalls()
+    addScoreLable()
+    addFloor()
+    addTree()
+    addBush()
+    addWater()
+    addAimDots()
+    addStartLeaves()
     
+    view.addGestureRecognizer(frogController.initPanner())
   }
   
   override func update(_ currentTime: CFTimeInterval) {
@@ -86,24 +70,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
     }
+    
     if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
       if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
       frogController.setFrogAnimation(animation: 1)
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
-        print(leaf.isVisited())
         if(!leaf.isVisited()) {
           addLeaf(position: generateRandomPosition())
-          score += 1
           leaf.setVisited()
+          score += 1
+          if(score % 5 == 0) {
+            waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
+          }
         }
+      }
+    }
+    
+    if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "water") {
+      if(!waterController.frogDidFallIn()) {
+        //Implement game over, pause game and implement start over- and watch add button
+        waterController.frogFellInWater(did: true)
+        frog.removeFromParent() //add new frog on the leaf it just fell from if add is watched
       }
     }
   }
    
-  func addFloor () -> SKSpriteNode {
+  func addFloor () {
     let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.3) , size: CGSize(width: frame.width, height: 30))
-    
     floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
     floor.physicsBody?.collisionBitMask = 0
     floor.physicsBody?.isDynamic = true
@@ -113,75 +107,86 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     floor.physicsBody?.restitution = 0.2
     floor.physicsBody?.friction = 0.9
     floor.name = "floor"
-    
-    return floor
+    cam.addChild(floor)
   }
   
-  func addLeftWall () -> SKSpriteNode {
+  func addWalls () {
     let leftWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
-    
-    
     leftWall.physicsBody = SKPhysicsBody(rectangleOf: leftWall.size)
     leftWall.physicsBody?.isDynamic = false
-    leftWall.physicsBody?.restitution = 0.8
+    leftWall.physicsBody?.restitution = 1
     leftWall.physicsBody?.friction = 0
     leftWall.physicsBody?.collisionBitMask = 10;
     leftWall.position = CGPoint(x: -frame.width/2, y: frame.height-frame.height)
     leftWall.name = "leftWall"
+    cam.addChild(leftWall)
     
-    return leftWall
-  }
-  
-  func addRightWall () -> SKSpriteNode {
     let rightWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
-    
     rightWall.physicsBody = SKPhysicsBody(rectangleOf: rightWall.size)
     rightWall.physicsBody?.isDynamic = false
     rightWall.physicsBody?.collisionBitMask = 10;
     rightWall.physicsBody?.friction = 0
-    rightWall.physicsBody?.restitution = 0.8
+    rightWall.physicsBody?.restitution = 1
     rightWall.position = CGPoint(x: frame.width/2, y: frame.height-frame.height)
     rightWall.name = "rightWall"
-    
-    return rightWall
-  }
-  
-  func createSafeFloor()  {
-    //self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-    let floor = SKSpriteNode(color: .clear, size: CGSize(width: frame.width, height: 3))
-    
-    floor.physicsBody = SKPhysicsBody(rectangleOf: floor.size)
-    floor.physicsBody?.isDynamic = false
-    floor.position = CGPoint(x: frame.width / 2, y: 0)
-    floor.physicsBody?.collisionBitMask = 10;
-    floor.physicsBody?.friction = 0.9
-
-    addChild(floor)
+    cam.addChild(rightWall)
   }
 
   func addCamera() {
     cam.position.x = size.width / 2
     cam.position.y = size.height
     addChild(cam)
-    
   }
   
-  func insertTree() {
-    
+  func addTree() {
     for i in 0..<4
     {
       let tree = Tree(imageNr: 1, size: frame.size)
       self.addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
-      
     }
   }
   
-  func insertStartBush() {
+  func addBush() {
     let bush = SKSpriteNode(imageNamed: "grass")
-    bush.size = CGSize(width: self.frame.width, height: bush.size.height)
-    bush.position = CGPoint(x: self.frame.width / 2, y: 100)
+    bush.size = CGSize(width: frame.width, height: bush.size.height)
+    bush.position = CGPoint(x: frame.width / 2, y: 100)
     bush.zPosition = 2
     addChild(bush)
+  }
+  
+  func addWater() {
+    waterLayers = waterController.buildWater(size: frame.size)
+    for waterLayer in waterLayers {
+      addChild(waterLayer)
+    }
+    spareWater = waterController.buildSpareWater(color: UIColorFromRGB(rgbValue: 0x64BDF4))
+    addChild(spareWater)
+  }
+  
+  func addAimDots() {
+    let dots = frogController.createAimDots(nrOfDots: nrOfAimDots)
+    for dot in dots {
+      addChild(dot)
+    }
+  }
+  
+  func addFrog() {
+    frog = frogController.addFrog()
+    frog.name = "frog"
+    addChild(frog)
+  }
+  
+  func addStartLeaves() {
+    addLeaf(position: CGPoint(x: 100, y: 100))
+    addLeaf(position: CGPoint(x: 300, y: 300))
+  }
+  
+  func addScoreLable() {
+    scoreLabel = SKLabelNode( text: "\(score)")
+    scoreLabel?.zPosition = 6
+    scoreLabel!.fontSize = 100
+    scoreLabel?.position = CGPoint(x: 0,y: 250)
+    cam.addChild(scoreLabel!)
   }
   
   func generateRandomPosition() -> CGPoint {
@@ -191,24 +196,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
 
   func addLeaf(position: CGPoint){
-    let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)")
-    addChild(currentLeaf)
+    addChild(Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)"))
+  }
+  
+  func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+    return UIColor(
+      red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+      green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+      blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+      alpha: CGFloat(1.0)
+    )
   }
   
 
-  func createWater(){
-    /*Function to create water: NOT WORKING*/
-    let water = SKSpriteNode(imageNamed: "water")
-    water.name = "water"
-    water.size = CGSize(width: (self.scene?.size.width)!, height: 300)
-    water.anchorPoint = CGPoint(x: 300, y: 300)
-    water.position = CGPoint(x: water.size.width, y: -(self.frame.size.height / 2))
-    self.addChild(water)
-  }
+//  func buildWaves() {
+//    let waveAnimationAtlas = SKTextureAtlas(named: "water")
+//    var frames: [SKTexture] = []
+//
+//    let numImages = waveAnimationAtlas.textureNames.count
+//    for i in 0...(numImages-1) {
+//      let waveTextureName = "water_\(i)"
+//      frames.append(waveAnimationAtlas.textureNamed(waveTextureName))
+//    }
+//    waveFrames = frames
+//    let firstFrameTexture = waveFrames[0]
+//    waves = SKSpriteNode(texture: firstFrameTexture)
+//    waves.position = CGPoint(x: frame.midX, y: frame.midY)
+//    waves.size.width = frame.width
+//    waves.size.height = frame.height/4
+//    waves.position = CGPoint(x: frame.width/2, y: -10)
+//    waves.zPosition = 7
+//    addChild(waves)
+//
+//    let underWater = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: frame.size.height/4))
+//    underWater.fillColor = UIColorFromRGB(rgbValue: 0x5097FF)
+//    underWater.strokeColor = UIColor.clear
+//    underWater.position = CGPoint(x: frame.width/2, y: -120)
+//    underWater.zPosition = 7
+//
+//    addChild(underWater)
+//
+//
+//  }
+//
+//  func animateWaves() {
+//    waves.run(SKAction.repeatForever(
+//      SKAction.animate(with: waveFrames, timePerFrame: 0.02, resize: false, restore: true)), withKey:"waves")
+//  }
+//
   
-  func moveWater() {
-    /*Function to move water in y: NOT WORKING*/
-    //self.enumerateChildNodes("water", using: <#T##(SKNode, UnsafeMutablePointer<ObjCBool>) -> Void#>)
-  }
+  
 }
 
