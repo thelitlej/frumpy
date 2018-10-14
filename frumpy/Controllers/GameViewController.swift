@@ -10,4 +10,7 @@ class GameViewController: UIViewController {
     skView.showsPhysics = true
     skView.presentScene(scene)
   }
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
 }

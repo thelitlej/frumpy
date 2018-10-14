@@ -26,13 +26,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var frogPosition = CGPoint()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
-  var score:Int = 0 { didSet { scoreLabel!.text = "\(score)" } }
   
   private var waves = SKSpriteNode()
   private var waveFrames: [SKTexture] = []
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
   private var spareWater: SKShapeNode = SKShapeNode()
+
+  var score:Int = 0
 
   
   override func didMove(to view: SKView) {
@@ -50,16 +51,86 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     addCamera()
     addWalls()
-    addScoreLable()
     addFloor()
     addTree()
     addBush()
     addWater()
     addAimDots()
     addStartLeaves()
+    pauseButton.name = "pausebtn"
+    cam.addChild(pauseButton)
+    backgroundColor = .black
     
+    cam.addChild(scoreText)
+
     view.addGestureRecognizer(frogController.initPanner())
   }
+  lazy var scoreText: SKLabelNode  = {
+    var scoreLabel = SKLabelNode()
+    scoreLabel.zPosition = 6
+    scoreLabel.fontSize = 45
+    //scoreLabel.fontName = "AlNile"
+    scoreLabel.position = CGPoint(x: (frame.size.width / 2) - (self.size.width / 2), y: (self.frame.height / 2) - 70)
+    scoreLabel.text = "0"
+    return scoreLabel
+  }()
+  
+  lazy var pauseButton: SKSpriteNode = {
+    var pause = SKSpriteNode(imageNamed: "Pause")
+    //pause.target(forAction: #selector(GameScene.pause), withSender: UITapGestureRecognizer())
+    pause.alpha = 0.8
+    pause.name = "pausebtn"
+    pause.size = CGSize(width: pause.size.width, height: pause.size.height)
+    pause.isUserInteractionEnabled = true
+    pause.position = CGPoint(x: (frame.size.width / 2) - (pause.size.width + 10), y: (frame.size.height / 2) - (pause.size.height + 10) )
+    pause.zPosition = 6
+    return pause
+  }()
+  
+  @objc func pause() {
+    print("TIPPETY TAP")
+    //Open pause popup in this func
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let touch = touches.first {
+      let location = touch.location(in: self)
+      let nodesarray = nodes(at: location)
+      
+      for node in nodesarray {
+        if node.name == "pausebtn" {
+          print("OH YES")
+        }
+      }
+    }
+  }
+//  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//    if let touch = touches.first {
+//    let location = touch.location(in: self)
+//      let _node:SKNode = self.atPoint(location)
+//
+//    if(_node.name == "pausebtn"){
+//
+//     pause()
+//    }
+//    }
+//
+//  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // Loop over all the touches in this event
+    for touch: AnyObject in touches {
+      // Get the location of the touch in this scene
+      let location = touch.location(in: self)
+      // Check if the location of the touch is within the button's bounds
+      if pauseButton.contains(location) {
+        print("HAYYYY")
+        pause()
+      }
+    }
+  }
+
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
@@ -77,9 +148,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
         if(!leaf.isVisited()) {
-          addLeaf(position: generateRandomPosition())
-          leaf.setVisited()
+          addLeaf(position: generateRandomPosition(), isVisited: false)
           score += 1
+          scoreText.text = "\(score)"
+          leaf.setVisited()
           if(score % 5 == 0) {
             waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
           }
@@ -177,16 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func addStartLeaves() {
-    addLeaf(position: CGPoint(x: 100, y: 100))
-    addLeaf(position: CGPoint(x: 300, y: 300))
-  }
-  
-  func addScoreLable() {
-    scoreLabel = SKLabelNode( text: "\(score)")
-    scoreLabel?.zPosition = 6
-    scoreLabel!.fontSize = 100
-    scoreLabel?.position = CGPoint(x: 0,y: 250)
-    cam.addChild(scoreLabel!)
+    addLeaf(position: CGPoint(x: 100, y: 100), isVisited: true)
+    addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
   }
   
   func generateRandomPosition() -> CGPoint {
@@ -195,8 +259,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     return CGPoint(x: xPos, y: yPos)
   }
 
-  func addLeaf(position: CGPoint){
-    addChild(Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)"))
+
+  func addLeaf(position: CGPoint, isVisited: Bool){
+    let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)", visited: isVisited)
+    addChild(currentLeaf)
+
   }
   
   func UIColorFromRGB(rgbValue: UInt) -> UIColor {

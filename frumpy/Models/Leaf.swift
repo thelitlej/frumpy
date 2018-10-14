@@ -13,8 +13,8 @@ import GameplayKit
 class Leaf: SKSpriteNode {
   var visited: Bool
   
-  init(position: CGPoint, imageNamed: String) {
-    self.visited = false
+  init(position: CGPoint, imageNamed: String, visited: Bool) {
+    self.visited = visited
     let texture = SKTexture(imageNamed: imageNamed)
     let size = CGSize(width: texture.size().width/4, height: texture.size().height/4)
     super.init(texture: texture, color: UIColor.clear, size: size)
