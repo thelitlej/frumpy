@@ -172,7 +172,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
       let tree = Tree(imageNr: 1, size: frame.size)
       self.addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
-      
     }
   }
   
@@ -185,8 +184,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
-    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
+    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 1.4)))) + ((self.frame.width - (self.frame.width / 1.4)) / 2)
+    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height / 4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)
   }
 
