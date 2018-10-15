@@ -251,8 +251,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
-    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
+    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 1.4)))) + ((self.frame.width - (self.frame.width / 1.4)) / 2)
+    let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height / 4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)
   }
 
