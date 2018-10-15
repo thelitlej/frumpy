@@ -7,6 +7,10 @@ class GameViewController: UIViewController {
     skView.ignoresSiblingOrder = true
     skView.showsFPS = true
     skView.showsNodeCount = true
+    skView.showsPhysics = true
     skView.presentScene(scene)
+  }
+  override var prefersStatusBarHidden: Bool {
+    return true
   }
 }

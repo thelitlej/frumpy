@@ -13,11 +13,12 @@ import GameplayKit
 class Leaf: SKSpriteNode {
   var visited: Bool
   
-  init(position: CGPoint, imageNamed: String) {
-    self.visited = false
+  init(position: CGPoint, imageNamed: String, visited: Bool) {
+    self.visited = visited
     let texture = SKTexture(imageNamed: imageNamed)
     let size = CGSize(width: texture.size().width/4, height: texture.size().height/4)
     super.init(texture: texture, color: UIColor.clear, size: size)
+    
     self.position = position
     self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/1.5, height: self.size.height/12))
     self.physicsBody?.isDynamic = false
@@ -29,15 +30,16 @@ class Leaf: SKSpriteNode {
     self.zPosition = 2
   }
   
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   func setVisited() {
     self.visited = true
   }
   func isVisited() -> Bool {
     return self.visited
   }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 }
 

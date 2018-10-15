@@ -22,7 +22,7 @@ extension CGVector {
 class FrogController: UIViewController {
   let maxSwipeLength:     CGFloat                 = 170
   let minSwipeLength:     CGFloat                 = 60
-  let g:                  CGFloat                 = 9.82
+  let g:                  CGFloat                 = 9.8
   let beginJumpTime:      Double                  = 0.3
   let originTime:         Double                  = 1
   let frogAnimations                              = FrogAnimations()
@@ -67,8 +67,8 @@ class FrogController: UIViewController {
     frog.physicsBody = physicsBody
     frog.size = frogSize
     frog.position = CGPoint(x: 100, y: 260)
+    frog.physicsBody?.restitution = 0.2
     frog.physicsBody?.mass = 0.155
-    frog.physicsBody?.linearDamping = 0
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.collisionBitMask = 10;
     frog.physicsBody?.contactTestBitMask = 10;
@@ -89,7 +89,6 @@ class FrogController: UIViewController {
   func frogJump(angle: CGFloat, distance: CGFloat) {
     let velocity = CGVector(dx: -cos(angle)*(distance), dy: sin(angle)*(distance))
     frog.physicsBody?.applyImpulse(velocity)
-    frog.physicsBody?.affectedByGravity = true
   }
   
   /*
