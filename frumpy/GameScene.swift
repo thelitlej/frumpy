@@ -32,10 +32,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
   private var spareWater: SKShapeNode = SKShapeNode()
+  
+  private var windActionForLeaf:SKAction = SKAction()
+  private var thisLeaf: SKSpriteNode = SKSpriteNode()
 
   var score:Int = 0
 
-  
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
@@ -65,6 +67,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     view.addGestureRecognizer(frogController.initPanner())
   }
+  
+  override func update(_ currentTime: CFTimeInterval) {
+    frogController.updateFrogAngle()
+    cam.position.y = frog.position.y
+  }
+  
+  func createWindForLeaves() {
+    let action1 = SKAction.moveBy(x: 100, y: -20, duration: 1)
+    let action2 = SKAction.moveBy(x: -100, y: 10, duration: 1)
+    let action3 = SKAction.sequence([action1, action2])
+    windActionForLeaf = SKAction.repeatForever(action3)
+  }
+  
   lazy var scoreText: SKLabelNode  = {
     var scoreLabel = SKLabelNode()
     scoreLabel.zPosition = 6
@@ -99,24 +114,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       
       for node in nodesarray {
         if node.name == "pausebtn" {
-          print("OH YES")
+          print("touched pause button")
         }
       }
     }
   }
-//  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//
-//    if let touch = touches.first {
-//    let location = touch.location(in: self)
-//      let _node:SKNode = self.atPoint(location)
-//
-//    if(_node.name == "pausebtn"){
-//
-//     pause()
-//    }
-//    }
-//
-//  }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     // Loop over all the touches in this event
@@ -125,18 +127,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       let location = touch.location(in: self)
       // Check if the location of the touch is within the button's bounds
       if pauseButton.contains(location) {
-        print("HAYYYY")
+        print("worked")
         pause()
       }
     }
   }
-
-  
-  override func update(_ currentTime: CFTimeInterval) {
-    frogController.updateFrogAngle()
-    cam.position.y = frog.position.y
-  }
-  
+ 
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
@@ -157,6 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           }
         }
       }
+      
     }
     
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "water") {
@@ -275,7 +272,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     )
   }
   
-
+// ----------- FOLLOW THIS FOR ANIMATIONS -----------
 //  func buildWaves() {
 //    let waveAnimationAtlas = SKTextureAtlas(named: "water")
 //    var frames: [SKTexture] = []
@@ -302,8 +299,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    underWater.zPosition = 7
 //
 //    addChild(underWater)
-//
-//
 //  }
 //
 //  func animateWaves() {
