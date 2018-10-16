@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var frogController = FrogController()
   
   let kLeafCategory: UInt32 = 0x1 << 0
-  let nrOfAimDots = 10
+  let nrOfAimDots = 8
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
 
@@ -173,14 +173,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
     }
   }
- 
+  
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
     }
-    
-    if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
-      if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+    if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+      frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+      if(contact.collisionImpulse > 5 && contact.contactNormal.dy < 0) {
       frogController.setFrogAnimation(animation: 1)
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
@@ -194,9 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           }
         }
       }
-      
     }
-    
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "water") {
       if(!waterController.frogDidFallIn()) {
         //Implement game over, pause game and implement start over- and watch add button
@@ -226,8 +224,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let leftWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
     leftWall.physicsBody = SKPhysicsBody(rectangleOf: leftWall.size)
     leftWall.physicsBody?.isDynamic = false
-    leftWall.physicsBody?.restitution = 1
+    leftWall.physicsBody?.restitution = 0.8
     leftWall.physicsBody?.friction = 0
+    leftWall.physicsBody?.linearDamping = 0
+    leftWall.physicsBody?.angularDamping = 0
     leftWall.physicsBody?.collisionBitMask = 10;
     leftWall.position = CGPoint(x: -frame.width/2, y: frame.height-frame.height)
     leftWall.name = "leftWall"
@@ -238,7 +238,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rightWall.physicsBody?.isDynamic = false
     rightWall.physicsBody?.collisionBitMask = 10;
     rightWall.physicsBody?.friction = 0
-    rightWall.physicsBody?.restitution = 1
+    rightWall.physicsBody?.linearDamping = 0
+    rightWall.physicsBody?.angularDamping = 0
+    rightWall.physicsBody?.restitution = 0.8
     rightWall.position = CGPoint(x: frame.width/2, y: frame.height-frame.height)
     rightWall.name = "rightWall"
     cam.addChild(rightWall)
@@ -294,7 +296,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func generateRandomPosition() -> CGPoint {
-
     let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 1.4)))) + ((self.frame.width - (self.frame.width / 1.4)) / 2)
     let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height / 4)))) + (frog.position.y + 100)
     return CGPoint(x: xPos, y: yPos)

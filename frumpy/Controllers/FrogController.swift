@@ -66,12 +66,13 @@ class FrogController: UIViewController {
     let physicsBody = SKPhysicsBody(texture: frogAnimations.origin_origin_00000(), size: frogSize)
     frog.physicsBody = physicsBody
     frog.size = frogSize
-    frog.position = CGPoint(x: 100, y: 260)
+    frog.position = CGPoint(x: 100+frog.size.width/10, y: 260)
     frog.physicsBody?.restitution = 0.2
-    frog.physicsBody?.mass = 0.155
+    frog.physicsBody?.angularDamping = 0
+    frog.physicsBody?.linearDamping = 0
+    frog.physicsBody?.collisionBitMask = 10
+    frog.physicsBody?.contactTestBitMask = 10
     frog.physicsBody?.allowsRotation = false
-    frog.physicsBody?.collisionBitMask = 10;
-    frog.physicsBody?.contactTestBitMask = 10;
     frog.physicsBody?.usesPreciseCollisionDetection = true
     frogLastPositionY = frog.position.y
     frogLastPositionX = frog.position.x
@@ -86,10 +87,12 @@ class FrogController: UIViewController {
 
   /*
    */
-  func frogJump(angle: CGFloat, distance: CGFloat) {
-    let velocity = CGVector(dx: -cos(angle)*(distance), dy: sin(angle)*(distance))
-    frog.physicsBody?.applyImpulse(velocity)
+  func frogJump(sender: UIPanGestureRecognizer) {
+    let dx = sender.location(in: view).x - swipeStartX
+    let dy = sender.location(in: view).y - swipeStartY
+    frog.physicsBody?.applyForce(CGVector(dx: -dx * (frog.physicsBody!.mass * 375), dy: dy * (frog.physicsBody!.mass * 375)))
   }
+  
   
   /*
    */
@@ -144,7 +147,7 @@ class FrogController: UIViewController {
       if (sender.state.rawValue == 3) {
         hideAimDots()
         setFrogAnimation(animation: 3)
-        frogJump(angle: angle, distance: distance)
+        frogJump(sender: sender)
         disableFrogJump()
       } else {
         moveAimDots(sender: sender, swipeLength: distance)
@@ -163,10 +166,12 @@ class FrogController: UIViewController {
   func calculateSwipeLength(sender: UIPanGestureRecognizer) -> CGFloat {
     let x = sender.location(in: view).x
     let y = sender.location(in: view).y
+    
     var swipeLength = sqrt(pow((x - swipeStartX) , 2) + pow((y - swipeStartY), 2))
-    if(swipeLength > maxSwipeLength) {
+    if (swipeLength > maxSwipeLength) {
       swipeLength = maxSwipeLength;
     }
+    print(swipeLength)
     return swipeLength
   }
   
@@ -203,7 +208,7 @@ class FrogController: UIViewController {
       let dot = SKShapeNode(circleOfRadius: size)
       dot.fillColor = UIColor.white
       dot.isHidden = true
-      dot.zPosition = 4
+      dot.zPosition = 10
       dot.alpha = 0.5
       dots.append(dot)
       size -= 0.15
@@ -218,13 +223,12 @@ class FrogController: UIViewController {
     let currentY = sender.location(in: view).y
     let c = -cos(acos((currentX - swipeStartX)/swipeLength))
     let s = sin(asin((currentY - swipeStartY)/swipeLength))
-    var i: CGFloat = 1
+    var i: CGFloat = 0.5
     for dot in dots {
       var x = swipeLength/2 * i * c
       let y1 = swipeLength/2 * i * s
       let y = y1 - 0.5 * g * pow(i, 2)
       i += 1
-      
       if (x + frog.position.x < 0) {
         x = -x - frog.position.x
         dot.position = CGPoint(x: x, y: y + frog.position.y)
