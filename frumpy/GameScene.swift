@@ -26,7 +26,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var frogPosition = CGPoint()
   var spritesAdded = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
-  
   private var waves = SKSpriteNode()
   private var waveFrames: [SKTexture] = []
   
@@ -34,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   private var spareWater: SKShapeNode = SKShapeNode()
 
   var score:Int = 0
+  var highScore:Int = 0
 
   
   override func didMove(to view: SKView) {
@@ -163,6 +163,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       if(!waterController.frogDidFallIn()) {
         //Implement game over, pause game and implement start over- and watch add button
         waterController.frogFellInWater(did: true)
+        isGameOver()
+        //setHighscore()
         frog.removeFromParent() //add new frog on the leaf it just fell from if add is watched
       }
     }
@@ -256,6 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func generateRandomPosition() -> CGPoint {
     let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width))))
     let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height/4)))) + (frog.position.y + 100)
+  
     return CGPoint(x: xPos, y: yPos)
   }
 
@@ -273,6 +276,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
       alpha: CGFloat(1.0)
     )
+  }
+  
+  func setHighscore() -> Int{
+    if(score > highScore){
+      highScore = score
+    }
+    return highScore
+    //print(highScore)
+  }
+  func isGameOver(){
+    let reveal = SKTransition.fade(withDuration: 0.5)
+    let endGameScene = GameScene(size: self.size)
+    self.view!.presentScene(endGameScene, transition: reveal)
+
   }
   
 
