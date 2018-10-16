@@ -18,14 +18,14 @@ class Leaf: SKSpriteNode {
     let texture = SKTexture(imageNamed: imageNamed)
     let size = CGSize(width: texture.size().width/4, height: texture.size().height/4)
     super.init(texture: texture, color: UIColor.clear, size: size)
-    
     self.position = position
     self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width/1.5, height: self.size.height/12))
     self.physicsBody?.isDynamic = false
     self.physicsBody!.categoryBitMask = 10
     self.physicsBody!.contactTestBitMask = 10
     self.physicsBody!.collisionBitMask = 10
-    self.physicsBody!.friction = 5
+    self.physicsBody?.restitution = 0
+    self.physicsBody?.friction = 10000
     self.name = "leaf"
     self.zPosition = 3
   }

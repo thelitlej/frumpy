@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var frogController = FrogController()
   
   let kLeafCategory: UInt32 = 0x1 << 0
-  let nrOfAimDots = 10
+  let nrOfAimDots = 8
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
   
@@ -53,7 +53,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addFrog()
     
     waterController = WaterController(frogZPosition: frog.zPosition)
-  
+    
+    let path = Bundle.main.path(forResource: "Rain", ofType: "sks")
+    let path2 = Bundle.main.path(forResource: "ForegroundRain", ofType: "sks")
+    let leafPath = Bundle.main.path(forResource: "BackgroundLeaf", ofType: "sks")
+    let leafPath2 = Bundle.main.path(forResource: "BackgroundLeaf2", ofType: "sks")
+    let leafPath3 = Bundle.main.path(forResource: "BackgroundLeaf3", ofType: "sks")
+    let backgroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+    let foregroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path2!) as! SKEmitterNode
+    let backgroundLeaf1 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath!) as! SKEmitterNode
+    let backgroundLeaf2 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath2!) as! SKEmitterNode
+    let backgroundLeaf3 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath3!) as! SKEmitterNode
+    
+    
+    backgroundLeaf1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf1.name = "backgroundLeaf1"
+    backgroundLeaf1.targetNode = self.scene
+    backgroundLeaf1.particleZPosition = 2
+    
+    backgroundLeaf2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf2.name = "backgroundLeaf2"
+    backgroundLeaf2.targetNode = self.scene
+    backgroundLeaf2.particleZPosition = 1
+    
+    backgroundLeaf3.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf3.name = "backgroundLeaf3"
+    backgroundLeaf3.targetNode = self.scene
+    backgroundLeaf3.particleZPosition = 0
+    
+    backgroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundRain.name = "backgroundRain"
+    backgroundRain.targetNode = self.scene
+    
+    foregroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    foregroundRain.name = "foregroundRain"
+    foregroundRain.targetNode = self.scene
+    foregroundRain.particleZPosition = 5
+
     addCamera()
     addWalls()
     addFloor()
@@ -67,6 +103,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     backgroundColor = .black
     
     cam.addChild(scoreText)
+    cam.addChild(backgroundRain)
+    cam.addChild(foregroundRain)
+    cam.addChild(backgroundLeaf1)
+    cam.addChild(backgroundLeaf2)
+    cam.addChild(backgroundLeaf3)
 
     view.addGestureRecognizer(frogController.initPanner())
   }
@@ -135,7 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
     }
   }
- 
+  
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
@@ -143,9 +184,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       treePositionHeight = treePositionHeight + 1;
       addTree()
     }
-    
-    if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
-      if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+    if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+      frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+      if(contact.collisionImpulse > 5 && contact.contactNormal.dy < 0) {
       frogController.setFrogAnimation(animation: 1)
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
@@ -153,15 +194,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           addLeaf(position: generateRandomPosition(leafPosition: leaf.position), isVisited: false)
           score += 1
           scoreText.text = "\(score)"
-          leaf.setVisited()
+          leaf.setVisited( )
           if(score % 5 == 0) {
             waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
           }
         }
       }
-      
     }
-    
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "water") {
       if(!waterController.frogDidFallIn()) {
         //Implement game over, pause game and implement start over- and watch add button
@@ -191,8 +230,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let leftWall = SKSpriteNode(color: .clear, size: CGSize(width: 3, height: frame.height))
     leftWall.physicsBody = SKPhysicsBody(rectangleOf: leftWall.size)
     leftWall.physicsBody?.isDynamic = false
-    leftWall.physicsBody?.restitution = 1
+    leftWall.physicsBody?.restitution = 0.8
     leftWall.physicsBody?.friction = 0
+    leftWall.physicsBody?.linearDamping = 0
+    leftWall.physicsBody?.angularDamping = 0
     leftWall.physicsBody?.collisionBitMask = 10;
     leftWall.position = CGPoint(x: -frame.width/2, y: frame.height-frame.height)
     leftWall.name = "leftWall"
@@ -203,7 +244,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rightWall.physicsBody?.isDynamic = false
     rightWall.physicsBody?.collisionBitMask = 10;
     rightWall.physicsBody?.friction = 0
-    rightWall.physicsBody?.restitution = 1
+    rightWall.physicsBody?.linearDamping = 0
+    rightWall.physicsBody?.angularDamping = 0
+    rightWall.physicsBody?.restitution = 0.8
     rightWall.position = CGPoint(x: frame.width/2, y: frame.height-frame.height)
     rightWall.name = "rightWall"
     cam.addChild(rightWall)
@@ -283,8 +326,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
   }
   
+
   func generateRandomPosition(leafPosition: CGPoint) -> CGPoint {
-    
+
     let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height / 4)))) + (frog.position.y + 100)
     var xPos = CGFloat()
     
