@@ -27,12 +27,13 @@ class Leaf: SKSpriteNode {
     self.physicsBody!.collisionBitMask = 10
     self.physicsBody!.friction = 5
     self.name = "leaf"
-    self.zPosition = 2
+    self.zPosition = 3
   }
   
   func setVisited() {
     self.visited = true
   }
+  
   func isVisited() -> Bool {
     return self.visited
   }
