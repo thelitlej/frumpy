@@ -51,6 +51,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     waterController = WaterController(frogZPosition: frog.zPosition)
     
+    let path = Bundle.main.path(forResource: "Rain", ofType: "sks")
+    let path2 = Bundle.main.path(forResource: "ForegroundRain", ofType: "sks")
+    let leafPath = Bundle.main.path(forResource: "BackgroundLeaf", ofType: "sks")
+    let leafPath2 = Bundle.main.path(forResource: "BackgroundLeaf2", ofType: "sks")
+    let leafPath3 = Bundle.main.path(forResource: "BackgroundLeaf3", ofType: "sks")
+    let backgroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+    let foregroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path2!) as! SKEmitterNode
+    let backgroundLeaf1 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath!) as! SKEmitterNode
+    let backgroundLeaf2 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath2!) as! SKEmitterNode
+    let backgroundLeaf3 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath3!) as! SKEmitterNode
+    
+    
+    backgroundLeaf1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf1.name = "backgroundLeaf1"
+    backgroundLeaf1.targetNode = self.scene
+    backgroundLeaf1.particleZPosition = 2
+    
+    backgroundLeaf2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf2.name = "backgroundLeaf2"
+    backgroundLeaf2.targetNode = self.scene
+    backgroundLeaf2.particleZPosition = 1
+    
+    backgroundLeaf3.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf3.name = "backgroundLeaf3"
+    backgroundLeaf3.targetNode = self.scene
+    backgroundLeaf3.particleZPosition = 0
+    
+    backgroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundRain.name = "backgroundRain"
+    backgroundRain.targetNode = self.scene
+    
+    foregroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    foregroundRain.name = "foregroundRain"
+    foregroundRain.targetNode = self.scene
+    foregroundRain.particleZPosition = 5
+    
     addCamera()
     addWalls()
     addFloor()
@@ -64,6 +100,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     backgroundColor = .black
     
     cam.addChild(scoreText)
+    cam.addChild(backgroundRain)
+    cam.addChild(foregroundRain)
+    cam.addChild(backgroundLeaf1)
+    cam.addChild(backgroundLeaf2)
+    cam.addChild(backgroundLeaf3)
 
     view.addGestureRecognizer(frogController.initPanner())
   }
@@ -147,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           addLeaf(position: generateRandomPosition(), isVisited: false)
           score += 1
           scoreText.text = "\(score)"
-          leaf.setVisited()
+          leaf.setVisited( )
           if(score % 5 == 0) {
             waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
           }
