@@ -19,6 +19,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let nrOfAimDots = 10
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
+  
+  var treeCounter = 2;
+  var treePositionHeight = 1;
 
   var startX: CGFloat = 0;
   var startY: CGFloat = 0;
@@ -50,11 +53,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addFrog()
     
     waterController = WaterController(frogZPosition: frog.zPosition)
-    
+  
     addCamera()
     addWalls()
     addFloor()
-    addTree()
+    addFirstTrees()
     addBush()
     addWater()
     addAimDots()
@@ -136,6 +139,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func didBegin(_ contact: SKPhysicsContact) {
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
+      treeCounter = treeCounter + 1;
+      treePositionHeight = treePositionHeight + 1;
+      addTree()
     }
     
     if(contact.collisionImpulse > 16 && contact.contactNormal.dy < 0) {
@@ -144,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       let leafBody: SKPhysicsBody = contact.bodyB
       let leaf = (leafBody.node as? Leaf)!
         if(!leaf.isVisited()) {
-          addLeaf(position: generateRandomPosition(), isVisited: false)
+          addLeaf(position: generateRandomPosition(leafPosition: leaf.position), isVisited: false)
           score += 1
           scoreText.text = "\(score)"
           leaf.setVisited()
@@ -209,11 +215,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(cam)
   }
   
-  func addTree() {
-    for i in 0..<4
+  func addFirstTrees() {
+    for i in 0..<2
     {
-      let tree = Tree(imageNr: 1, size: frame.size)
-      self.addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
+    let tree = Tree(imageNr: 1, size: frame.size)
+    addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
+    }
+  }
+  
+  func addTree() {
+    
+    let tree = Tree(imageNr: 1, size: frame.size)
+    
+    if(treeCounter == 5) {
+      treeCounter = 1;
+      
+    }
+      addChild(tree.addTreeSprite(imageNr: treeCounter, position: CGPoint(x:self.frame.width / 2, y:CGFloat(treePositionHeight) * self.frame.height)))
+    
+    let sprites = self.spritesAdded
+    for sprite in sprites {
+      if(sprite.name == "tree"){
+        if(frog.position.y - frame.height * 2 > sprite.position.y){
+         // addChild(tree.addTreeSprite(imageNr: treeCounter, position: CGPoint(x:self.frame.width / 2, y:CGFloat(treePositionHeight) * self.frame.height)))
+          print ("hej")
+        }
+        if(frog.position.y - frame.height * 2 > sprite.position.y){
+          sprite.removeFromParent()
+          print ("då")
+        }
+      }
     }
   }
   
@@ -252,16 +283,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
   }
   
-  func generateRandomPosition() -> CGPoint {
-
-    let xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 1.4)))) + ((self.frame.width - (self.frame.width / 1.4)) / 2)
+  func generateRandomPosition(leafPosition: CGPoint) -> CGPoint {
+    
     let yPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.height / 4)))) + (frog.position.y + 100)
+    var xPos = CGFloat()
+    
+    if (leafPosition.x < (self.frame.width / 2)) {
+      xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 4)))) + ((self.frame.width / 2) + ((self.frame.width / 4) / 2))
+    } else {
+      xPos = CGFloat( Float(arc4random_uniform(UInt32(self.frame.width / 4)))) + ((self.frame.width / 4) / 2)
+    }
+    
     return CGPoint(x: xPos, y: yPos)
   }
 
 
   func addLeaf(position: CGPoint, isVisited: Bool){
     let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)", visited: isVisited)
+    
+    if (position.x < (self.frame.width) / 2) {
+      currentLeaf.xScale = -1.0;
+    }
+    
     addChild(currentLeaf)
 
   }

@@ -37,6 +37,7 @@ class Tree {
     tree.size.height = height
     tree.position = position
     tree.zPosition = 0.1
+    tree.name = "tree"
     return tree
   }
 }
