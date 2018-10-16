@@ -88,8 +88,14 @@ class FrogController: UIViewController {
   /*
    */
   func frogJump(sender: UIPanGestureRecognizer) {
-    let dx = sender.location(in: view).x - swipeStartX
-    let dy = sender.location(in: view).y - swipeStartY
+    var dx = sender.location(in: view).x - swipeStartX
+    var dy = sender.location(in: view).y - swipeStartY
+    let swipeLength = sqrt(dx*dx + dy*dy)
+    if (swipeLength > maxSwipeLength) {
+      let angle = asin(dx/swipeLength)
+      dx = maxSwipeLength * sin(angle) + 10
+      dy = maxSwipeLength * cos(angle) + 10
+    }
     frog.physicsBody?.applyForce(CGVector(dx: -dx * (frog.physicsBody!.mass * 375), dy: dy * (frog.physicsBody!.mass * 375)))
   }
   
@@ -166,12 +172,10 @@ class FrogController: UIViewController {
   func calculateSwipeLength(sender: UIPanGestureRecognizer) -> CGFloat {
     let x = sender.location(in: view).x
     let y = sender.location(in: view).y
-    
     var swipeLength = sqrt(pow((x - swipeStartX) , 2) + pow((y - swipeStartY), 2))
     if (swipeLength > maxSwipeLength) {
       swipeLength = maxSwipeLength;
     }
-    print(swipeLength)
     return swipeLength
   }
   
