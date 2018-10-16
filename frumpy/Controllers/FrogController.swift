@@ -93,8 +93,8 @@ class FrogController: UIViewController {
     let swipeLength = sqrt(dx*dx + dy*dy)
     if (swipeLength > maxSwipeLength) {
       let angle = asin(dx/swipeLength)
-      dx = maxSwipeLength * sin(angle) + 10
-      dy = maxSwipeLength * cos(angle) + 10
+      dx = maxSwipeLength * sin(angle) + 5
+      dy = maxSwipeLength * cos(angle) + 5
     }
     frog.physicsBody?.applyForce(CGVector(dx: -dx * (frog.physicsBody!.mass * 375), dy: dy * (frog.physicsBody!.mass * 375)))
   }
