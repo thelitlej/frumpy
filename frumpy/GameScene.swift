@@ -346,7 +346,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for waterLayer in waterLayers {
       addChild(waterLayer)
     }
-    spareWater = waterController.buildSpareWater(color: UIColorFromRGB(rgbValue: 0x64BDF4))
+    spareWater = waterController.buildSpareWater(color: UIColorFromHex(rgbValue: 0x64BDF4))
     addChild(spareWater)
   }
   
@@ -395,7 +395,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   }
   
-  func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+  func UIColorFromHex(rgbValue: UInt) -> UIColor {
     return UIColor(
       red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
       green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
