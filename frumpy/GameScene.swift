@@ -19,6 +19,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let nrOfAimDots = 8
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
+  var drag: SKSpriteNode = SKSpriteNode()
+  
+  var optionsAreHidden: Bool = false
   
   var treeCounter = 2;
   var treePositionHeight = 1;
@@ -48,6 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     self.camera = cam
     self.view!.showsNodeCount = true
     self.backgroundColor = .white
+    
+    createStartOptions()
     
     frogController = FrogController(size: frame.size)
     addFrog()
@@ -152,6 +157,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if (!optionsAreHidden) {
+      hideStartOptions()
+    }
+    
     if let touch = touches.first {
       let location = touch.location(in: self)
       let nodesarray = nodes(at: location)
@@ -369,48 +378,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     return highScore
     //print(highScore)
   }
+  
   func isGameOver(){
     let reveal = SKTransition.fade(withDuration: 0.5)
     let endGameScene = GameScene(size: self.size)
     self.view!.presentScene(endGameScene, transition: reveal)
 
   }
-
-// ----------- FOLLOW THIS FOR ANIMATIONS -----------
-//  func buildWaves() {
-//    let waveAnimationAtlas = SKTextureAtlas(named: "water")
-//    var frames: [SKTexture] = []
-//
-//    let numImages = waveAnimationAtlas.textureNames.count
-//    for i in 0...(numImages-1) {
-//      let waveTextureName = "water_\(i)"
-//      frames.append(waveAnimationAtlas.textureNamed(waveTextureName))
-//    }
-//    waveFrames = frames
-//    let firstFrameTexture = waveFrames[0]
-//    waves = SKSpriteNode(texture: firstFrameTexture)
-//    waves.position = CGPoint(x: frame.midX, y: frame.midY)
-//    waves.size.width = frame.width
-//    waves.size.height = frame.height/4
-//    waves.position = CGPoint(x: frame.width/2, y: -10)
-//    waves.zPosition = 7
-//    addChild(waves)
-//
-//    let underWater = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: frame.size.height/4))
-//    underWater.fillColor = UIColorFromRGB(rgbValue: 0x5097FF)
-//    underWater.strokeColor = UIColor.clear
-//    underWater.position = CGPoint(x: frame.width/2, y: -120)
-//    underWater.zPosition = 7
-//
-//    addChild(underWater)
-//  }
-//
-//  func animateWaves() {
-//    waves.run(SKAction.repeatForever(
-//      SKAction.animate(with: waveFrames, timePerFrame: 0.02, resize: false, restore: true)), withKey:"waves")
-//  }
-//
   
+  func createStartOptions() {
+    createDragTutorial()
+  }
+  
+  func hideStartOptions() {
+    optionsAreHidden = true
+    let fade = SKAction.fadeAlpha(to: 0, duration: 0.4)
+    let remove = SKAction.removeFromParent()
+    drag.run(SKAction.sequence([fade, remove]))
+  }
+  
+  func createDragTutorial() {
+    let dragAnimationAtlas = SKTextureAtlas(named: "drag_tutorial")
+    var frames: [SKTexture] = []
+    let numImages = dragAnimationAtlas.textureNames.count
+    for i in 0...(numImages - 1){
+      let dragTextureName = "drag_\(i)"
+      frames.append(dragAnimationAtlas.textureNamed(dragTextureName))
+    }
+    let firstFrameTexture = frames[0]
+    drag = SKSpriteNode(texture: firstFrameTexture)
+    drag.position = CGPoint(x: 60, y: -20)
+    drag.alpha = 0.7
+    drag.size = CGSize(width: firstFrameTexture.size().width/1.6, height: firstFrameTexture.size().height/1.6)
+    drag.zPosition = 10
+    let action = SKAction.animate(with: frames, timePerFrame: 0.015, resize: false, restore: true)
+    drag.run(SKAction.repeatForever(action))
+    addChild(drag)
+    
+  }
   
 }
 
