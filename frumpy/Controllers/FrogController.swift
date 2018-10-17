@@ -20,25 +20,28 @@ extension CGVector {
 }
 
 class FrogController: UIViewController {
-  let maxSwipeLength:     CGFloat                 = 170
-  let minSwipeLength:     CGFloat                 = 60
-  let g:                  CGFloat                 = 9.8
-  let beginJumpTime:      Double                  = 0.3
-  let originTime:         Double                  = 1
-  let frogAnimations                              = FrogAnimations()
+  private let maxSwipeLength:     CGFloat                 = 170
+  private let minSwipeLength:     CGFloat                 = 60
+  private let g:                  CGFloat                 = 9.8
+  private let beginJumpTime:      Double                  = 0.3
+  private let originTime:         Double                  = 1
   
-  var size:               CGSize                  = CGSize()
-  var panner:             UIPanGestureRecognizer  = UIPanGestureRecognizer()
-  var dots:               [SKShapeNode]           = []
-  var frog:               SKSpriteNode            = SKSpriteNode()
-  var frogIdle:           SKAction                = SKAction()
-  var frogBeginJump:      SKAction                = SKAction()
-  var frogJump:           SKAction                = SKAction()
-  var swipeStartX:        CGFloat                 = CGFloat()
-  var swipeStartY:        CGFloat                 = CGFloat()
-  var frogLastPositionX:  CGFloat                 = CGFloat()
-  var frogLastPositionY:  CGFloat                 = CGFloat()
-  var frogLastAngle:      CGFloat                 = CGFloat()
+  private let frogAnimations                              = FrogAnimations()
+  
+  private var size:               CGSize                  = CGSize()
+  private var panner:             UIPanGestureRecognizer  = UIPanGestureRecognizer()
+  private var dots:               [SKShapeNode]           = []
+  
+  private var frog:               SKSpriteNode            = SKSpriteNode()
+  
+  private var frogIdle:           SKAction                = SKAction()
+  private var frogBeginJump:      SKAction                = SKAction()
+  private var frogJump:           SKAction                = SKAction()
+  
+  private var swipeStartPosition: CGPoint                 = CGPoint()
+  private var frogLastPosition:   CGPoint                 = CGPoint()
+  
+  private var frogLastAngle:      CGFloat                 = CGFloat()
   
   convenience init(size: CGSize) {
     self.init()
@@ -74,8 +77,7 @@ class FrogController: UIViewController {
     frog.physicsBody?.contactTestBitMask = 10
     frog.physicsBody?.allowsRotation = false
     frog.physicsBody?.usesPreciseCollisionDetection = true
-    frogLastPositionY = frog.position.y
-    frogLastPositionX = frog.position.x
+    frogLastPosition = frog.position
   }
   
   /*
@@ -88,17 +90,15 @@ class FrogController: UIViewController {
   /*
    */
   func frogJump(sender: UIPanGestureRecognizer) {
-    var dx = sender.location(in: view).x - swipeStartX
-    var dy = sender.location(in: view).y - swipeStartY
-    let swipeLength = sqrt(dx*dx + dy*dy)
-    if (swipeLength > maxSwipeLength) {
-      let angle = asin(dx/swipeLength)
-      dx = maxSwipeLength * sin(angle) + 5
-      dy = maxSwipeLength * cos(angle) + 5
-    }
-    frog.physicsBody?.applyForce(CGVector(dx: -dx * (frog.physicsBody!.mass * 375), dy: dy * (frog.physicsBody!.mass * 375)))
+    let const: CGFloat = 375
+    let mass = frog.physicsBody!.mass
+    let pos = sender.location(in: view)
+    let length = calculateSwipeLength(sender: sender)
+    let vector = getSwipeVector(swipeLength: length, currentPosition: pos, lastPosition: swipeStartPosition)
+    let dx = -vector.dx * mass * const
+    let dy = vector.dy * mass * const
+    frog.physicsBody?.applyForce(CGVector(dx: dx, dy: dy))
   }
-  
   
   /*
    */
@@ -115,8 +115,8 @@ class FrogController: UIViewController {
   /*
    */
   func updateFrogAngle() {
-    let dy = frog.position.y - frogLastPositionY
-    let dx = frog.position.x - frogLastPositionX
+    let dy = frog.position.y - frogLastPosition.y
+    let dx = frog.position.x - frogLastPosition.x
     let vector = CGVector(dx: dx, dy: dy)
     if (vector.speed() > CGFloat(4)) {
       if (vector.angle() > CGFloat.pi/2 || vector.angle() < -CGFloat.pi/2) {
@@ -125,28 +125,35 @@ class FrogController: UIViewController {
         frog.xScale = 1
       }
     }
-    frogLastPositionY = frog.position.y
-    frogLastPositionX = frog.position.x
+    frogLastPosition = frog.position
   }
   
   /*
    */
   func calculateSwipeAngle(sender: UIPanGestureRecognizer) -> CGFloat {
-    let dy = sender.location(in: view).y - swipeStartY
-    let dx = sender.location(in: view).x - swipeStartX
+    let dy = sender.location(in: view).y - swipeStartPosition.y
+    let dx = sender.location(in: view).x - swipeStartPosition.x
     return atan2(dy, dx)
+  }
+  
+  func getSwipeVector(swipeLength: CGFloat, currentPosition: CGPoint, lastPosition: CGPoint) -> CGVector{
+    if (swipeLength == maxSwipeLength) {
+      let alpha = asin((currentPosition.x - swipeStartPosition.x)/maxSwipeLength)
+      return CGVector(dx: maxSwipeLength * sin(alpha), dy: maxSwipeLength * cos(alpha))
+    } else {
+      return CGVector(dx: currentPosition.x - swipeStartPosition.x, dy: currentPosition.y - swipeStartPosition.y)
+    }
   }
   
   /*
    */
   @objc func swipe(sender: UIPanGestureRecognizer) {
     if (sender.state.rawValue == 1) {
-      swipeStartX = sender.location(in: view).x
-      swipeStartY = sender.location(in: view).y
+      swipeStartPosition = sender.location(in: view)
       setFrogAnimation(animation: 2)
     }
     let distance = calculateSwipeLength(sender: sender)
-    if(distance > 70) {
+    if (distance > 50) {
       let angle = calculateSwipeAngle(sender: sender)
       checkAngle(angle: angle)
       showAimDots()
@@ -172,7 +179,7 @@ class FrogController: UIViewController {
   func calculateSwipeLength(sender: UIPanGestureRecognizer) -> CGFloat {
     let x = sender.location(in: view).x
     let y = sender.location(in: view).y
-    var swipeLength = sqrt(pow((x - swipeStartX) , 2) + pow((y - swipeStartY), 2))
+    var swipeLength = sqrt(pow((x - swipeStartPosition.x) , 2) + pow((y - swipeStartPosition.y), 2))
     if (swipeLength > maxSwipeLength) {
       swipeLength = maxSwipeLength;
     }
@@ -220,29 +227,42 @@ class FrogController: UIViewController {
     return dots
   }
   
+  func getTrajectoryPoint(swipeLength: CGFloat, sinAngle: CGFloat, cosAngle: CGFloat, time: CGFloat) -> CGPoint{
+    let x = swipeLength/2 * time * cosAngle
+    var y = swipeLength/2 * time * sinAngle
+    y = y - 0.5 * g * pow(time, 2)
+    y = y + frog.position.y
+    return CGPoint(x: x, y: y)
+  }
+  
   /*
    */
   func moveAimDots(sender: UIPanGestureRecognizer, swipeLength: CGFloat) {
-    let currentX = sender.location(in: view).x
-    let currentY = sender.location(in: view).y
-    let c = -cos(acos((currentX - swipeStartX)/swipeLength))
-    let s = sin(asin((currentY - swipeStartY)/swipeLength))
+    let vector = getSwipeVector(swipeLength: swipeLength, currentPosition: sender.location(in: view), lastPosition: swipeStartPosition)
+    let alpha = -cos(acos(vector.dx/swipeLength))
+    let beta = sin(asin(vector.dy/swipeLength))
     var i: CGFloat = 0.5
     for dot in dots {
-      var x = swipeLength/2 * i * c
-      let y1 = swipeLength/2 * i * s
-      let y = y1 - 0.5 * g * pow(i, 2)
-      i += 1
-      if (x + frog.position.x < 0) {
-        x = -x - frog.position.x
-        dot.position = CGPoint(x: x, y: y + frog.position.y)
-      } else if (x + frog.position.x > size.width) {
-        x = (size.width) - (x + frog.position.x - size.width)
-        dot.position = CGPoint(x: x, y: y + frog.position.y)
+      setDotAlpha(dot: dot, swipeLength: swipeLength)
+      let trejPoint = getTrajectoryPoint(swipeLength: swipeLength, sinAngle: beta, cosAngle: alpha, time: i)
+      if (trejPoint.x + frog.position.x < 0) {
+        let x = -trejPoint.x - frog.position.x
+        dot.position = CGPoint(x: x, y: trejPoint.y)
+      } else if (trejPoint.x + frog.position.x > size.width) {
+        let x = (size.width) - (trejPoint.x + frog.position.x - size.width)
+        dot.position = CGPoint(x: x, y: trejPoint.y)
       } else {
-        x = x + frog.position.x
-        dot.position = CGPoint(x: x, y: y + frog.position.y)
+        let x = trejPoint.x + frog.position.x
+        dot.position = CGPoint(x: x, y: trejPoint.y)
       }
+      i += 0.7
+    }
+  }
+  
+  func setDotAlpha(dot: SKShapeNode, swipeLength: CGFloat) {
+    dot.alpha = ((swipeLength-70)*2)/maxSwipeLength
+    if(dot.alpha > 0.6) {
+      dot.alpha = 0.6
     }
   }
   
