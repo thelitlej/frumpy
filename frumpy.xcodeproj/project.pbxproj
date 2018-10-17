@@ -31,7 +31,7 @@
 		DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */; };
 		DD522F55217216A800EE002A /* WaterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F54217216A800EE002A /* WaterLayer.swift */; };
 		DD522F5721721AF400EE002A /* WaterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F5621721AF400EE002A /* WaterController.swift */; };
-		DD522F5D21776EA100EE002A /* drag_tutorial.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DD522F5C21776EA100EE002A /* drag_tutorial.atlas */; };
+		DD522F5D21776EA100EE002A /* drag_tutorial.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD522F5C21776EA100EE002A /* drag_tutorial.atlasc */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
@@ -89,7 +89,7 @@
 		DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FrogAnimations.atlasc; sourceTree = "<group>"; };
 		DD522F54217216A800EE002A /* WaterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLayer.swift; sourceTree = "<group>"; };
 		DD522F5621721AF400EE002A /* WaterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterController.swift; sourceTree = "<group>"; };
-		DD522F5C21776EA100EE002A /* drag_tutorial.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = drag_tutorial.atlas; path = ../../../Desktop/drag_tutorial.atlas; sourceTree = "<group>"; };
+		DD522F5C21776EA100EE002A /* drag_tutorial.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = drag_tutorial.atlasc; path = ../../../Desktop/drag_tutorial.atlasc; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				DD522F5E2177776900EE002A /* Scenes */,
-				DD522F5C21776EA100EE002A /* drag_tutorial.atlas */,
+				DD522F5C21776EA100EE002A /* drag_tutorial.atlasc */,
 				DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */,
 				DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
@@ -382,7 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
-				DD522F5D21776EA100EE002A /* drag_tutorial.atlas in Resources */,
+				DD522F5D21776EA100EE002A /* drag_tutorial.atlasc in Resources */,
 				77D654292176265B0013595A /* BackgroundLeaf.sks in Resources */,
 				77D6542D21762BE50013595A /* BackgroundLeaf3.sks in Resources */,
 				77D6542421761FF80013595A /* Rain.sks in Resources */,
