@@ -20,6 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
   
+  let image = SKSpriteNode()
+  
   var treeCounter = 2;
   var treePositionHeight = 1;
 
@@ -40,56 +42,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   var score:Int = 0
   var highScore:Int = 0
-
+  
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
     self.camera = cam
     self.view!.showsNodeCount = true
-    self.backgroundColor = .white
-    
     frogController = FrogController(size: frame.size)
     addFrog()
     
     waterController = WaterController(frogZPosition: frog.zPosition)
-    
-    let path = Bundle.main.path(forResource: "Rain", ofType: "sks")
-    let path2 = Bundle.main.path(forResource: "ForegroundRain", ofType: "sks")
-    let leafPath = Bundle.main.path(forResource: "BackgroundLeaf", ofType: "sks")
-    let leafPath2 = Bundle.main.path(forResource: "BackgroundLeaf2", ofType: "sks")
-    let leafPath3 = Bundle.main.path(forResource: "BackgroundLeaf3", ofType: "sks")
-    let backgroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
-    let foregroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path2!) as! SKEmitterNode
-    let backgroundLeaf1 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath!) as! SKEmitterNode
-    let backgroundLeaf2 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath2!) as! SKEmitterNode
-    let backgroundLeaf3 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath3!) as! SKEmitterNode
-    
-    
-    backgroundLeaf1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf1.name = "backgroundLeaf1"
-    backgroundLeaf1.targetNode = self.scene
-    backgroundLeaf1.particleZPosition = 2
-    
-    backgroundLeaf2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf2.name = "backgroundLeaf2"
-    backgroundLeaf2.targetNode = self.scene
-    backgroundLeaf2.particleZPosition = 1
-    
-    backgroundLeaf3.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf3.name = "backgroundLeaf3"
-    backgroundLeaf3.targetNode = self.scene
-    backgroundLeaf3.particleZPosition = 0
-    
-    backgroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundRain.name = "backgroundRain"
-    backgroundRain.targetNode = self.scene
-    
-    foregroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    foregroundRain.name = "foregroundRain"
-    foregroundRain.targetNode = self.scene
-    foregroundRain.particleZPosition = 5
-
     addCamera()
     addWalls()
     addFloor()
@@ -100,21 +63,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addStartLeaves()
     pauseButton.name = "pausebtn"
     cam.addChild(pauseButton)
-    backgroundColor = .black
-    
     cam.addChild(scoreText)
-    cam.addChild(backgroundRain)
-    cam.addChild(foregroundRain)
-    cam.addChild(backgroundLeaf1)
-    cam.addChild(backgroundLeaf2)
-    cam.addChild(backgroundLeaf3)
-
+    createParticles()
     view.addGestureRecognizer(frogController.initPanner())
   }
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
     cam.position.y = frog.position.y
+    
+  }
+  
+  func createParticles() {
+    let path = Bundle.main.path(forResource: "Rain", ofType: "sks")
+    let path2 = Bundle.main.path(forResource: "ForegroundRain", ofType: "sks")
+    let cloudPath = Bundle.main.path(forResource: "BackgroundCloud1", ofType: "sks")
+    let cloudPath2 = Bundle.main.path(forResource: "BackgroundCloud2", ofType: "sks")
+    let leafPath = Bundle.main.path(forResource: "BackgroundLeaf", ofType: "sks")
+    let leafPath2 = Bundle.main.path(forResource: "BackgroundLeaf2", ofType: "sks")
+    let leafPath3 = Bundle.main.path(forResource: "BackgroundLeaf3", ofType: "sks")
+    let backgroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+    let foregroundRain = NSKeyedUnarchiver.unarchiveObject(withFile: path2!) as! SKEmitterNode
+    let backgroundLeaf1 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath!) as! SKEmitterNode
+    let backgroundLeaf2 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath2!) as! SKEmitterNode
+    let backgroundLeaf3 = NSKeyedUnarchiver.unarchiveObject(withFile: leafPath3!) as! SKEmitterNode
+    let backgroundCloud1 = NSKeyedUnarchiver.unarchiveObject(withFile: cloudPath!) as! SKEmitterNode
+    let backgroundCloud2 = NSKeyedUnarchiver.unarchiveObject(withFile: cloudPath2!) as! SKEmitterNode
+    
+    
+    backgroundCloud1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundCloud1.name = "backgroundCloud1"
+    backgroundCloud1.targetNode = self.scene
+    backgroundCloud1.particleZPosition = 1
+    
+    backgroundCloud2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundCloud2.name = "backgroundCloud2"
+    backgroundCloud2.targetNode = self.scene
+    backgroundCloud2.particleZPosition = 2
+    
+    backgroundLeaf1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf1.name = "backgroundLeaf1"
+    backgroundLeaf1.targetNode = self.scene
+    backgroundLeaf1.particleZPosition = 3
+    
+    backgroundLeaf2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf2.name = "backgroundLeaf2"
+    backgroundLeaf2.targetNode = self.scene
+    backgroundLeaf2.particleZPosition = 2
+    
+    backgroundLeaf3.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundLeaf3.name = "backgroundLeaf3"
+    backgroundLeaf3.targetNode = self.scene
+    backgroundLeaf3.particleZPosition = 0
+    
+    backgroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    backgroundRain.name = "backgroundRain"
+    backgroundRain.targetNode = self.scene
+    backgroundRain.particleZPosition = 1
+    
+    foregroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+    foregroundRain.name = "foregroundRain"
+    foregroundRain.targetNode = self.scene
+    foregroundRain.particleZPosition = 5
+    
+    cam.addChild(backgroundCloud1)
+    cam.addChild(backgroundCloud2)
+    cam.addChild(backgroundRain)
+    cam.addChild(foregroundRain)
+    cam.addChild(backgroundLeaf1)
+    cam.addChild(backgroundLeaf2)
+    cam.addChild(backgroundLeaf3)
   }
   
   func createWindForLeaves() {
@@ -261,12 +279,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   func addFirstTrees() {
     for i in 0..<2
     {
+      let image = SKSpriteNode(imageNamed: "BackgroundImage")
+      image.size = CGSize(width: frame.width, height: frame.height)
+      image.position = CGPoint(x: self.size.width / 2, y: CGFloat(i) * self.size.height)
+      if(i == 0) {
+        image.zRotation = .pi
+        image.xScale = image.xScale * -1
+      }
     let tree = Tree(imageNr: 1, size: frame.size)
+    addChild(image)
     addChild(tree.addTreeSprite(imageNr: i + 1, position: CGPoint(x:self.frame.width / 2, y:CGFloat(i) * self.frame.height)))
     }
   }
   
   func addTree() {
+    let image = SKSpriteNode(imageNamed: "BackgroundImage")
+    image.size = CGSize(width: frame.width, height: frame.height)
+    image.position = CGPoint(x: self.size.width / 2, y: CGFloat(treePositionHeight) * self.size.height)
     
     let tree = Tree(imageNr: 1, size: frame.size)
     
@@ -274,6 +303,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       treeCounter = 1;
       
     }
+    if(treeCounter % 2 == 1) {
+      image.zRotation = .pi
+      image.xScale = image.xScale * -1
+    }
+      addChild(image)
       addChild(tree.addTreeSprite(imageNr: treeCounter, position: CGPoint(x:self.frame.width / 2, y:CGFloat(treePositionHeight) * self.frame.height)))
     
     let sprites = self.spritesAdded

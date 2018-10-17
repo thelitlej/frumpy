@@ -19,6 +19,8 @@
 		773C16F12164BA36003A6814 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F02164BA36003A6814 /* Settings.swift */; };
 		773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F22164BA42003A6814 /* Leaderboard.swift */; };
 		77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1BFCB21676AD2002DDECD /* Collision.swift */; };
+		77CC750B217747A00084D1CF /* BackgroundCloud1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77CC750A217747A00084D1CF /* BackgroundCloud1.sks */; };
+		77CC750D217747AE0084D1CF /* BackgroundCloud2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */; };
 		77D6542421761FF80013595A /* Rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77D6542221761FF80013595A /* Rain.sks */; };
 		77D6542521761FF80013595A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D6542321761FF80013595A /* Assets.xcassets */; };
 		77D65427217623BD0013595A /* ForegroundRain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77D65426217623BD0013595A /* ForegroundRain.sks */; };
@@ -74,6 +76,8 @@
 		773C16F02164BA36003A6814 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		773C16F22164BA42003A6814 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		77C1BFCB21676AD2002DDECD /* Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collision.swift; sourceTree = "<group>"; };
+		77CC750A217747A00084D1CF /* BackgroundCloud1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundCloud1.sks; sourceTree = "<group>"; };
+		77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundCloud2.sks; sourceTree = "<group>"; };
 		77D6542221761FF80013595A /* Rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rain.sks; sourceTree = "<group>"; };
 		77D6542321761FF80013595A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77D65426217623BD0013595A /* ForegroundRain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ForegroundRain.sks; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 				77D654282176265B0013595A /* BackgroundLeaf.sks */,
 				77D6542A21762BCD0013595A /* BackgroundLeaf2.sks */,
 				77D6542C21762BE50013595A /* BackgroundLeaf3.sks */,
+				77CC750A217747A00084D1CF /* BackgroundCloud1.sks */,
+				77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */,
 			);
 			path = frumpy;
 			sourceTree = "<group>";
@@ -371,9 +377,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
+				77CC750B217747A00084D1CF /* BackgroundCloud1.sks in Resources */,
 				77D654292176265B0013595A /* BackgroundLeaf.sks in Resources */,
 				77D6542D21762BE50013595A /* BackgroundLeaf3.sks in Resources */,
 				77D6542421761FF80013595A /* Rain.sks in Resources */,
+				77CC750D217747AE0084D1CF /* BackgroundCloud2.sks in Resources */,
 				DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */,
 				77D6542B21762BCD0013595A /* BackgroundLeaf2.sks in Resources */,
 				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
@@ -670,14 +678,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QN7Q5658DV;
+				DEVELOPMENT_TEAM = MY24QHR62Z;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sourceempire.frumpy;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -692,14 +700,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QN7Q5658DV;
+				DEVELOPMENT_TEAM = MY24QHR62Z;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sourceempire.frumpy;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
