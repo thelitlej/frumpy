@@ -15,9 +15,6 @@
 		773C16E92164B9F2003A6814 /* LeafController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16E82164B9F2003A6814 /* LeafController.swift */; };
 		773C16EB2164BA06003A6814 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EA2164BA06003A6814 /* Tree.swift */; };
 		773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EC2164BA0F003A6814 /* TreeController.swift */; };
-		773C16EF2164BA21003A6814 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16EE2164BA21003A6814 /* Background.swift */; };
-		773C16F12164BA36003A6814 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F02164BA36003A6814 /* Settings.swift */; };
-		773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C16F22164BA42003A6814 /* Leaderboard.swift */; };
 		77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C1BFCB21676AD2002DDECD /* Collision.swift */; };
 		77CC750B217747A00084D1CF /* BackgroundCloud1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77CC750A217747A00084D1CF /* BackgroundCloud1.sks */; };
 		77CC750D217747AE0084D1CF /* BackgroundCloud2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */; };
@@ -29,16 +26,24 @@
 		77D6542D21762BE50013595A /* BackgroundLeaf3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 77D6542C21762BE50013595A /* BackgroundLeaf3.sks */; };
 		9784160F1E1B76A40FF72286 /* Pods_frumpyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */; };
 		C265CAAD2CD72C045E8C49A6 /* Pods_frumpy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03711F3D142C4246E64319 /* Pods_frumpy.framework */; };
-		DD43360E216CCA6C00B1DD3F /* FrogAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */; };
-		DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */; };
 		DD522F55217216A800EE002A /* WaterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F54217216A800EE002A /* WaterLayer.swift */; };
 		DD522F5721721AF400EE002A /* WaterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F5621721AF400EE002A /* WaterController.swift */; };
 		DD52303521777AEB00EE002A /* drag_tutorial.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DD52303421777AEB00EE002A /* drag_tutorial.atlas */; };
+		DD52303A2179E06200EE002A /* StartScreenOptionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */; };
+		DD52303E2179E1A700EE002A /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52303D2179E1A700EE002A /* PauseButton.swift */; };
+		DD5230402179E1B700EE002A /* LeaderboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52303F2179E1B700EE002A /* LeaderboardButton.swift */; };
+		DD5230422179E1E600EE002A /* ShopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230412179E1E600EE002A /* ShopButton.swift */; };
+		DD5230442179E25100EE002A /* CustomizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230432179E25100EE002A /* CustomizeButton.swift */; };
+		DD5230462179E2CD00EE002A /* CommercialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230452179E2CD00EE002A /* CommercialButton.swift */; };
+		DD5230482179E39600EE002A /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230472179E39600EE002A /* SettingsButton.swift */; };
+		DD52304A2179E3D300EE002A /* ChallengesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230492179E3D300EE002A /* ChallengesButton.swift */; };
+		DD5230522179EA2000EE002A /* FrogAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230512179EA2000EE002A /* FrogAnimations.swift */; };
+		DD5230572179EAA900EE002A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5230532179EAA900EE002A /* LaunchScreen.storyboard */; };
+		DD5230582179EAA900EE002A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5230552179EAA900EE002A /* Main.storyboard */; };
+		DD52305A2179EB8D00EE002A /* FrogAnimations.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD5230592179EB8D00EE002A /* FrogAnimations.atlasc */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
-		DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5C3F1D2162141B0088CE4A /* Main.storyboard */; };
-		DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */; };
 		DD5C3F2F2162141D0088CE4A /* frumpyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F2E2162141D0088CE4A /* frumpyTests.swift */; };
 		DD5C3F3A2162141D0088CE4A /* frumpyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F392162141D0088CE4A /* frumpyUITests.swift */; };
 /* End PBXBuildFile section */
@@ -73,9 +78,6 @@
 		773C16E82164B9F2003A6814 /* LeafController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeafController.swift; sourceTree = "<group>"; };
 		773C16EA2164BA06003A6814 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		773C16EC2164BA0F003A6814 /* TreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
-		773C16EE2164BA21003A6814 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		773C16F02164BA36003A6814 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		773C16F22164BA42003A6814 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		77C1BFCB21676AD2002DDECD /* Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collision.swift; sourceTree = "<group>"; };
 		77CC750A217747A00084D1CF /* BackgroundCloud1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundCloud1.sks; sourceTree = "<group>"; };
 		77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundCloud2.sks; sourceTree = "<group>"; };
@@ -89,17 +91,25 @@
 		A8A7DBFD40046BC50BF8F28D /* Pods-frumpyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D813F0E3D6E5C02AD284E305 /* Pods-frumpy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpy.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpy/Pods-frumpy.release.xcconfig"; sourceTree = "<group>"; };
 		DA29BA99588CB5044FBAA64D /* Pods-frumpyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrogAnimations.swift; sourceTree = "<group>"; };
-		DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FrogAnimations.atlasc; sourceTree = "<group>"; };
 		DD522F54217216A800EE002A /* WaterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLayer.swift; sourceTree = "<group>"; };
 		DD522F5621721AF400EE002A /* WaterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterController.swift; sourceTree = "<group>"; };
-		DD52303421777AEB00EE002A /* drag_tutorial.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = drag_tutorial.atlas; sourceTree = SOURCE_ROOT; };
+		DD52303421777AEB00EE002A /* drag_tutorial.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = drag_tutorial.atlas; path = frumpy/Atlases/drag_tutorial.atlas; sourceTree = SOURCE_ROOT; };
+		DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenOptionsNode.swift; sourceTree = "<group>"; };
+		DD52303D2179E1A700EE002A /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
+		DD52303F2179E1B700EE002A /* LeaderboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardButton.swift; sourceTree = "<group>"; };
+		DD5230412179E1E600EE002A /* ShopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopButton.swift; sourceTree = "<group>"; };
+		DD5230432179E25100EE002A /* CustomizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeButton.swift; sourceTree = "<group>"; };
+		DD5230452179E2CD00EE002A /* CommercialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialButton.swift; sourceTree = "<group>"; };
+		DD5230472179E39600EE002A /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		DD5230492179E3D300EE002A /* ChallengesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesButton.swift; sourceTree = "<group>"; };
+		DD5230512179EA2000EE002A /* FrogAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogAnimations.swift; sourceTree = "<group>"; };
+		DD5230542179EAA900EE002A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD5230562179EAA900EE002A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DD5230592179EB8D00EE002A /* FrogAnimations.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FrogAnimations.atlasc; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		DD5C3F1B2162141B0088CE4A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		DD5C3F1E2162141B0088CE4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DD5C3F232162141D0088CE4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD5C3F252162141D0088CE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD5C3F2A2162141D0088CE4A /* frumpyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frumpyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F2E2162141D0088CE4A /* frumpyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frumpyTests.swift; sourceTree = "<group>"; };
@@ -150,23 +160,21 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		773C16DD2164B833003A6814 /* Views */ = {
+		773C16DD2164B833003A6814 /* SpriteNodes */ = {
 			isa = PBXGroup;
 			children = (
-				773C16EE2164BA21003A6814 /* Background.swift */,
-				773C16F02164BA36003A6814 /* Settings.swift */,
-				773C16F22164BA42003A6814 /* Leaderboard.swift */,
+				773C16E62164B9E7003A6814 /* Leaf.swift */,
+				773C16E22164B9C8003A6814 /* Frog.swift */,
+				773C16EA2164BA06003A6814 /* Tree.swift */,
+				DD522F54217216A800EE002A /* WaterLayer.swift */,
+				DD52303C2179E18800EE002A /* Buttons */,
 			);
-			path = Views;
+			path = SpriteNodes;
 			sourceTree = "<group>";
 		};
 		773C16DE2164B83A003A6814 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				773C16E22164B9C8003A6814 /* Frog.swift */,
-				773C16E62164B9E7003A6814 /* Leaf.swift */,
-				773C16EA2164BA06003A6814 /* Tree.swift */,
-				DD522F54217216A800EE002A /* WaterLayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,8 +203,55 @@
 		DD522F5E2177776900EE002A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DD5C3F192162141B0088CE4A /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DD5230382179DFA000EE002A /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		DD52303C2179E18800EE002A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DD52303D2179E1A700EE002A /* PauseButton.swift */,
+				DD52303F2179E1B700EE002A /* LeaderboardButton.swift */,
+				DD5230412179E1E600EE002A /* ShopButton.swift */,
+				DD5230432179E25100EE002A /* CustomizeButton.swift */,
+				DD5230452179E2CD00EE002A /* CommercialButton.swift */,
+				DD5230472179E39600EE002A /* SettingsButton.swift */,
+				DD5230492179E3D300EE002A /* ChallengesButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		DD52304D2179E9AA00EE002A /* Atlases */ = {
+			isa = PBXGroup;
+			children = (
+				DD5230592179EB8D00EE002A /* FrogAnimations.atlasc */,
+				DD5230512179EA2000EE002A /* FrogAnimations.swift */,
+				DD52303421777AEB00EE002A /* drag_tutorial.atlas */,
+			);
+			path = Atlases;
+			sourceTree = "<group>";
+		};
+		DD52305B2179EBE000EE002A /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				77D6542221761FF80013595A /* Rain.sks */,
+				77D65426217623BD0013595A /* ForegroundRain.sks */,
+				77D654282176265B0013595A /* BackgroundLeaf.sks */,
+				77D6542A21762BCD0013595A /* BackgroundLeaf2.sks */,
+				77D6542C21762BE50013595A /* BackgroundLeaf3.sks */,
+				77CC750A217747A00084D1CF /* BackgroundCloud1.sks */,
+				77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 		DD5C3F072162141A0088CE4A = {
@@ -226,27 +281,19 @@
 		DD5C3F122162141A0088CE4A /* frumpy */ = {
 			isa = PBXGroup;
 			children = (
-				DD52303421777AEB00EE002A /* drag_tutorial.atlas */,
+				DD52305B2179EBE000EE002A /* Particles */,
+				DD52304D2179E9AA00EE002A /* Atlases */,
+				DD5230382179DFA000EE002A /* Nodes */,
 				DD522F5E2177776900EE002A /* Scenes */,
-				DD43360D216CCA6C00B1DD3F /* FrogAnimations.atlasc */,
-				DD43360C216CCA6C00B1DD3F /* FrogAnimations.swift */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
 				773C16DE2164B83A003A6814 /* Models */,
-				773C16DD2164B833003A6814 /* Views */,
+				773C16DD2164B833003A6814 /* SpriteNodes */,
 				773C16DC2164B82A003A6814 /* Controllers */,
 				DD5C3F132162141A0088CE4A /* AppDelegate.swift */,
-				DD5C3F192162141B0088CE4A /* GameScene.swift */,
-				DD5C3F1D2162141B0088CE4A /* Main.storyboard */,
-				DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */,
 				DD5C3F252162141D0088CE4A /* Info.plist */,
-				77D6542221761FF80013595A /* Rain.sks */,
+				DD5230532179EAA900EE002A /* LaunchScreen.storyboard */,
+				DD5230552179EAA900EE002A /* Main.storyboard */,
 				77D6542321761FF80013595A /* Assets.xcassets */,
-				77D65426217623BD0013595A /* ForegroundRain.sks */,
-				77D654282176265B0013595A /* BackgroundLeaf.sks */,
-				77D6542A21762BCD0013595A /* BackgroundLeaf2.sks */,
-				77D6542C21762BE50013595A /* BackgroundLeaf3.sks */,
-				77CC750A217747A00084D1CF /* BackgroundCloud1.sks */,
-				77CC750C217747AE0084D1CF /* BackgroundCloud2.sks */,
 			);
 			path = frumpy;
 			sourceTree = "<group>";
@@ -387,16 +434,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5C3F1F2162141B0088CE4A /* Main.storyboard in Resources */,
 				77CC750B217747A00084D1CF /* BackgroundCloud1.sks in Resources */,
 				DD52303521777AEB00EE002A /* drag_tutorial.atlas in Resources */,
 				77D654292176265B0013595A /* BackgroundLeaf.sks in Resources */,
+				DD5230572179EAA900EE002A /* LaunchScreen.storyboard in Resources */,
+				DD52305A2179EB8D00EE002A /* FrogAnimations.atlasc in Resources */,
 				77D6542D21762BE50013595A /* BackgroundLeaf3.sks in Resources */,
+				DD5230582179EAA900EE002A /* Main.storyboard in Resources */,
 				77D6542421761FF80013595A /* Rain.sks in Resources */,
 				77CC750D217747AE0084D1CF /* BackgroundCloud2.sks in Resources */,
-				DD43360F216CCA6C00B1DD3F /* FrogAnimations.atlasc in Resources */,
 				77D6542B21762BCD0013595A /* BackgroundLeaf2.sks in Resources */,
-				DD5C3F242162141D0088CE4A /* LaunchScreen.storyboard in Resources */,
 				77D65427217623BD0013595A /* ForegroundRain.sks in Resources */,
 				77D6542521761FF80013595A /* Assets.xcassets in Resources */,
 			);
@@ -498,11 +545,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD43360E216CCA6C00B1DD3F /* FrogAnimations.swift in Sources */,
+				DD5230482179E39600EE002A /* SettingsButton.swift in Sources */,
 				DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */,
-				773C16F32164BA42003A6814 /* Leaderboard.swift in Sources */,
+				DD5230402179E1B700EE002A /* LeaderboardButton.swift in Sources */,
 				773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */,
 				DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */,
+				DD52303E2179E1A700EE002A /* PauseButton.swift in Sources */,
+				DD52304A2179E3D300EE002A /* ChallengesButton.swift in Sources */,
+				DD5230442179E25100EE002A /* CustomizeButton.swift in Sources */,
 				773C16E52164B9D6003A6814 /* FrogController.swift in Sources */,
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
 				77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */,
@@ -511,10 +561,12 @@
 				DD522F55217216A800EE002A /* WaterLayer.swift in Sources */,
 				14AB9AFB2167A26800EEB861 /* RandomFunction.swift in Sources */,
 				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
+				DD5230522179EA2000EE002A /* FrogAnimations.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
 				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,
-				773C16F12164BA36003A6814 /* Settings.swift in Sources */,
-				773C16EF2164BA21003A6814 /* Background.swift in Sources */,
+				DD5230462179E2CD00EE002A /* CommercialButton.swift in Sources */,
+				DD52303A2179E06200EE002A /* StartScreenOptionsNode.swift in Sources */,
+				DD5230422179E1E600EE002A /* ShopButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,20 +602,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DD5C3F1D2162141B0088CE4A /* Main.storyboard */ = {
+		DD5230532179EAA900EE002A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DD5C3F1E2162141B0088CE4A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DD5C3F222162141D0088CE4A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DD5C3F232162141D0088CE4A /* Base */,
+				DD5230542179EAA900EE002A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		DD5230552179EAA900EE002A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD5230562179EAA900EE002A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -690,14 +742,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MY24QHR62Z;
+				DEVELOPMENT_TEAM = QN7Q5658DV;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sourceempire.frumpy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -712,14 +764,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MY24QHR62Z;
+				DEVELOPMENT_TEAM = QN7Q5658DV;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sourceempire.frumpy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
