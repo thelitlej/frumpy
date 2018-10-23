@@ -44,19 +44,30 @@ class WaterController: UIViewController {
       let originPosition = waterLayer.position
       let resetPosition = SKAction.moveTo(x: originPosition.x, duration: 0)
       if (waterLayer.getAnimationDirection() == "left") {
+        let b = SKAction.moveBy(x: -30, y: 5, duration: 0.5)
+        b.timingMode = SKActionTimingMode(rawValue: 3)!
+        let s = SKAction.moveBy(x: 30, y: -5, duration: 0.5)
+        s.timingMode = SKActionTimingMode(rawValue: 3)!
+        let scale = SKAction.sequence([b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s])
         let moveHorrizontal = SKAction.moveTo(x: -waterLayer.size.width + waterLayer.size.width/2, duration: 10)
         let moveVertical = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
-        let moveGroup = SKAction.group([moveHorrizontal, moveVertical])
+        let moveGroup = SKAction.group([moveHorrizontal, moveVertical, scale])
         let moveArray = [moveGroup, resetPosition]
         sequence = SKAction.sequence(moveArray)
       } else {
+        let b = SKAction.moveBy(x: 30, y: 5, duration: 0.5)
+        b.timingMode = SKActionTimingMode(rawValue: 3)!
+        let s = SKAction.moveBy(x: -30, y: -5, duration: 0.5)
+        s.timingMode = SKActionTimingMode(rawValue: 3)!
+        let scale = SKAction.sequence([b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s])
         let moveHorrizontal = SKAction.moveTo(x: waterLayer.size.width - waterLayer.size.width, duration: 10)
         let moveVertical = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
-        let moveGroup = SKAction.group([moveHorrizontal, moveVertical])
+        let moveGroup = SKAction.group([moveHorrizontal, moveVertical, scale])
         let moveArray = [moveGroup, resetPosition]
         sequence = SKAction.sequence(moveArray)
       }
-      waterLayer.run(SKAction.repeatForever(sequence))
+      waterLayer.run(SKAction.repeatForever(sequence), withKey: "water")
+     
     }
   }
   
@@ -77,7 +88,7 @@ class WaterController: UIViewController {
     spareWater.physicsBody?.collisionBitMask = 0
     spareWater.physicsBody?.isDynamic = false
     spareWater.name = "water"
-    spareWater.run(SKAction.repeatForever(moveVertical))
+    spareWater.run(SKAction.repeatForever(moveVertical), withKey: "water")
   }
   
   public func increseWaterFillSpeed(spareWater: SKShapeNode, waterLayers: [WaterLayer]) {
