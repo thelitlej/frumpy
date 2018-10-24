@@ -24,17 +24,19 @@ class PauseButton: SKSpriteNode {
     fadeIn()
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+  }
+  
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     for touch in touches {
       if (abs(touch.location(in: self).x) > self.size.width/2 || abs(touch.location(in: self).y) > self.size.height/2) {
+      
+      } else {
         if let myParent = self.parent as? Navigation {
           myParent.renderPauseOptions()
           myParent.removeOptionsBy(name: "ingameoption")
         }
-      } else {
-        let transition: SKTransition = SKTransition.push(with: SKTransitionDirection(rawValue: 2)!, duration: 0.5)
-        let nextScene: SKScene = LeaderboardScene(size: scene!.size)
-        scene?.view?.presentScene(nextScene, transition: transition)
       }
     }
   }
