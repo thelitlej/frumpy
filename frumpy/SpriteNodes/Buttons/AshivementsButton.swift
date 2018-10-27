@@ -1,5 +1,5 @@
 //
-//  SkinsButton.swift
+//  ChallengesButton.swift
 //  frumpy
 //
 //  Created by Jonas Gustafson on 2018-10-19.
@@ -10,10 +10,12 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class CustomizeButton: SKSpriteNode {
+class AshivementsButton: SKSpriteNode {
+  var touchMovedOutside: Bool = false
+  
   init(position: CGPoint) {
     let size = CGSize(width: 100, height: 100)
-    let texture = SKTexture(imageNamed: "customize")
+    let texture = SKTexture(imageNamed: "ashivements")
     super.init(texture: texture, color: UIColor.clear, size: size)
     self.name = "startoption"
     self.position = position
@@ -22,8 +24,10 @@ class CustomizeButton: SKSpriteNode {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    touchMovedOutside = false
     self.run(SKAction.scale(to: 1.1, duration: 0.1))
   }
+  
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     for touch in touches {
@@ -31,11 +35,12 @@ class CustomizeButton: SKSpriteNode {
         self.run(SKAction.scale(to: 1, duration: 0.1))
       } else {
         let transition: SKTransition = SKTransition.push(with: SKTransitionDirection(rawValue: 2)!, duration: 0.5)
-        let nextScene: SKScene = CustomizeScene(size: scene!.size)
+        let nextScene: SKScene = AshivementScene(size: scene!.size)
         scene?.view?.presentScene(nextScene, transition: transition)
       }
     }
   }
+  
   
   
   required init?(coder aDecoder: NSCoder) {

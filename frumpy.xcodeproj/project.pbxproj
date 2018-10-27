@@ -34,18 +34,26 @@
 		DD522F55217216A800EE002A /* WaterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F54217216A800EE002A /* WaterLayer.swift */; };
 		DD522F5721721AF400EE002A /* WaterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD522F5621721AF400EE002A /* WaterController.swift */; };
 		DD52303521777AEB00EE002A /* drag_tutorial.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DD52303421777AEB00EE002A /* drag_tutorial.atlas */; };
-		DD52303A2179E06200EE002A /* StartScreenOptionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */; };
+		DD52303A2179E06200EE002A /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230392179E06200EE002A /* Navigation.swift */; };
 		DD52303E2179E1A700EE002A /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52303D2179E1A700EE002A /* PauseButton.swift */; };
 		DD5230402179E1B700EE002A /* LeaderboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52303F2179E1B700EE002A /* LeaderboardButton.swift */; };
-		DD5230422179E1E600EE002A /* ShopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230412179E1E600EE002A /* ShopButton.swift */; };
 		DD5230442179E25100EE002A /* CustomizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230432179E25100EE002A /* CustomizeButton.swift */; };
 		DD5230462179E2CD00EE002A /* CommercialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230452179E2CD00EE002A /* CommercialButton.swift */; };
 		DD5230482179E39600EE002A /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230472179E39600EE002A /* SettingsButton.swift */; };
-		DD52304A2179E3D300EE002A /* ChallengesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230492179E3D300EE002A /* ChallengesButton.swift */; };
+		DD52304A2179E3D300EE002A /* AshivementsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230492179E3D300EE002A /* AshivementsButton.swift */; };
 		DD5230522179EA2000EE002A /* FrogAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5230512179EA2000EE002A /* FrogAnimations.swift */; };
 		DD5230572179EAA900EE002A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5230532179EAA900EE002A /* LaunchScreen.storyboard */; };
 		DD5230582179EAA900EE002A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5230552179EAA900EE002A /* Main.storyboard */; };
 		DD52305A2179EB8D00EE002A /* FrogAnimations.atlasc in Resources */ = {isa = PBXBuildFile; fileRef = DD5230592179EB8D00EE002A /* FrogAnimations.atlasc */; };
+		DD52305D217A0A3C00EE002A /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52305C217A0A3C00EE002A /* SettingsScene.swift */; };
+		DD52305F217A0A4F00EE002A /* LeaderboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52305E217A0A4F00EE002A /* LeaderboardScene.swift */; };
+		DD523061217B901600EE002A /* AshivementScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD523060217B901600EE002A /* AshivementScene.swift */; };
+		DD523063217B906200EE002A /* CustomizeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD523062217B906200EE002A /* CustomizeScene.swift */; };
+		DD523065217B941200EE002A /* StoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD523064217B941200EE002A /* StoreButton.swift */; };
+		DD523067217DD97700EE002A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD523066217DD97700EE002A /* Utilities.swift */; };
+		DD523069217E0E2200EE002A /* PauseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD523068217E0E2200EE002A /* PauseScreen.swift */; };
+		DD52306B217E1A5800EE002A /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52306A217E1A5800EE002A /* BackButton.swift */; };
+		DD52306D217F0DD500EE002A /* StoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD52306C217F0DD500EE002A /* StoreScene.swift */; };
 		DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F132162141A0088CE4A /* AppDelegate.swift */; };
 		DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F192162141B0088CE4A /* GameScene.swift */; };
 		DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5C3F1B2162141B0088CE4A /* GameViewController.swift */; };
@@ -104,18 +112,26 @@
 		DD522F54217216A800EE002A /* WaterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLayer.swift; sourceTree = "<group>"; };
 		DD522F5621721AF400EE002A /* WaterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterController.swift; sourceTree = "<group>"; };
 		DD52303421777AEB00EE002A /* drag_tutorial.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = drag_tutorial.atlas; path = frumpy/Atlases/drag_tutorial.atlas; sourceTree = SOURCE_ROOT; };
-		DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenOptionsNode.swift; sourceTree = "<group>"; };
+		DD5230392179E06200EE002A /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		DD52303D2179E1A700EE002A /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		DD52303F2179E1B700EE002A /* LeaderboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardButton.swift; sourceTree = "<group>"; };
-		DD5230412179E1E600EE002A /* ShopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopButton.swift; sourceTree = "<group>"; };
 		DD5230432179E25100EE002A /* CustomizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeButton.swift; sourceTree = "<group>"; };
 		DD5230452179E2CD00EE002A /* CommercialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialButton.swift; sourceTree = "<group>"; };
 		DD5230472179E39600EE002A /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
-		DD5230492179E3D300EE002A /* ChallengesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesButton.swift; sourceTree = "<group>"; };
+		DD5230492179E3D300EE002A /* AshivementsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AshivementsButton.swift; sourceTree = "<group>"; };
 		DD5230512179EA2000EE002A /* FrogAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrogAnimations.swift; sourceTree = "<group>"; };
 		DD5230542179EAA900EE002A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD5230562179EAA900EE002A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD5230592179EB8D00EE002A /* FrogAnimations.atlasc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FrogAnimations.atlasc; sourceTree = "<group>"; };
+		DD52305C217A0A3C00EE002A /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		DD52305E217A0A4F00EE002A /* LeaderboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardScene.swift; sourceTree = "<group>"; };
+		DD523060217B901600EE002A /* AshivementScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AshivementScene.swift; sourceTree = "<group>"; };
+		DD523062217B906200EE002A /* CustomizeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeScene.swift; sourceTree = "<group>"; };
+		DD523064217B941200EE002A /* StoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreButton.swift; sourceTree = "<group>"; };
+		DD523066217DD97700EE002A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		DD523068217E0E2200EE002A /* PauseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScreen.swift; sourceTree = "<group>"; };
+		DD52306A217E1A5800EE002A /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		DD52306C217F0DD500EE002A /* StoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreScene.swift; sourceTree = "<group>"; };
 		DD5C3F102162141A0088CE4A /* frumpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frumpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5C3F132162141A0088CE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD5C3F192162141B0088CE4A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -194,17 +210,11 @@
 			path = SpriteNodes;
 			sourceTree = "<group>";
 		};
-		773C16DE2164B83A003A6814 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		77C1BFCA21676AC8002DDECD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				77C1BFCB21676AD2002DDECD /* Collision.swift */,
+				DD523066217DD97700EE002A /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -226,6 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				DD5C3F192162141B0088CE4A /* GameScene.swift */,
+				DD52305C217A0A3C00EE002A /* SettingsScene.swift */,
+				DD52305E217A0A4F00EE002A /* LeaderboardScene.swift */,
+				DD523060217B901600EE002A /* AshivementScene.swift */,
+				DD523062217B906200EE002A /* CustomizeScene.swift */,
+				DD52306C217F0DD500EE002A /* StoreScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -233,7 +248,8 @@
 		DD5230382179DFA000EE002A /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				DD5230392179E06200EE002A /* StartScreenOptionsNode.swift */,
+				DD5230392179E06200EE002A /* Navigation.swift */,
+				DD523068217E0E2200EE002A /* PauseScreen.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -243,11 +259,12 @@
 			children = (
 				DD52303D2179E1A700EE002A /* PauseButton.swift */,
 				DD52303F2179E1B700EE002A /* LeaderboardButton.swift */,
-				DD5230412179E1E600EE002A /* ShopButton.swift */,
 				DD5230432179E25100EE002A /* CustomizeButton.swift */,
 				DD5230452179E2CD00EE002A /* CommercialButton.swift */,
 				DD5230472179E39600EE002A /* SettingsButton.swift */,
-				DD5230492179E3D300EE002A /* ChallengesButton.swift */,
+				DD5230492179E3D300EE002A /* AshivementsButton.swift */,
+				DD523064217B941200EE002A /* StoreButton.swift */,
+				DD52306A217E1A5800EE002A /* BackButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -309,7 +326,6 @@
 				DD5230382179DFA000EE002A /* Nodes */,
 				DD522F5E2177776900EE002A /* Scenes */,
 				77C1BFCA21676AC8002DDECD /* Helpers */,
-				773C16DE2164B83A003A6814 /* Models */,
 				773C16DD2164B833003A6814 /* SpriteNodes */,
 				773C16DC2164B82A003A6814 /* Controllers */,
 				DD5C3F132162141A0088CE4A /* AppDelegate.swift */,
@@ -574,27 +590,35 @@
 			files = (
 				DD5230482179E39600EE002A /* SettingsButton.swift in Sources */,
 				DD5C3F1A2162141B0088CE4A /* GameScene.swift in Sources */,
+				DD523061217B901600EE002A /* AshivementScene.swift in Sources */,
 				DD5230402179E1B700EE002A /* LeaderboardButton.swift in Sources */,
 				7700F426217A01BB0010B320 /* MusicController.swift in Sources */,
 				773C16ED2164BA0F003A6814 /* TreeController.swift in Sources */,
+				DD523065217B941200EE002A /* StoreButton.swift in Sources */,
 				DD5C3F1C2162141B0088CE4A /* GameViewController.swift in Sources */,
 				DD52303E2179E1A700EE002A /* PauseButton.swift in Sources */,
-				DD52304A2179E3D300EE002A /* ChallengesButton.swift in Sources */,
+				DD52306D217F0DD500EE002A /* StoreScene.swift in Sources */,
+				DD52304A2179E3D300EE002A /* AshivementsButton.swift in Sources */,
+				DD52305D217A0A3C00EE002A /* SettingsScene.swift in Sources */,
 				DD5230442179E25100EE002A /* CustomizeButton.swift in Sources */,
 				773C16E52164B9D6003A6814 /* FrogController.swift in Sources */,
+				DD52305F217A0A4F00EE002A /* LeaderboardScene.swift in Sources */,
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
 				77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */,
+				DD523067217DD97700EE002A /* Utilities.swift in Sources */,
 				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
 				DD522F5721721AF400EE002A /* WaterController.swift in Sources */,
+				DD523063217B906200EE002A /* CustomizeScene.swift in Sources */,
+				DD52306B217E1A5800EE002A /* BackButton.swift in Sources */,
 				DD522F55217216A800EE002A /* WaterLayer.swift in Sources */,
 				14AB9AFB2167A26800EEB861 /* RandomFunction.swift in Sources */,
 				773C16EB2164BA06003A6814 /* Tree.swift in Sources */,
+				DD523069217E0E2200EE002A /* PauseScreen.swift in Sources */,
 				DD5230522179EA2000EE002A /* FrogAnimations.swift in Sources */,
 				DD5C3F142162141A0088CE4A /* AppDelegate.swift in Sources */,
 				773C16E32164B9C8003A6814 /* Frog.swift in Sources */,
 				DD5230462179E2CD00EE002A /* CommercialButton.swift in Sources */,
-				DD52303A2179E06200EE002A /* StartScreenOptionsNode.swift in Sources */,
-				DD5230422179E1E600EE002A /* ShopButton.swift in Sources */,
+				DD52303A2179E06200EE002A /* Navigation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

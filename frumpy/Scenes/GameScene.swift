@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
+  var navigation = Navigation()
   let leafController = LeafController()
   var waterController = WaterController()
   var frogController = FrogController()
@@ -24,30 +25,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var frog: SKSpriteNode = SKSpriteNode()
   var drag: SKSpriteNode = SKSpriteNode()
   
+  let minSwipe: CGFloat = 50
+  let maxSwipe: CGFloat = 170
+  
   var optionsAreHidden: Bool = false
+  var toManyTouches: Bool = false
   
-  let image = SKSpriteNode()
+  var treeCounter: Int = 2;
+  var treePositionHeight: Int = 1;
   
-  var treeCounter = 2;
-  var treePositionHeight = 1;
-
-  var startX: CGFloat = 0;
-  var startY: CGFloat = 0;
-  var landingSucsess = false;
-  var frogPosition = CGPoint()
-  var spritesAdded = [SKSpriteNode]()
+  var swipeStartPoint: CGPoint = CGPoint()
+  
+  var spritesAdded: [SKSpriteNode] = [SKSpriteNode]()
   var scoreLabel: SKLabelNode?
-  private var waves = SKSpriteNode()
-  private var waveFrames: [SKTexture] = []
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
   private var spareWater: SKShapeNode = SKShapeNode()
-  
-  private var windActionForLeaf:SKAction = SKAction()
-  private var thisLeaf: SKSpriteNode = SKSpriteNode()
 
-  var score:Int = 0
-  var highScore:Int = 0
+  var score: Int = 0
+  var highScore: Int = 0
   
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
@@ -55,8 +51,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     musicController.playBackgroundMusic()
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
-    self.camera = cam
     self.view!.showsNodeCount = true
+    self.view!.isMultipleTouchEnabled = false
+    self.camera = cam
+    
+    navigation = Navigation(size: self.frame.size)
+    navigation.renderStartOptions()
+    cam.addChild(navigation)
+    
     createStartOptions()
     frogController = FrogController(size: frame.size)
     addFrog()
@@ -70,16 +72,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addWater()
     addAimDots()
     addStartLeaves()
-    pauseButton.name = "pausebtn"
-    cam.addChild(pauseButton)
     cam.addChild(scoreText)
     createParticles()
-    view.addGestureRecognizer(frogController.initPanner())
   }
   
   override func update(_ currentTime: CFTimeInterval) {
     frogController.updateFrogAngle()
-    cam.position.y = frog.position.y
+    cam.position.y = frog.position.y + 75
     
   }
   
@@ -101,39 +100,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     backgroundCloud1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundCloud1.name = "backgroundCloud1"
+    backgroundCloud1.name = "particle"
     backgroundCloud1.targetNode = self.scene
     backgroundCloud1.particleZPosition = 1
     
     backgroundCloud2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundCloud2.name = "backgroundCloud2"
+    backgroundCloud2.name = "particle"
     backgroundCloud2.targetNode = self.scene
     backgroundCloud2.particleZPosition = 2
     
     backgroundLeaf1.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf1.name = "backgroundLeaf1"
+    backgroundLeaf1.name = "particle"
     backgroundLeaf1.targetNode = self.scene
     backgroundLeaf1.particleZPosition = 3
     
     backgroundLeaf2.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf2.name = "backgroundLeaf2"
+    backgroundLeaf2.name = "particle"
     backgroundLeaf2.targetNode = self.scene
     backgroundLeaf2.particleZPosition = 2
     
     backgroundLeaf3.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundLeaf3.name = "backgroundLeaf3"
+    backgroundLeaf3.name = "particle"
     backgroundLeaf3.targetNode = self.scene
     backgroundLeaf3.particleZPosition = 0
     
     backgroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    backgroundRain.name = "backgroundRain"
+    backgroundRain.name = "particle"
     backgroundRain.targetNode = self.scene
     backgroundRain.particleZPosition = 1
     
     foregroundRain.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-    foregroundRain.name = "foregroundRain"
+    foregroundRain.name = "particle"
     foregroundRain.targetNode = self.scene
     foregroundRain.particleZPosition = 5
+    
     
     cam.addChild(backgroundCloud1)
     cam.addChild(backgroundCloud2)
@@ -144,69 +144,63 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     cam.addChild(backgroundLeaf3)
   }
   
-  func createWindForLeaves() {
-    let action1 = SKAction.moveBy(x: 100, y: -20, duration: 1)
-    let action2 = SKAction.moveBy(x: -100, y: 10, duration: 1)
-    let action3 = SKAction.sequence([action1, action2])
-    windActionForLeaf = SKAction.repeatForever(action3)
-  }
-  
   lazy var scoreText: SKLabelNode  = {
     var scoreLabel = SKLabelNode()
     scoreLabel.zPosition = 6
     scoreLabel.fontSize = 45
-    //scoreLabel.fontName = "AlNile"
     scoreLabel.position = CGPoint(x: (frame.size.width / 2) - (self.size.width / 2), y: (self.frame.height / 2) - 70)
     scoreLabel.text = "0"
     return scoreLabel
   }()
-  
-  lazy var pauseButton: SKSpriteNode = {
-    var pause = SKSpriteNode(imageNamed: "Pause")
-    //pause.target(forAction: #selector(GameScene.pause), withSender: UITapGestureRecognizer())
-    pause.alpha = 0.8
-    pause.name = "pausebtn"
-    pause.size = CGSize(width: pause.size.width, height: pause.size.height)
-    pause.isUserInteractionEnabled = true
-    pause.position = CGPoint(x: (frame.size.width / 2) - (pause.size.width + 10), y: (frame.size.height / 2) - (pause.size.height + 10) )
-    pause.zPosition = 6
-    return pause
-  }()
-  
-  @objc func pause() {
-    print("TIPPETY TAP")
-    //Open pause popup in this func
-  }
+
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    musicController.stopBackgroundMusic()
     
-    if (!optionsAreHidden) {
-      gameMusicController.playGameMusic()
-      hideStartOptions()
+    
+    
+    if (touches.count < 2 && frogController.jumpIsEnabled()) {
+      musicController.stopBackgroundMusic()
+      for touch in touches {
+        swipeStartPoint = touch.location(in: self.view)
+        frogController.setFrogAnimation(animation: 2)
+        if (!optionsAreHidden) {
+          gameMusicController.playGameMusic()
+          hideStartOptions()
+        }
+      }
     }
-    
-    if let touch = touches.first {
-      let location = touch.location(in: self)
-      let nodesarray = nodes(at: location)
-      
-      for node in nodesarray {
-        if node.name == "pausebtn" {
-          print("touched pause button")
+  }
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if (touches.count < 2 && frogController.jumpIsEnabled()) {
+      for touch in touches {
+        let currentPoint = touch.location(in: self.view)
+        let swipeLength = Utilities.betweenPointDistance(point1: currentPoint, point2: swipeStartPoint)
+        if (swipeLength > minSwipe) {
+          let swipeAngle  = Utilities.betweenPointAngle(point1: currentPoint, point2: swipeStartPoint)
+          let swipeVector = Utilities.betweenPointVector(distance: swipeLength, maxDistance: maxSwipe, point2: currentPoint, point1: swipeStartPoint)
+          frogController.showAimDots()
+          frogController.checkAngle(angle: swipeAngle)
+          frogController.moveAimDots(vector: swipeVector, swipeLength: swipeLength)
         }
       }
     }
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    // Loop over all the touches in this event
-    for touch: AnyObject in touches {
-      // Get the location of the touch in this scene
-      let location = touch.location(in: self)
-      // Check if the location of the touch is within the button's bounds
-      if pauseButton.contains(location) {
-        print("worked")
-        pause()
+    if (touches.count < 2 && frogController.jumpIsEnabled()) {
+      for touch in touches {
+        let currentPoint = touch.location(in: self.view)
+        let swipeLength = Utilities.betweenPointDistance(point1: currentPoint, point2: swipeStartPoint)
+        frogController.hideAimDots()
+        if (swipeLength > minSwipe) {
+          let swipeVector = Utilities.betweenPointVector(distance: swipeLength, maxDistance: maxSwipe, point2: currentPoint, point1: swipeStartPoint)
+          frogController.setFrogAnimation(animation: 3)
+          frogController.makeJump(vector: swipeVector)
+          frogController.disableJump()
+        } else {
+          frogController.setFrogAnimation(animation: 1)
+        }
       }
     }
   }
@@ -221,9 +215,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
       frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
       if(contact.collisionImpulse > 5 && contact.contactNormal.dy < 0) {
-      frogController.setFrogAnimation(animation: 1)
-      let leafBody: SKPhysicsBody = contact.bodyB
-      let leaf = (leafBody.node as? Leaf)!
+        frogController.setFrogAnimation(animation: 1)
+        let leafBody: SKPhysicsBody = contact.bodyB
+        let leaf = (leafBody.node as? Leaf)!
         if(!leaf.isVisited()) {
           addLeaf(position: generateRandomPosition(leafPosition: leaf.position), isVisited: false)
           score += 1
@@ -245,6 +239,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
     }
   }
+  
+  
    
   func addFloor () {
     let floor = SKSpriteNode(color: .init(white: 1, alpha: 0.3) , size: CGSize(width: frame.width, height: 30))
@@ -331,11 +327,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       if(sprite.name == "tree"){
         if(frog.position.y - frame.height * 2 > sprite.position.y){
          // addChild(tree.addTreeSprite(imageNr: treeCounter, position: CGPoint(x:self.frame.width / 2, y:CGFloat(treePositionHeight) * self.frame.height)))
-          print ("hej")
         }
         if(frog.position.y - frame.height * 2 > sprite.position.y){
           sprite.removeFromParent()
-          print ("då")
         }
       }
     }
@@ -354,7 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for waterLayer in waterLayers {
       addChild(waterLayer)
     }
-    spareWater = waterController.buildSpareWater(color: UIColorFromHex(rgbValue: 0x64BDF4))
+    spareWater = waterController.buildSpareWater(color: Utilities.UIColorFromHex(hexValue: 0x64BDF4))
     addChild(spareWater)
   }
   
@@ -372,7 +366,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func addStartLeaves() {
-    addLeaf(position: CGPoint(x: 100, y: 100), isVisited: true)
+    addLeaf(position: CGPoint(x: 70, y: 100), isVisited: true)
     addLeaf(position: CGPoint(x: 300, y: 300), isVisited: false)
   }
   
@@ -394,22 +388,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   func addLeaf(position: CGPoint, isVisited: Bool){
     let currentLeaf = Leaf(position: position, imageNamed: "leaf\(arc4random_uniform(5) + 1)", visited: isVisited)
-    
     if (position.x < (self.frame.width) / 2) {
       currentLeaf.xScale = -1.0;
     }
-    
     addChild(currentLeaf)
 
-  }
-  
-  func UIColorFromHex(rgbValue: UInt) -> UIColor {
-    return UIColor(
-      red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-      green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-      blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-      alpha: CGFloat(1.0)
-    )
   }
   
   func setHighscore() -> Int{
@@ -417,14 +400,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       highScore = score
     }
     return highScore
-    //print(highScore)
   }
   
   func isGameOver(){
     let reveal = SKTransition.fade(withDuration: 0.5)
     let endGameScene = GameScene(size: self.size)
     self.view!.presentScene(endGameScene, transition: reveal)
-
   }
   
   func createStartOptions() {
@@ -436,6 +417,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let fade = SKAction.fadeAlpha(to: 0, duration: 0.4)
     let remove = SKAction.removeFromParent()
     drag.run(SKAction.sequence([fade, remove]))
+    navigation.removeStartOptions()
+    navigation.renderInGameOptions()
   }
   
   func createDragTutorial() {
@@ -448,7 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     let firstFrameTexture = frames[0]
     drag = SKSpriteNode(texture: firstFrameTexture)
-    drag.position = CGPoint(x: 60, y: -20)
+    drag.position = CGPoint(x: 60, y: -10)
     drag.alpha = 0.7
     drag.size = CGSize(width: firstFrameTexture.size().width/1.6, height: firstFrameTexture.size().height/1.6)
     drag.zPosition = 10
