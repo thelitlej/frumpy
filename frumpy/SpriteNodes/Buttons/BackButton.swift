@@ -26,7 +26,7 @@ class BackButton: SKSpriteNode {
       if (abs(touch.location(in: self).x) > self.size.width/2 || abs(touch.location(in: self).y) > self.size.height/2) {
         self.run(SKAction.scale(to: 1, duration: 0.1))
       } else {
-        let transition: SKTransition = SKTransition.push(with: SKTransitionDirection(rawValue: 3)!, duration: 0.5)
+        let transition: SKTransition = SKTransition.push(with: SKTransitionDirection(rawValue: 3)!, duration: 1)
         let nextScene: SKScene = GameScene(size: scene!.size)
         scene?.view?.presentScene(nextScene, transition: transition)
       }

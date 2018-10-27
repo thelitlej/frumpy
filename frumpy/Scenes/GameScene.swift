@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
   private var spareWater: SKSpriteNode = SKSpriteNode()
-
+  let defaults = UserDefaults.standard
   var score: Int = 0
   var highScore: Int = 0
   
@@ -133,10 +133,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     foregroundRain.name = "particle"
     foregroundRain.targetNode = self.scene
     foregroundRain.particleZPosition = 5
+    defaults.set(0, forKey: "scoreKey")
     
     
-    cam.addChild(backgroundCloud1)
-    cam.addChild(backgroundCloud2)
+    //cam.addChild(backgroundCloud1)
+    //cam.addChild(backgroundCloud2)
     cam.addChild(backgroundRain)
     cam.addChild(foregroundRain)
     cam.addChild(backgroundLeaf1)
@@ -227,7 +228,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(!leaf.isVisited()) {
           addLeaf(position: generateRandomPosition(leafPosition: leaf.position), isVisited: false)
           score += 1
+          defaults.set(score, forKey: "scoreKey")
+          defaults.synchronize()
           scoreText.text = "\(score)"
+          if score > UserDefaults().integer(forKey: "HIGHSCORE") {
+            saveHighScore()
+          }
           leaf.setVisited( )
           if(score % 5 == 0) {
             waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
@@ -400,18 +406,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     addChild(currentLeaf)
 
   }
+  func saveHighScore() {
+    UserDefaults.standard.set(score, forKey: "HIGHSCORE")
+  }
   
-  func setHighscore() -> Int{
+  /*func setHighscore() -> Int{
     if(score > highScore){
       highScore = score
     }
     return highScore
-  }
+  }*/
   
   func isGameOver(){
-    let reveal = SKTransition.fade(withDuration: 0.5)
-    let endGameScene = GameScene(size: self.size)
-    self.view!.presentScene(endGameScene, transition: reveal)
+    //let reveal = SKTransition.fade(withDuration: 0.5)
+    let gameOverScene = GameOverScene(size: self.size)
+    view?.presentScene(gameOverScene, transition: SKTransition.fade(withDuration: 0.5))
+    //self.view!.presentScene(endGameScene, transition: reveal)
   }
   
   func createStartOptions() {
