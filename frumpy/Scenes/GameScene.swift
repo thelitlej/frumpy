@@ -40,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var scoreLabel: SKLabelNode?
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
-  private var spareWater: SKShapeNode = SKShapeNode()
+  private var spareWater: SKSpriteNode = SKSpriteNode()
 
   var score: Int = 0
   var highScore: Int = 0
@@ -63,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     frogController = FrogController(size: frame.size)
     addFrog()
     
-    waterController = WaterController(frogZPosition: frog.zPosition)
+    waterController = WaterController(frogZPosition: frog.zPosition, frameSize: frame.size)
     addCamera()
     addWalls()
     addFloor()
@@ -212,7 +212,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       treePositionHeight = treePositionHeight + 1;
       addTree()
     }
+
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
+      if((contact.bodyB.node?.position.y)! - waterLayers.first!.position.y > 400) {
+      print(contact.bodyB.node!.position.y - waterLayers.first!.position.y)
+        print("WATER LAYER", waterLayers.first!.position.y)
+         waterController.setPosition(waterLayers: waterLayers, frame: cam, spareWater: spareWater)
+      }
       frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
       if(contact.collisionImpulse > 5 && contact.contactNormal.dy < 0) {
         frogController.setFrogAnimation(animation: 1)
@@ -348,7 +354,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for waterLayer in waterLayers {
       addChild(waterLayer)
     }
-    spareWater = waterController.buildSpareWater(color: Utilities.UIColorFromHex(hexValue: 0x64BDF4))
+    spareWater = waterController.buildSpareWater(color: Utilities.UIColorFromHex(hexValue: 0x64BDF4), size: frame.size)
     addChild(spareWater)
   }
   

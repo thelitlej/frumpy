@@ -30,7 +30,6 @@ class WaterLayer: SKSpriteNode{
       return CGPoint(x: -size.width/2, y: 0)
     }
   }
-  
   public func getAnimationDirection() -> String{
     return animationDirection
   }
