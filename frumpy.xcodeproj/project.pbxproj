@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AEFF38D9E585FC6EEC412AA /* Pods_frumpyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D89612F443ABAA4D71E93C6 /* Pods_frumpyUITests.framework */; };
 		14AB9AFB2167A26800EEB861 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB9AFA2167A26800EEB861 /* RandomFunction.swift */; };
+		14AB9B04218076FC00EEB861 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB9B03218076FC00EEB861 /* GameOverScene.swift */; };
 		7700F426217A01BB0010B320 /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7700F425217A01BB0010B320 /* MusicController.swift */; };
 		7700F42D217A06510010B320 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7700F42C217A06510010B320 /* rain.mp3 */; };
 		7700F42F217A0C910010B320 /* frumpyintense.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7700F42E217A0C910010B320 /* frumpyintense.mp3 */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		0A2F0A6808FB13C3A6F8C341 /* Pods-frumpyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyUITests/Pods-frumpyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		14AB9AFA2167A26800EEB861 /* RandomFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
+		14AB9B03218076FC00EEB861 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		1639BE06A00C75E17F4100E5 /* Pods-frumpyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frumpyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frumpyTests/Pods-frumpyTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C03711F3D142C4246E64319 /* Pods_frumpy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F2DD08D721B2B9F9CEAD9F8 /* Pods_frumpyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frumpyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,6 +243,7 @@
 				DD523060217B901600EE002A /* AshivementScene.swift */,
 				DD523062217B906200EE002A /* CustomizeScene.swift */,
 				DD52306C217F0DD500EE002A /* StoreScene.swift */,
+				14AB9B03218076FC00EEB861 /* GameOverScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				773C16E72164B9E7003A6814 /* Leaf.swift in Sources */,
 				77C1BFCC21676AD2002DDECD /* Collision.swift in Sources */,
 				DD523067217DD97700EE002A /* Utilities.swift in Sources */,
+				14AB9B04218076FC00EEB861 /* GameOverScene.swift in Sources */,
 				773C16E92164B9F2003A6814 /* LeafController.swift in Sources */,
 				DD522F5721721AF400EE002A /* WaterController.swift in Sources */,
 				DD523063217B906200EE002A /* CustomizeScene.swift in Sources */,
@@ -794,14 +798,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MY24QHR62Z;
+				DEVELOPMENT_TEAM = 9D46NGB65V;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sourcmpire.frumpy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -816,14 +820,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MY24QHR62Z;
+				DEVELOPMENT_TEAM = 9D46NGB65V;
 				INFOPLIST_FILE = frumpy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.source-empire.frumpy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sourcmpire.frumpy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
