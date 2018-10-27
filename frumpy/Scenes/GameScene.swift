@@ -14,6 +14,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let leafController = LeafController()
   var waterController = WaterController()
   var frogController = FrogController()
+  var musicController = MusicController()
+  var rainController = MusicController()
+  var gameMusicController = MusicController()
   
   let kLeafCategory: UInt32 = 0x1 << 0
   let nrOfAimDots = 8
@@ -48,6 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   override func didMove(to view: SKView) {
     self.physicsWorld.contactDelegate = self
+    rainController.playRainSounds()
+    musicController.playBackgroundMusic()
     self.physicsBody?.density = 0
     self.view!.showsFPS = true
     self.camera = cam
@@ -174,7 +179,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    musicController.stopBackgroundMusic()
+    
     if (!optionsAreHidden) {
+      gameMusicController.playGameMusic()
       hideStartOptions()
     }
     
