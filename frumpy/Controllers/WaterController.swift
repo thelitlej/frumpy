@@ -23,18 +23,25 @@ class WaterController: UIViewController {
     self.frogZPosition = frogZPosition
     frogFellIn = false
     waterFillSpeed = 0
-    
   }
   
   public func buildWater(size: CGSize) -> [WaterLayer] {
     self.size = size
     var waterLayers: [WaterLayer] = [WaterLayer]()
-    for i in 0...2 {
+    for i in 0...3 {
       let imageNamed = "waves_\(i)"
       let z = getZPosition(index: i)
-      let direction = getAnimationDirection(index: i)
+      var direction: String = String()
+      var position: CGPoint = CGPoint()
+      if (i != 3) {
+        direction = getAnimationDirection(index: i)
+        position = CGPoint(x: 0, y: 0)
+      } else {
+        direction = "still"
+        position = CGPoint(x: 0, y: -290)
+      }
       let waterLayer = WaterLayer(imageNamed: imageNamed, zPosition: z, animationDirection: direction, size: size)
-      waterLayer.position = CGPoint(x: 0, y: 0)
+      waterLayer.position = position
       waterLayers.append(waterLayer)
     }
     animateWater(waterLayers: waterLayers)
@@ -57,7 +64,7 @@ class WaterController: UIViewController {
         let moveGroup = SKAction.group([moveHorrizontal, moveVertical, scale])
         let moveArray = [moveGroup, resetPosition]
         sequence = SKAction.sequence(moveArray)
-      } else {
+      } else if (waterLayer.getAnimationDirection() == "right") {
         let b = SKAction.moveBy(x: 30, y: 5, duration: 0.5)
         b.timingMode = SKActionTimingMode(rawValue: 3)!
         let s = SKAction.moveBy(x: -30, y: -5, duration: 0.5)
@@ -68,34 +75,21 @@ class WaterController: UIViewController {
         let moveGroup = SKAction.group([moveHorrizontal, moveVertical, scale])
         let moveArray = [moveGroup, resetPosition]
         sequence = SKAction.sequence(moveArray)
+      } else {
+        waterLayer.name = "water"
+        waterLayer.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: waterLayer.size.width, height: waterLayer.size.height))
+        waterLayer.physicsBody?.affectedByGravity = false
+        waterLayer.physicsBody?.collisionBitMask = 0
+        waterLayer.physicsBody?.isDynamic = false
+        sequence = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
       }
       waterLayer.run(SKAction.repeatForever(sequence), withKey: "water")
      
     }
   }
   
-  public func buildSpareWater(color: UIColor, size: CGSize) -> SKSpriteNode {
-    self.size = size
-    let spareWater = SKSpriteNode(texture: nil, color: color, size: size)
-    spareWater.position = CGPoint(x: size.width / 2, y: -size.height + 300)
-    spareWater.zPosition = frogZPosition + 2
-    animateSpareWater(spareWater: spareWater)
-    return spareWater
-  }
-  
-  private func animateSpareWater(spareWater: SKSpriteNode) {
-    let moveVertical = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
-    spareWater.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 750, height: 750))
-    spareWater.physicsBody?.affectedByGravity = false
-    spareWater.physicsBody?.collisionBitMask = 0
-    spareWater.physicsBody?.isDynamic = false
-    spareWater.name = "water"
-    spareWater.run(SKAction.repeatForever(moveVertical), withKey: "water")
-  }
-  
-  public func increseWaterFillSpeed(spareWater: SKSpriteNode, waterLayers: [WaterLayer]) {
+  public func increseWaterFillSpeed(waterLayers: [WaterLayer]) {
     waterFillSpeed = waterFillSpeed + 30
-    speedSpareWater(spareWater: spareWater)
     speedWater(waterLayers: waterLayers)
   }
   
@@ -106,18 +100,14 @@ class WaterController: UIViewController {
     }
   }
   
-  public func setPosition(waterLayers: [WaterLayer], frame: SKCameraNode, spareWater: SKSpriteNode) {
+  public func setPosition(waterLayers: [WaterLayer], camera: SKCameraNode) {
     for waterLayer in waterLayers {
-       waterLayer.position = CGPoint(x: frame.frame.width, y: frame.position.y - 500)
+      if(waterLayer.getAnimationDirection() == "right" || waterLayer.getAnimationDirection() == "left") {
+        waterLayer.position = CGPoint(x: camera.frame.width, y: camera.position.y - 500)
+      } else {
+        waterLayer.run(SKAction.move(to: CGPoint(x: camera.frame.width, y: camera.position.y - 790), duration: 0))
+      }
     }
-    print("SPARE WATER POSITION 1: ", spareWater.position)
-    spareWater.position = CGPoint(x: frame.frame.width, y: frame.position.y - 500)
-    print("SPARE WATER POSITION 2: ", spareWater.position)
-  }
-  
-  private func speedSpareWater(spareWater: SKSpriteNode) {
-    let moveVertical = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
-    spareWater.run(SKAction.repeatForever(moveVertical))
   }
 
   public func frogDidFallIn() -> Bool{

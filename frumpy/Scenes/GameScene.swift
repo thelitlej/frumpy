@@ -40,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var scoreLabel: SKLabelNode?
   
   private var waterLayers: [WaterLayer] = [WaterLayer]()
-  private var spareWater: SKSpriteNode = SKSpriteNode()
+  
   let defaults = UserDefaults.standard
   var score: Int = 0
   var highScore: Int = 0
@@ -50,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rainController.playRainSounds()
     musicController.playBackgroundMusic()
     self.physicsBody?.density = 0
+    self.view!.showsPhysics = true
     self.view!.showsFPS = true
     self.view!.showsNodeCount = true
     self.view!.isMultipleTouchEnabled = false
@@ -156,9 +157,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-    
-    
     if (touches.count < 2 && frogController.jumpIsEnabled()) {
       musicController.stopBackgroundMusic()
       for touch in touches {
@@ -207,6 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   }
   
   func didBegin(_ contact: SKPhysicsContact) {
+    
     if(contact.bodyA.node?.name == "floor") {
       contact.bodyB.node?.removeFromParent()
       treeCounter = treeCounter + 1;
@@ -214,19 +213,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       addTree()
     }
 
+
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "leaf") {
       if((contact.bodyB.node?.position.y)! - waterLayers.first!.position.y > 400) {
-      print(contact.bodyB.node!.position.y - waterLayers.first!.position.y)
-        print("WATER LAYER", waterLayers.first!.position.y)
-         waterController.setPosition(waterLayers: waterLayers, frame: cam, spareWater: spareWater)
+         waterController.setPosition(waterLayers: waterLayers, camera: cam)
       }
       frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+
       if(contact.collisionImpulse > 5 && contact.contactNormal.dy < 0) {
+        frog.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         frogController.setFrogAnimation(animation: 1)
         let leafBody: SKPhysicsBody = contact.bodyB
         let leaf = (leafBody.node as? Leaf)!
         if(!leaf.isVisited()) {
           addLeaf(position: generateRandomPosition(leafPosition: leaf.position), isVisited: false)
+          leaf.setVisited( )
           score += 1
           defaults.set(score, forKey: "scoreKey")
           defaults.synchronize()
@@ -234,13 +235,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           if score > UserDefaults().integer(forKey: "HIGHSCORE") {
             saveHighScore()
           }
-          leaf.setVisited( )
           if(score % 5 == 0) {
-            waterController.increseWaterFillSpeed(spareWater: spareWater, waterLayers: waterLayers)
+            waterController.increseWaterFillSpeed(waterLayers: waterLayers)
           }
         }
       }
     }
+    
     if(contact.bodyA.node?.name == "frog" && contact.bodyB.node?.name == "water") {
       if(!waterController.frogDidFallIn()) {
         //Implement game over, pause game and implement start over- and watch add button
@@ -360,8 +361,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     for waterLayer in waterLayers {
       addChild(waterLayer)
     }
-    spareWater = waterController.buildSpareWater(color: Utilities.UIColorFromHex(hexValue: 0x64BDF4), size: frame.size)
-    addChild(spareWater)
   }
   
   func addAimDots() {

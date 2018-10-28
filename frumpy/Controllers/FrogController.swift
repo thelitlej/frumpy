@@ -68,10 +68,10 @@ class FrogController: UIViewController {
    */
   func initFrogPhysics() {
     let frogSize = CGSize(width: (frog.size.width/4), height: (frog.size.height/4))
-    let physicsBody = SKPhysicsBody(texture: frogAnimations.origin_origin_00000(), size: frogSize)
+    let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frogSize.width/1.9, height: frogSize.height/2), center: CGPoint(x: frog.position.x, y: frog.position.y - 17))
     frog.physicsBody = physicsBody
     frog.size = frogSize
-    frog.position = CGPoint(x: 70+frog.size.width/10, y: 160)
+    frog.position = CGPoint(x: 70 + frog.size.width/10, y: 160)
     frog.physicsBody?.restitution = 0.2
     frog.physicsBody?.angularDamping = 0
     frog.physicsBody?.linearDamping = 0
