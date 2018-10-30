@@ -33,7 +33,10 @@ class WaterController: UIViewController {
       let z = getZPosition(index: i)
       var direction: String = String()
       var position: CGPoint = CGPoint()
-      if (i != 3) {
+      if (i == 1) {
+        direction = getAnimationDirection(index: i)
+        position = CGPoint(x: -frameSize.width*2, y: 0)
+      } else if (i != 3) {
         direction = getAnimationDirection(index: i)
         position = CGPoint(x: 0, y: 0)
       } else {
@@ -42,6 +45,7 @@ class WaterController: UIViewController {
       }
       let waterLayer = WaterLayer(imageNamed: imageNamed, zPosition: z, animationDirection: direction, size: size)
       waterLayer.position = position
+      print(waterLayer.position)
       waterLayers.append(waterLayer)
     }
     animateWater(waterLayers: waterLayers)
@@ -70,7 +74,7 @@ class WaterController: UIViewController {
         let s = SKAction.moveBy(x: -30, y: -5, duration: 0.5)
         s.timingMode = SKActionTimingMode(rawValue: 3)!
         let scale = SKAction.sequence([b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s, b, s])
-        let moveHorrizontal = SKAction.moveTo(x: waterLayer.size.width - waterLayer.size.width, duration: 10)
+        let moveHorrizontal = SKAction.moveTo(x: 0, duration: 10)
         let moveVertical = SKAction.move(by: CGVector(dx: 0, dy: waterFillSpeed), duration: 10)
         let moveGroup = SKAction.group([moveHorrizontal, moveVertical, scale])
         let moveArray = [moveGroup, resetPosition]
@@ -102,8 +106,10 @@ class WaterController: UIViewController {
   
   public func setPosition(waterLayers: [WaterLayer], camera: SKCameraNode) {
     for waterLayer in waterLayers {
-      if(waterLayer.getAnimationDirection() == "right" || waterLayer.getAnimationDirection() == "left") {
+      if (waterLayer.getAnimationDirection() == "left") {
         waterLayer.position = CGPoint(x: camera.frame.width, y: camera.position.y - 500)
+      } else if (waterLayer.getAnimationDirection() == "right"){
+        waterLayer.position = CGPoint(x: -camera.frame.width, y: camera.position.y - 500)
       } else {
         waterLayer.run(SKAction.move(to: CGPoint(x: camera.frame.width, y: camera.position.y - 790), duration: 0))
       }

@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   let cam = SKCameraNode()
   var frog: SKSpriteNode = SKSpriteNode()
   var drag: SKSpriteNode = SKSpriteNode()
+  var logo: SKSpriteNode = SKSpriteNode()
   
   let minSwipe: CGFloat = 50
   let maxSwipe: CGFloat = 170
@@ -50,7 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     rainController.playRainSounds()
     musicController.playBackgroundMusic()
     self.physicsBody?.density = 0
-    self.view!.showsPhysics = true
     self.view!.showsFPS = true
     self.view!.showsNodeCount = true
     self.view!.isMultipleTouchEnabled = false
@@ -425,6 +425,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   
   func createStartOptions() {
     createDragTutorial()
+    createLogo()
   }
   
   func hideStartOptions() {
@@ -432,6 +433,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let fade = SKAction.fadeAlpha(to: 0, duration: 0.4)
     let remove = SKAction.removeFromParent()
     drag.run(SKAction.sequence([fade, remove]))
+    logo.run(SKAction.sequence([fade, remove]))
     navigation.removeStartOptions()
     navigation.renderInGameOptions()
   }
@@ -454,6 +456,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     drag.run(SKAction.repeatForever(action))
     addChild(drag)
     
+  }
+  
+  func createLogo() {
+    let logoAtlas = SKTextureAtlas(named: "frumpylogo")
+    var frames: [SKTexture] = []
+    let numImages = logoAtlas.textureNames.count
+    for i in 0...(numImages - 1){
+      let dragTextureName = "frumpylogo_\(i)"
+      frames.append(logoAtlas.textureNamed(dragTextureName))
+    }
+    let firstFrameTexture = frames[0]
+    logo = SKSpriteNode(texture: firstFrameTexture)
+    logo.position = CGPoint(x: self.size.width/2, y: 400)
+    logo.size = CGSize(width: firstFrameTexture.size().width/2.2, height: firstFrameTexture.size().height/1.7)
+    logo.zPosition = 10
+    let action = SKAction.animate(with: frames, timePerFrame: 0.02, resize: false, restore: true)
+    logo.run(SKAction.repeatForever(action))
+    addChild(logo)
   }
   
 }
